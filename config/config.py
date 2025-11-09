@@ -6,7 +6,7 @@ LINKS = [
     # "https://raw.githubusercontent.com/Flik6/getNode/main/v2ray.txt",
     # "https://raw.githubusercontent.com/Leon406/SubCrawler/main/sub/share/vless",
     # "https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity",
-    # "https://raw.githubusercontent.com/mfuu/v2ray/master/merge/merge_base64.txt",
+    "https://raw.githubusercontent.com/mfuu/v2ray/master/merge/merge_base64.txt",
     # "https://raw.githubusercontent.com/mfuu/v2ray/master/v2ray",
     # "https://raw.githubusercontent.com/mlabalabala/v2ray-node/main/nodefree_nodes_mod.txt",
     # "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.txt",
@@ -24,5 +24,22 @@ LINKS = [
 # Database settings
 DB_PATH = "data/database.db"
 
-# Other configs
-MAX_LINKS = len(LINKS)
+# Extract output path
+REJECTED_URIS_PATH = "output/raw_uris_rejected.txt"
+
+# Unified proxies config
+PROXIES = {
+    "PROTOCOLS": {
+        "vless": {"uri": {"output": "output/raw_uris_vless.txt"}},
+        "trojan": {"uri": {"output": "output/raw_uris_trojan.txt"}},
+        "ss": {"uri": {"output": "output/raw_uris_ss.txt"}},
+        "vmess": {"uri": {"output": "output/raw_uris_vmess.txt"}},
+        "hysteria2": {"uri": {"output": "output/raw_uris_hysteria2.txt"}},
+        "hy2": {
+            "uri": {
+                "output": "output/raw_uris_hysteria2.txt",
+                "normalize": "map_to_hysteria2",
+            },
+        },
+    },
+}
