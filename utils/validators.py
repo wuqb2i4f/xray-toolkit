@@ -1,17 +1,29 @@
 import re
 from typing import Dict, Callable
 
-# Map config validator strings to functions (extend by adding here)
-validators_map: Dict[str, Callable[[str], bool]] = {
-    "ipv4": lambda addr: bool(re.match(r"^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})$", addr))
-    and all(0 <= int(o) <= 255 for o in addr.split(".")),
-    "ipv6": lambda addr: bool(
-        re.match(r"^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$", addr)
-    ),
-    "domain": lambda addr: bool(
+
+def validate_ipv4(addr: str) -> bool:
+    return bool(re.match(r"^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})$", addr)) and all(
+        0 <= int(o) <= 255 for o in addr.split(".")
+    )
+
+
+def validate_ipv6(addr: str) -> bool:
+    return bool(re.match(r"^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$", addr))
+
+
+def validate_domain(addr: str) -> bool:
+    return bool(
         re.match(
             r"^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
             addr,
         )
-    ),
+    )
+
+
+# Map config validator strings to functions
+validators_map: Dict[str, Callable[[str], bool]] = {
+    "ipv4": validate_ipv4,
+    "ipv6": validate_ipv6,
+    "domain": validate_domain,
 }

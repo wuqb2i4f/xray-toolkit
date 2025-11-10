@@ -1,9 +1,9 @@
 import json
 import re
-import base64
-from typing import Dict, List, Any, Tuple
+from typing import Dict, List, Any
 from config.config import PROXIES
 from utils.helpers import validate_object
+from utils.processors import processors
 
 
 def transform_uris() -> None:
@@ -91,18 +91,6 @@ def extract_ss_components(uri: str) -> Dict[str, str] | None:
     }
 
 
-def decode_b64_part(b64_part: str) -> Tuple[str, str] | None:
-    """Decode base64 for method:password, return (method, password) or None."""
-    b64_padded = b64_part + "=" * ((4 - len(b64_part) % 4) % 4)
-    try:
-        decoded = base64.b64decode(b64_padded).decode("utf-8").rstrip("\0")
-        if ":" not in decoded:
-            return None
-        return decoded.split(":", 1)
-    except (base64.binascii.Error, UnicodeDecodeError):
-        return None
-
-
 def build_ss_object(components: Dict[str, str]) -> Dict[str, Any] | None:
     """Build SS dict from components."""
     port_str = components["port_str"]
@@ -111,10 +99,11 @@ def build_ss_object(components: Dict[str, str]) -> Dict[str, Any] | None:
     except ValueError:
         return None
 
-    method_pass = decode_b64_part(components["b64_part"])
-    if not method_pass:
+    result = processors["decode_b64_ss"](components["b64_part"], prefix="")
+    if not result:
         return None
-    method, password = method_pass
+    transformed, target_proto = result
+    method, password = transformed.split(":", 1)
 
     params_str = components["params_str"]
     params = {}
