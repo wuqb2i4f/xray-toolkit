@@ -3,7 +3,7 @@ import urllib.error
 import base64
 from typing import Dict, Set, Tuple, List
 from config.config import LINKS, REJECTED_URIS_PATH, PROXIES
-from utils.normalizers import normalizers
+from utils.processors import processors
 
 
 def extract_content_to_file() -> None:
@@ -106,8 +106,8 @@ def normalize_uri(uri: str, prefix: str, norm_rule: str) -> Tuple[str, str]:
     """Apply normalization based on rule string; returns (normalized_uri, target_proto).
     Uses imported normalizers map for dynamic lookup.
     """
-    if norm_rule in normalizers:
-        return normalizers[norm_rule](uri, prefix)
+    if norm_rule in processors:
+        return processors[norm_rule](uri, prefix)
     else:
         print(
             f"Unknown normalize rule '{norm_rule}' - using original URI and base proto"
