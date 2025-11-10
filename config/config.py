@@ -30,16 +30,78 @@ REJECTED_URIS_PATH = "output/raw_uris_rejected.txt"
 # Unified proxies config
 PROXIES = {
     "PROTOCOLS": {
-        "vless": {"uri": {"output": "output/raw_uris_vless.txt"}},
-        "trojan": {"uri": {"output": "output/raw_uris_trojan.txt"}},
-        "ss": {"uri": {"output": "output/raw_uris_ss.txt"}},
-        "vmess": {"uri": {"output": "output/raw_uris_vmess.txt"}},
-        "hysteria2": {"uri": {"output": "output/raw_uris_hysteria2.txt"}},
-        "hy2": {
+        "vless": {
             "uri": {
-                "output": "output/raw_uris_hysteria2.txt",
-                "normalize": "map_to_hysteria2",
+                "raw_output": "output/raw_uris_vless.txt",
+                "processed_output": "output/processed_uris_vless.json",
+            }
+        },
+        "trojan": {
+            "uri": {
+                "raw_output": "output/raw_uris_trojan.txt",
+                "processed_output": "output/processed_uris_trojan.json",
+            }
+        },
+        "ss": {
+            "uri": {
+                "raw_output": "output/raw_uris_ss.txt",
+                "processed_output": "output/processed_uris_ss.json",
+            },
+            "fields": {
+                "address": {
+                    "required": True,
+                    "type": "string",
+                    "validators": ["ipv4", "ipv6", "domain"],
+                },
+                "port": {"required": True, "type": "int", "range": [1, 65535]},
+                "password": {
+                    "required": True,
+                    "type": "string",
+                },
+                "method": {
+                    "required": True,
+                    "type": "string",
+                    "allowed": [
+                        "2022-blake3-aes-128-gcm",
+                        "2022-blake3-aes-256-gcm",
+                        "2022-blake3-chacha20-poly1305",
+                        "aes-256-gcm",
+                        "aes-128-gcm",
+                        "chacha20-poly1305",
+                        "chacha20-ietf-poly1305",
+                        "xchacha20-poly1305",
+                        "xchacha20-ietf-poly1305",
+                        "none",
+                        "plain",
+                    ],
+                },
+                "keys": {
+                    "required": False,
+                    "type": "dict",
+                },
+                "remarks": {
+                    "required": False,
+                    "type": "string",
+                },
             },
         },
-    },
+        "vmess": {
+            "uri": {
+                "raw_output": "output/raw_uris_vmess.txt",
+                "processed_output": "output/processed_uris_vmess.json",
+            }
+        },
+        "hysteria2": {
+            "uri": {
+                "raw_output": "output/raw_uris_hysteria2.txt",
+                "processed_output": "output/processed_uris_hysteria2.json",
+            }
+        },
+        "hy2": {
+            "uri": {
+                "raw_output": "output/raw_uris_hysteria2.txt",
+                "normalize": "map_to_hysteria2",
+            }
+        },
+    }
 }
