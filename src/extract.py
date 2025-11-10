@@ -3,6 +3,7 @@ import urllib.error
 import base64
 from typing import Dict, Set, Tuple, List
 from config.config import LINKS, REJECTED_URIS_PATH, PROXIES
+from utils.normalizers import normalizers
 
 
 def extract_content_to_file() -> None:
@@ -103,13 +104,8 @@ def parse_content_to_uris(
 
 def normalize_uri(uri: str, prefix: str, norm_rule: str) -> Tuple[str, str]:
     """Apply normalization based on rule string; returns (normalized_uri, target_proto).
-    Uses a dict of handlers for each rule—extend by adding lambdas/functions here.
+    Uses imported normalizers map for dynamic lookup.
     """
-    # Dict of rule strings to handlers: each returns (transformed_uri, target_proto)
-    normalizers: Dict[str, callable] = {
-        "map_to_hysteria2": lambda u, p: (u.replace(p, "hysteria2://", 1), "hysteria2"),
-    }
-
     if norm_rule in normalizers:
         return normalizers[norm_rule](uri, prefix)
     else:
@@ -125,7 +121,7 @@ def write_protocol_files(protocol_uris: Dict[str, Set[str]]) -> None:
     for proto, uris in protocol_uris.items():
         if uris:
             proto_config = PROXIES["PROTOCOLS"][proto]
-            output_path = proto_config["uri"]["output"]
+            output_path = proto_config["uri"]["raw_output"]
             with open(output_path, "w", encoding="utf-8") as f:
                 for uri in sorted(uris):
                     f.write(uri + "\n")
