@@ -30,22 +30,6 @@
     "config_hash": "795a10657fe2ef05a160008d2fa8dcb47e51cd154d0157edadf7ca718f5ceb24"
   },
   {
-    "address": "creativecommons.org",
-    "port": 443,
-    "password": "02XtoczO7V",
-    "keys": {
-      "path": "/hishhhh123",
-      "security": "tls",
-      "alpn": "http/1.1",
-      "host": "mooshali.arshiacomplus.dpdns.org",
-      "fp": "chrome",
-      "type": "ws",
-      "sni": "mooshali.arshiacomplus.dpdns.org"
-    },
-    "remarks": "MCI-@V2rayAlpha--4",
-    "config_hash": "795a10657fe2ef05a160008d2fa8dcb47e51cd154d0157edadf7ca718f5ceb24"
-  },
-  {
     "address": "54.38.156.210",
     "port": 443,
     "password": "10310a20-bbad-11ee-b279-1239d0255272",
@@ -233,20 +217,6 @@
     "config_hash": "e3908959f599259d3b6fcc774c813cd75f415f86dd84a69d719345306a3a5478"
   },
   {
-    "address": "45.159.251.8",
-    "port": 81,
-    "password": "19f8e29a-3f0b-448c-92e8-ae035ea5f9ba",
-    "keys": {
-      "security": "tls",
-      "type": "ws",
-      "sni": "joss.dus.biz.id",
-      "path": "/Free-VPN-CF-Geo-Project/45.159.251.8=81",
-      "host": "joss.dus.biz.id"
-    },
-    "remarks": "🇺🇸[openproxylist.com] trojan-US```",
-    "config_hash": "e3908959f599259d3b6fcc774c813cd75f415f86dd84a69d719345306a3a5478"
-  },
-  {
     "address": "117.172.176.22",
     "port": 1334,
     "password": "1b57001bd214304027025a740b6cf1ac",
@@ -348,28 +318,6 @@
     "port": 1334,
     "password": "1b57001bd214304027025a740b6cf1ac",
     "keys": {
-      "allowInsecure": "0",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "🇯🇵 日本2|@ripaojiedian",
-    "config_hash": "01353f48bed6fdd8186aef4cfdbd9659c3d048eae9f161a4700e619f8ce8892b"
-  },
-  {
-    "address": "160.16.136.130",
-    "port": 1334,
-    "password": "1b57001bd214304027025a740b6cf1ac",
-    "keys": {
-      "allowInsecure": "0",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "🇯🇵 日本2|@stairnode",
-    "config_hash": "01353f48bed6fdd8186aef4cfdbd9659c3d048eae9f161a4700e619f8ce8892b"
-  },
-  {
-    "address": "160.16.136.130",
-    "port": 1334,
-    "password": "1b57001bd214304027025a740b6cf1ac",
-    "keys": {
       "sni": "www.nintendogames.net"
     },
     "remarks": "🇯🇵JP日本6 2.8MB/s",
@@ -384,28 +332,6 @@
       "sni": "www.nintendogames.net"
     },
     "remarks": "日本3|@ripaojiedian",
-    "config_hash": "5c6b0acecf717a6cf2902731c1c8abba0b88236ea1e9504d38687ff3274f6df4"
-  },
-  {
-    "address": "160.16.136.130",
-    "port": 3169,
-    "password": "1b57001bd214304027025a740b6cf1ac",
-    "keys": {
-      "allowInsecure": "0",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "🇯🇵 日本3|@ripaojiedian",
-    "config_hash": "5c6b0acecf717a6cf2902731c1c8abba0b88236ea1e9504d38687ff3274f6df4"
-  },
-  {
-    "address": "160.16.136.130",
-    "port": 3169,
-    "password": "1b57001bd214304027025a740b6cf1ac",
-    "keys": {
-      "allowInsecure": "0",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "🇯🇵 日本3|@stairnode",
     "config_hash": "5c6b0acecf717a6cf2902731c1c8abba0b88236ea1e9504d38687ff3274f6df4"
   },
   {
@@ -434,28 +360,6 @@
     "port": 2173,
     "password": "1b57001bd214304027025a740b6cf1ac",
     "keys": {
-      "allowInsecure": "0",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "🇸🇬 新加坡2|@ripaojiedian",
-    "config_hash": "dfc7d58297db17b54d8b085dc33ce0edd07abfc79fc54b170950ff68186eceec"
-  },
-  {
-    "address": "160.16.138.24",
-    "port": 2173,
-    "password": "1b57001bd214304027025a740b6cf1ac",
-    "keys": {
-      "allowInsecure": "0",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "🇸🇬 新加坡2|@stairnode",
-    "config_hash": "dfc7d58297db17b54d8b085dc33ce0edd07abfc79fc54b170950ff68186eceec"
-  },
-  {
-    "address": "160.16.138.24",
-    "port": 2173,
-    "password": "1b57001bd214304027025a740b6cf1ac",
-    "keys": {
       "sni": "www.nintendogames.net"
     },
     "remarks": "🇸🇬SG新加坡4",
@@ -477,28 +381,6 @@
     "port": 2283,
     "password": "1b57001bd214304027025a740b6cf1ac",
     "keys": {
-      "allowInsecure": "0",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "🇸🇬 新加坡|@ripaojiedian",
-    "config_hash": "503ad235fc59d41eadc748f341262184e48afa45e2d909944f2dec92cd647c06"
-  },
-  {
-    "address": "160.16.138.24",
-    "port": 2283,
-    "password": "1b57001bd214304027025a740b6cf1ac",
-    "keys": {
-      "allowInsecure": "0",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "🇸🇬 新加坡|@stairnode",
-    "config_hash": "503ad235fc59d41eadc748f341262184e48afa45e2d909944f2dec92cd647c06"
-  },
-  {
-    "address": "160.16.138.24",
-    "port": 2283,
-    "password": "1b57001bd214304027025a740b6cf1ac",
-    "keys": {
       "sni": "www.nintendogames.net"
     },
     "remarks": "🇸🇬SG新加坡",
@@ -513,28 +395,6 @@
       "sni": "www.nintendogames.net"
     },
     "remarks": "美国|@ripaojiedian",
-    "config_hash": "d79d5b15e6862dbabdace3953ab7506aa04672d55d45909633569d153543652d"
-  },
-  {
-    "address": "160.16.138.24",
-    "port": 674,
-    "password": "1b57001bd214304027025a740b6cf1ac",
-    "keys": {
-      "allowInsecure": "0",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "🇺🇸 美国|@ripaojiedian",
-    "config_hash": "d79d5b15e6862dbabdace3953ab7506aa04672d55d45909633569d153543652d"
-  },
-  {
-    "address": "160.16.138.24",
-    "port": 674,
-    "password": "1b57001bd214304027025a740b6cf1ac",
-    "keys": {
-      "allowInsecure": "0",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "🇺🇸 美国|@stairnode",
     "config_hash": "d79d5b15e6862dbabdace3953ab7506aa04672d55d45909633569d153543652d"
   },
   {
@@ -569,28 +429,6 @@
       "sni": "www.nintendogames.net"
     },
     "remarks": "香港3|@ripaojiedian",
-    "config_hash": "24342d98cd03d76902070b7c57318669e96c0e545cf5f2b014086df389386227"
-  },
-  {
-    "address": "221.128.195.13",
-    "port": 3841,
-    "password": "1b57001bd214304027025a740b6cf1ac",
-    "keys": {
-      "allowInsecure": "0",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "🇭🇰 香港3|@ripaojiedian",
-    "config_hash": "24342d98cd03d76902070b7c57318669e96c0e545cf5f2b014086df389386227"
-  },
-  {
-    "address": "221.128.195.13",
-    "port": 3841,
-    "password": "1b57001bd214304027025a740b6cf1ac",
-    "keys": {
-      "allowInsecure": "0",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "🇭🇰 香港3|@stairnode",
     "config_hash": "24342d98cd03d76902070b7c57318669e96c0e545cf5f2b014086df389386227"
   },
   {
@@ -1323,20 +1161,6 @@
     "config_hash": "e6ec9c098a6d960c2e56506d373e189d267e3a102d4dbd5e5d66ec0f1abaec15"
   },
   {
-    "address": "45.144.48.158",
-    "port": 8443,
-    "password": "49d416e1-4cec-41e1-bff6-3748c466f275",
-    "keys": {
-      "security": "tls",
-      "type": "ws",
-      "sni": "joss.dus.biz.id",
-      "path": "/Free-VPN-CF-Geo-Project/45.144.48.158=8443",
-      "host": "joss.dus.biz.id"
-    },
-    "remarks": "🇵🇱[openproxylist.com] trojan-PL```",
-    "config_hash": "e6ec9c098a6d960c2e56506d373e189d267e3a102d4dbd5e5d66ec0f1abaec15"
-  },
-  {
     "address": "172.67.132.6",
     "port": 2096,
     "password": "4db45bb4-dcca-4d37-a639-cb55213ee406",
@@ -1921,45 +1745,6 @@
     "config_hash": "1dedfa229dacd258f7d71b0aabddde4e001ab8d0ba9406f0c8f8b6ce2fc86fda"
   },
   {
-    "address": "23.186.200.107",
-    "port": 11011,
-    "password": "898e1dca-14b2-4371-abc8-1b9f839bff6d",
-    "keys": {
-      "security": "tls",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "wus01.weyaf9sdoh2h.space"
-    },
-    "remarks": "All-@V2ray_Alpha--41",
-    "config_hash": "1dedfa229dacd258f7d71b0aabddde4e001ab8d0ba9406f0c8f8b6ce2fc86fda"
-  },
-  {
-    "address": "23.186.200.107",
-    "port": 11011,
-    "password": "898e1dca-14b2-4371-abc8-1b9f839bff6d",
-    "keys": {
-      "security": "tls",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "wus01.weyaf9sdoh2h.space"
-    },
-    "remarks": "🔥Join Telegram:@Azarbayjab1🟣",
-    "config_hash": "1dedfa229dacd258f7d71b0aabddde4e001ab8d0ba9406f0c8f8b6ce2fc86fda"
-  },
-  {
-    "address": "23.186.200.107",
-    "port": 11011,
-    "password": "898e1dca-14b2-4371-abc8-1b9f839bff6d",
-    "keys": {
-      "security": "tls",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "wus01.weyaf9sdoh2h.space"
-    },
-    "remarks": "🔥Join Telegram:@azarbayjab1🟣",
-    "config_hash": "1dedfa229dacd258f7d71b0aabddde4e001ab8d0ba9406f0c8f8b6ce2fc86fda"
-  },
-  {
     "address": "23.186.200.108",
     "port": 11012,
     "password": "898e1dca-14b2-4371-abc8-1b9f839bff6d",
@@ -1984,58 +1769,6 @@
       "sni": "wus02.weyaf9sdoh2h.space"
     },
     "remarks": "@V2rayNG3",
-    "config_hash": "34e29166a139cf0d64057c2894086b5088136c643c937b9e036b71e04ac7ed07"
-  },
-  {
-    "address": "23.186.200.108",
-    "port": 11012,
-    "password": "898e1dca-14b2-4371-abc8-1b9f839bff6d",
-    "keys": {
-      "security": "tls",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "wus02.weyaf9sdoh2h.space"
-    },
-    "remarks": "All-@IRAN_V2RAY1",
-    "config_hash": "34e29166a139cf0d64057c2894086b5088136c643c937b9e036b71e04ac7ed07"
-  },
-  {
-    "address": "23.186.200.108",
-    "port": 11012,
-    "password": "898e1dca-14b2-4371-abc8-1b9f839bff6d",
-    "keys": {
-      "security": "tls",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "wus02.weyaf9sdoh2h.space"
-    },
-    "remarks": "All-@V2ray_Alpha--43",
-    "config_hash": "34e29166a139cf0d64057c2894086b5088136c643c937b9e036b71e04ac7ed07"
-  },
-  {
-    "address": "23.186.200.108",
-    "port": 11012,
-    "password": "898e1dca-14b2-4371-abc8-1b9f839bff6d",
-    "keys": {
-      "security": "tls",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "wus02.weyaf9sdoh2h.space"
-    },
-    "remarks": "🔥Join Telegram:@AZARBAYJAB1🟣",
-    "config_hash": "34e29166a139cf0d64057c2894086b5088136c643c937b9e036b71e04ac7ed07"
-  },
-  {
-    "address": "23.186.200.108",
-    "port": 11012,
-    "password": "898e1dca-14b2-4371-abc8-1b9f839bff6d",
-    "keys": {
-      "security": "tls",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "wus02.weyaf9sdoh2h.space"
-    },
-    "remarks": "🔥Join Telegram:@azarbayjab1🟣",
     "config_hash": "34e29166a139cf0d64057c2894086b5088136c643c937b9e036b71e04ac7ed07"
   },
   {
@@ -2076,19 +1809,6 @@
       "sni": "wus05.weyaf9sdoh2h.space"
     },
     "remarks": "🔥Join Telegram:@AZARBAYJAB1🟣",
-    "config_hash": "a9ce0ad3db378b959006254481df3351df66ecaf64ff0e805fefc40e7a177f7c"
-  },
-  {
-    "address": "23.186.200.111",
-    "port": 11015,
-    "password": "898e1dca-14b2-4371-abc8-1b9f839bff6d",
-    "keys": {
-      "security": "tls",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "wus05.weyaf9sdoh2h.space"
-    },
-    "remarks": "🔥Join Telegram:@azarbayjab1🟣",
     "config_hash": "a9ce0ad3db378b959006254481df3351df66ecaf64ff0e805fefc40e7a177f7c"
   },
   {
@@ -3178,28 +2898,6 @@
     "port": 4569,
     "password": "BxceQaOe",
     "keys": {
-      "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
-    },
-    "remarks": "🇺🇸 美国3|@ripaojiedian",
-    "config_hash": "4341785c21e4fc85ad743e40e695a31ec6339fbeb3026c4281afb0d32ed2bd27"
-  },
-  {
-    "address": "116.49.237.130",
-    "port": 4569,
-    "password": "BxceQaOe",
-    "keys": {
-      "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
-    },
-    "remarks": "🇺🇸 美国3|@stairnode",
-    "config_hash": "4341785c21e4fc85ad743e40e695a31ec6339fbeb3026c4281afb0d32ed2bd27"
-  },
-  {
-    "address": "116.49.237.130",
-    "port": 4569,
-    "password": "BxceQaOe",
-    "keys": {
       "sni": "t.me/ripaojiedian"
     },
     "remarks": "🇺🇸US美国2",
@@ -3255,28 +2953,6 @@
     "port": 443,
     "password": "BxceQaOe",
     "keys": {
-      "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
-    },
-    "remarks": "🇭🇰 香港4|@ripaojiedian",
-    "config_hash": "160009959c79bbc4315f827784acb8f00b23157fc488b478e758466628f64959"
-  },
-  {
-    "address": "203.198.122.97",
-    "port": 443,
-    "password": "BxceQaOe",
-    "keys": {
-      "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
-    },
-    "remarks": "🇭🇰 香港4|@stairnode",
-    "config_hash": "160009959c79bbc4315f827784acb8f00b23157fc488b478e758466628f64959"
-  },
-  {
-    "address": "203.198.122.97",
-    "port": 443,
-    "password": "BxceQaOe",
-    "keys": {
       "sni": "t.me/ripaojiedian"
     },
     "remarks": "🇭🇰HK香港5",
@@ -3298,28 +2974,6 @@
     "port": 4666,
     "password": "BxceQaOe",
     "keys": {
-      "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
-    },
-    "remarks": "🇸🇬 新加坡3|@ripaojiedian",
-    "config_hash": "275b6d85312e4cfe8bf16730a90452e5547127cd2600e35104868546cd34970a"
-  },
-  {
-    "address": "36.150.215.147",
-    "port": 4666,
-    "password": "BxceQaOe",
-    "keys": {
-      "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
-    },
-    "remarks": "🇸🇬 新加坡3|@stairnode",
-    "config_hash": "275b6d85312e4cfe8bf16730a90452e5547127cd2600e35104868546cd34970a"
-  },
-  {
-    "address": "36.150.215.147",
-    "port": 4666,
-    "password": "BxceQaOe",
-    "keys": {
       "sni": "t.me/ripaojiedian"
     },
     "remarks": "🇸🇬SG新加坡5",
@@ -3334,39 +2988,6 @@
       "sni": "t.me%2Fripaojiedian"
     },
     "remarks": "日本|@ripaojiedian",
-    "config_hash": "8daf256d2100c42333ffbf4e08c0a81553cddb69d2d0931e6fc01944fba2aade"
-  },
-  {
-    "address": "36.150.215.246",
-    "port": 5156,
-    "password": "BxceQaOe",
-    "keys": {
-      "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
-    },
-    "remarks": "🇨🇳 江苏省 移动",
-    "config_hash": "8daf256d2100c42333ffbf4e08c0a81553cddb69d2d0931e6fc01944fba2aade"
-  },
-  {
-    "address": "36.150.215.246",
-    "port": 5156,
-    "password": "BxceQaOe",
-    "keys": {
-      "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
-    },
-    "remarks": "🇯🇵 日本|@ripaojiedian",
-    "config_hash": "8daf256d2100c42333ffbf4e08c0a81553cddb69d2d0931e6fc01944fba2aade"
-  },
-  {
-    "address": "36.150.215.246",
-    "port": 5156,
-    "password": "BxceQaOe",
-    "keys": {
-      "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
-    },
-    "remarks": "🇯🇵 日本|@stairnode",
     "config_hash": "8daf256d2100c42333ffbf4e08c0a81553cddb69d2d0931e6fc01944fba2aade"
   },
   {
@@ -3458,17 +3079,6 @@
     "password": "BxceQaOe",
     "keys": {
       "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
-    },
-    "remarks": "_CN_中国",
-    "config_hash": "e41d70c4665c9715a7a19b356e9f8220c26005827872a4d05266f8cc14b5ce08"
-  },
-  {
-    "address": "36.151.251.38",
-    "port": 38799,
-    "password": "BxceQaOe",
-    "keys": {
-      "allowInsecure": "1",
       "sni": "t.me/ripaojiedian"
     },
     "remarks": "CN_speednode_0009",
@@ -3536,39 +3146,6 @@
       "sni": "t.me%2Fripaojiedian"
     },
     "remarks": "香港5|@ripaojiedian",
-    "config_hash": "f98ba63e3a9aed573416846f5ed43f7a48229fc5e63db5557aceccb4e192d335"
-  },
-  {
-    "address": "58.152.53.186",
-    "port": 443,
-    "password": "BxceQaOe",
-    "keys": {
-      "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
-    },
-    "remarks": "🇭🇰 香港5|@ripaojiedian",
-    "config_hash": "f98ba63e3a9aed573416846f5ed43f7a48229fc5e63db5557aceccb4e192d335"
-  },
-  {
-    "address": "58.152.53.186",
-    "port": 443,
-    "password": "BxceQaOe",
-    "keys": {
-      "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
-    },
-    "remarks": "🇭🇰 香港5|@stairnode",
-    "config_hash": "f98ba63e3a9aed573416846f5ed43f7a48229fc5e63db5557aceccb4e192d335"
-  },
-  {
-    "address": "58.152.53.186",
-    "port": 443,
-    "password": "BxceQaOe",
-    "keys": {
-      "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
-    },
-    "remarks": "_CN_中国",
     "config_hash": "f98ba63e3a9aed573416846f5ed43f7a48229fc5e63db5557aceccb4e192d335"
   },
   {
@@ -3803,32 +3380,6 @@
     "config_hash": "c48b4b1fc978d84e4d7f10bb596a87023792d650b447be5610190db471690448"
   },
   {
-    "address": "nl-1.tr202501.com",
-    "port": 443,
-    "password": "Sv5AzeZjawJfSMrhhS",
-    "keys": {
-      "security": "tls",
-      "alpn": "h2,http/1.1",
-      "headerType": "none",
-      "type": "tcp"
-    },
-    "remarks": "@meli_proxyy",
-    "config_hash": "c48b4b1fc978d84e4d7f10bb596a87023792d650b447be5610190db471690448"
-  },
-  {
-    "address": "nl-1.tr202501.com",
-    "port": 443,
-    "password": "Sv5AzeZjawJfSMrhhS",
-    "keys": {
-      "security": "tls",
-      "alpn": "h2,http/1.1",
-      "headerType": "none",
-      "type": "tcp"
-    },
-    "remarks": "🇳🇱@FreakConfig",
-    "config_hash": "c48b4b1fc978d84e4d7f10bb596a87023792d650b447be5610190db471690448"
-  },
-  {
     "address": "65.109.217.125",
     "port": 443,
     "password": "T5ncuGweIsLseCqu96ZWJg",
@@ -3905,54 +3456,6 @@
     "config_hash": "13f9453750e483fd972e47b47be57980f6d1ca84c147fd3bd32f2236035d2978"
   },
   {
-    "address": "creativecommons.org",
-    "port": 2053,
-    "password": "YwuvGJk36B",
-    "keys": {
-      "path": "/yamtekodasayahhh",
-      "security": "tls",
-      "alpn": "http/1.1",
-      "host": "kotlet.arshiacomplus.dpdns.org",
-      "fp": "chrome",
-      "type": "ws",
-      "sni": "kotlet.arshiacomplus.dpdns.org"
-    },
-    "remarks": "All-@V2rayAlpha--9",
-    "config_hash": "13f9453750e483fd972e47b47be57980f6d1ca84c147fd3bd32f2236035d2978"
-  },
-  {
-    "address": "creativecommons.org",
-    "port": 2053,
-    "password": "YwuvGJk36B",
-    "keys": {
-      "path": "/yamtekodasayahhh",
-      "security": "tls",
-      "alpn": "http/1.1",
-      "host": "kotlet.arshiacomplus.dpdns.org",
-      "fp": "chrome",
-      "type": "ws",
-      "sni": "kotlet.arshiacomplus.dpdns.org"
-    },
-    "remarks": "Channel : @vpnserverrr",
-    "config_hash": "13f9453750e483fd972e47b47be57980f6d1ca84c147fd3bd32f2236035d2978"
-  },
-  {
-    "address": "creativecommons.org",
-    "port": 2053,
-    "password": "YwuvGJk36B",
-    "keys": {
-      "path": "/yamtekodasayahhh",
-      "security": "tls",
-      "alpn": "http/1.1",
-      "host": "kotlet.arshiacomplus.dpdns.org",
-      "fp": "chrome",
-      "type": "ws",
-      "sni": "kotlet.arshiacomplus.dpdns.org"
-    },
-    "remarks": "🔥Join Telegram:@azarbayjab1🟣",
-    "config_hash": "13f9453750e483fd972e47b47be57980f6d1ca84c147fd3bd32f2236035d2978"
-  },
-  {
     "address": "46.62.214.228",
     "port": 443,
     "password": "ZHEKwAC5B4Hwwohd4PhhFw",
@@ -4009,20 +3512,6 @@
       "host": "joss.dus.biz.id"
     },
     "remarks": "未知",
-    "config_hash": "287f568f14afa4a522c22a9543f9746348463aa47f0778f83c5b93688ed2542e"
-  },
-  {
-    "address": "94.131.114.50",
-    "port": 81,
-    "password": "a5a3350e-6ea2-4e12-ae84-20db849ce1fc",
-    "keys": {
-      "security": "tls",
-      "type": "ws",
-      "sni": "joss.dus.biz.id",
-      "path": "/Free-VPN-CF-Geo-Project/94.131.114.50=81",
-      "host": "joss.dus.biz.id"
-    },
-    "remarks": "🇮🇱[openproxylist.com] trojan-IL```",
     "config_hash": "287f568f14afa4a522c22a9543f9746348463aa47f0778f83c5b93688ed2542e"
   },
   {
@@ -4747,17 +4236,6 @@
     "config_hash": "efc60829712d70fd8192e976c65126958ad9f477a6ee3f501ced73c97bbe5dfa"
   },
   {
-    "address": "160.16.138.24",
-    "port": 674,
-    "password": "e4e262d453466988575c397a30562337",
-    "keys": {
-      "allowInsecure": "1",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "🇺🇸 美国2|@ripaojiedian",
-    "config_hash": "efc60829712d70fd8192e976c65126958ad9f477a6ee3f501ced73c97bbe5dfa"
-  },
-  {
     "address": "58.152.53.42",
     "port": 443,
     "password": "e4e262d453466988575c397a30562337",
@@ -4768,19 +4246,6 @@
       "sni": "www.nintendogames.net"
     },
     "remarks": "@meli_proxyy",
-    "config_hash": "169feb2842011f0434513a9cb83d2e6cf27b1b5b181f0aa10722054a5d164e82"
-  },
-  {
-    "address": "58.152.53.42",
-    "port": 443,
-    "password": "e4e262d453466988575c397a30562337",
-    "keys": {
-      "security": "tls",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "WiFi-@V2ray_Alpha--2",
     "config_hash": "169feb2842011f0434513a9cb83d2e6cf27b1b5b181f0aa10722054a5d164e82"
   },
   {
@@ -4851,32 +4316,6 @@
     "config_hash": "31a4502daeb272891b954fbf790bc4fa1b602ac45d2588bc54b952a0ccafa1f9"
   },
   {
-    "address": "58.152.110.40",
-    "port": 443,
-    "password": "ea39fa94f1ee00999337ea1fd3318e69",
-    "keys": {
-      "security": "tls",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "All-@IRAN_V2RAY1",
-    "config_hash": "31a4502daeb272891b954fbf790bc4fa1b602ac45d2588bc54b952a0ccafa1f9"
-  },
-  {
-    "address": "58.152.110.40",
-    "port": 443,
-    "password": "ea39fa94f1ee00999337ea1fd3318e69",
-    "keys": {
-      "security": "tls",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "www.nintendogames.net"
-    },
-    "remarks": "All-@V2ray_Alpha--42",
-    "config_hash": "31a4502daeb272891b954fbf790bc4fa1b602ac45d2588bc54b952a0ccafa1f9"
-  },
-  {
     "address": "103.224.182.251",
     "port": 443,
     "password": "f10d81d8-ad4b-300a-825b-f54f515bd06e",
@@ -4916,20 +4355,6 @@
       "sni": "aio.zipzap.biz.id"
     },
     "remarks": "@IRAN_V2RAY1",
-    "config_hash": "d9eae50234c56c380d5a2408d142030481c314376123ac389fdf7b9e749586dd"
-  },
-  {
-    "address": "172.67.156.25",
-    "port": 443,
-    "password": "f282b878-8711-45a1-8c69-5564172123c1",
-    "keys": {
-      "path": "/aioproxybot/129.150.49.58-18650",
-      "security": "tls",
-      "host": "aio.zipzap.biz.id",
-      "type": "ws",
-      "sni": "aio.zipzap.biz.id"
-    },
-    "remarks": "MCI-@V2rayAlpha--3",
     "config_hash": "d9eae50234c56c380d5a2408d142030481c314376123ac389fdf7b9e749586dd"
   },
   {
@@ -5110,17 +4535,6 @@
       "security": "none"
     },
     "remarks": "telegram-@ISVvpn",
-    "config_hash": "6a0cc3ba7f3fac4058892ac595c67abadebca7daf34ebcd2481b83f3ac19dbfb"
-  },
-  {
-    "address": "91.107.252.182",
-    "port": 26805,
-    "password": "on4fCamU2E",
-    "keys": {
-      "type": "tcp",
-      "security": "none"
-    },
-    "remarks": "telegram-@ISVvpn 〰〰〰〰〰〰〰〰〰〰 ‼️نکته: اندرویدی ها فرگمنت رو خاموش کنید ✅  𝐂𝐡𝐚𝐧𝐧𝐞𝐥: @ISVvpn",
     "config_hash": "6a0cc3ba7f3fac4058892ac595c67abadebca7daf34ebcd2481b83f3ac19dbfb"
   },
   {
@@ -5537,20 +4951,6 @@
     "config_hash": "ea7ab525035f9f31b667f0976592c7a1772ff8bef4094d7c9fe1c494854bdd4a"
   },
   {
-    "address": "18.157.213.150",
-    "port": 22222,
-    "password": "telegram-id-privatevpns",
-    "keys": {
-      "security": "tls",
-      "alpn": "http/1.1",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "trojan.burgerip.co.uk"
-    },
-    "remarks": "🇩🇪[openproxylist.com] trojan-DE```",
-    "config_hash": "ea7ab525035f9f31b667f0976592c7a1772ff8bef4094d7c9fe1c494854bdd4a"
-  },
-  {
     "address": "18.196.39.57",
     "port": 22222,
     "password": "telegram-id-privatevpns",
@@ -5780,20 +5180,6 @@
       "sni": "trojan.burgerip.co.uk"
     },
     "remarks": "(S102)🇩🇪t.me/PrivateVPNs",
-    "config_hash": "8ee5689561c6ccb0eb6ea9460611a85b53fed0c1941044982f4143b4da7475c5"
-  },
-  {
-    "address": "63.179.166.233",
-    "port": 22222,
-    "password": "telegram-id-privatevpns",
-    "keys": {
-      "security": "tls",
-      "alpn": "http/1.1",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "trojan.burgerip.co.uk"
-    },
-    "remarks": "🇩🇪[openproxylist.com] trojan-DE```",
     "config_hash": "8ee5689561c6ccb0eb6ea9460611a85b53fed0c1941044982f4143b4da7475c5"
   },
   {
@@ -6205,22 +5591,6 @@
       "host": "193.124.46.134"
     },
     "remarks": "[@AstroVPN_Official] 🇹🇷",
-    "config_hash": "0b5fc22516e43fb695401c96071a73a1e3e0c51eec62ba5b18dcdca5a61ef008"
-  },
-  {
-    "address": "193.124.46.134",
-    "port": 8441,
-    "password": "tunnel-astrovpn_official018",
-    "keys": {
-      "security": "tls",
-      "sni": "zula.ir.AstroVPN-official.AstroVPN-official.workers.dev.AstroVPN_Official.org.AstroVPN.com.AstroVPN_Official.xyz.AstroVPN_Official.AstroVPN_Official.AstroVPN_Official.AstroVPN_Official.AstroVPN_Official.AstroVPN_Official.AstroVPN_Official.AstroVPN_Official.monster.AstroVPN_OfficialJoinTelegram-------------AstroVPN_Official----------Join.ir",
-      "alpn": "http/1.1",
-      "allowInsecure": "1",
-      "type": "tcp",
-      "headerType": "none",
-      "host": "193.124.46.134"
-    },
-    "remarks": "[🎮@AstroVPN_Official 🇹🇷]",
     "config_hash": "0b5fc22516e43fb695401c96071a73a1e3e0c51eec62ba5b18dcdca5a61ef008"
   },
   {

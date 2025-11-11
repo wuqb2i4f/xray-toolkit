@@ -41,13 +41,18 @@ def read_raw_file(file_path: str) -> List[str]:
 def process_uris(
     uris: List[str], proto: str, fields_config: Dict[str, Any]
 ) -> List[Dict[str, Any]]:
-    """Validate and parse URIs using fields config; return list of dicts."""
+    """Validate and parse URIs using fields config; return list of unique dicts by config_hash."""
     processed = []
+    seen_hashes = set()
     for uri in uris:
         obj = parse_and_validate_uri(uri, proto, fields_config)
-        if obj:
-            processed.append(obj)
-    print(f"Processed {len(processed)} valid {proto} URIs from {len(uris)} raw.")
+        if obj and "config_hash" in obj:
+            if obj["config_hash"] not in seen_hashes:
+                seen_hashes.add(obj["config_hash"])
+                processed.append(obj)
+    print(
+        f"Processed {len(processed)} unique {proto} URIs from {len(uris)} raw (deduplicated {len(uris) - len(processed)} duplicates)."
+    )
     return processed
 
 
