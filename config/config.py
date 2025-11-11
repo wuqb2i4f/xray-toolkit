@@ -40,7 +40,27 @@ PROXIES = {
             "uri": {
                 "raw_output": "output/raw_uris_trojan.txt",
                 "processed_output": "output/processed_uris_trojan.json",
-            }
+            },
+            "fields": {
+                "address": {
+                    "required": True,
+                    "type": "string",
+                    "validators": ["ipv4", "ipv6", "domain"],
+                },
+                "port": {"required": True, "type": "int", "range": [1, 65535]},
+                "password": {
+                    "required": True,
+                    "type": "string",
+                },
+                "keys": {
+                    "required": False,
+                    "type": "dict",
+                },
+                "remarks": {
+                    "required": False,
+                    "type": "string",
+                },
+            },
         },
         "ss": {
             "uri": {

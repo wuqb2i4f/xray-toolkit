@@ -1,5 +1,6 @@
 import json
 import re
+import hashlib
 from typing import Dict, List, Any
 from config.config import PROXIES
 from utils.helpers import validate_object
@@ -56,6 +57,8 @@ def parse_and_validate_uri(
     """Parse URI to dict based on protocol, validate using fields config."""
     if proto == "ss":
         return parse_ss_uri(uri, fields_config)
+    elif proto == "trojan":
+        return parse_trojan_uri(uri, fields_config)
     # Placeholder for other protocols
     else:
         print(f"No parser for {proto} yet - skipping.")
@@ -75,6 +78,19 @@ def parse_ss_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] | No
     return obj
 
 
+def parse_trojan_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] | None:
+    """Parse Trojan URI using small helpers, then validate full object."""
+    components = extract_trojan_components(uri)
+    if not components:
+        return None
+
+    obj = build_trojan_object(components)
+    if not validate_object(obj, fields_config):
+        return None
+
+    return obj
+
+
 def extract_ss_components(uri: str) -> Dict[str, str] | None:
     """Extract base64, address, port, params, remarks from SS URI regex match."""
     pattern = r"ss://([A-Za-z0-9+/=]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
@@ -84,6 +100,22 @@ def extract_ss_components(uri: str) -> Dict[str, str] | None:
 
     return {
         "b64_part": match.group(1),
+        "address": match.group(2),
+        "port_str": match.group(3),
+        "params_str": match.group(4) or "",
+        "remarks": match.group(5) or "",
+    }
+
+
+def extract_trojan_components(uri: str) -> Dict[str, str] | None:
+    """Extract password, address, port, params, remarks from Trojan URI regex match."""
+    pattern = r"trojan://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
+    match = re.match(pattern, uri)
+    if not match:
+        return None
+
+    return {
+        "password": match.group(1),
         "address": match.group(2),
         "port_str": match.group(3),
         "params_str": match.group(4) or "",
@@ -114,14 +146,61 @@ def build_ss_object(components: Dict[str, str]) -> Dict[str, Any] | None:
 
     remarks = processors["decode_remarks"](components["remarks"])
 
-    return {
+    obj = {
         "address": components["address"],
         "port": port,
-        "password": password,
         "method": method,
+        "password": password,
         "keys": params,
         "remarks": remarks,
     }
+
+    # Compute config_hash from all fields except 'remarks'
+    hash_input = {k: v for k, v in obj.items() if k not in ["remarks"]}
+    hash_input = processors["case_insensitive_hash"](hash_input)
+    hash_string = json.dumps(hash_input, sort_keys=True)
+    hash_obj = hashlib.sha256(hash_string.encode("utf-8"))
+    config_hash = hash_obj.hexdigest()
+
+    obj["config_hash"] = config_hash
+    return obj
+
+
+def build_trojan_object(components: Dict[str, str]) -> Dict[str, Any] | None:
+    """Build Trojan dict from components."""
+    port_str = components["port_str"]
+    try:
+        port = int(port_str)
+    except ValueError:
+        return None
+
+    params_str = components["params_str"]
+    params = {}
+    if params_str:
+        for pair in params_str.split("&"):
+            if "=" in pair:
+                k, v = pair.split("=", 1)
+                params[k] = v
+
+    remarks = processors["decode_remarks"](components["remarks"])
+
+    obj = {
+        "address": components["address"],
+        "port": port,
+        "password": components["password"],
+        "keys": params,
+        "remarks": remarks,
+    }
+
+    # Compute config_hash from all fields except 'remarks'
+    hash_input = {k: v for k, v in obj.items() if k not in ["remarks"]}
+    hash_input = processors["case_insensitive_hash"](hash_input)
+    hash_string = json.dumps(hash_input, sort_keys=True)
+    hash_obj = hashlib.sha256(hash_string.encode("utf-8"))
+    config_hash = hash_obj.hexdigest()
+
+    obj["config_hash"] = config_hash
+    return obj
 
 
 def write_json_file(objects: List[Dict[str, Any]], file_path: str, proto: str) -> None:

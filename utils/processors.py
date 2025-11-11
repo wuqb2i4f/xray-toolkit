@@ -1,5 +1,6 @@
 import base64
 from urllib.parse import unquote
+from typing import Dict, Any
 
 
 def map_to_hysteria2(uri: str) -> str:
@@ -33,9 +34,23 @@ def decode_remarks(remarks: str) -> str:
     return current
 
 
+def case_insensitive_hash(d: Dict[str, Any]) -> Dict[str, Any]:
+    """Recursively normalize string values to lowercase for case-insensitive hashing."""
+    normalized = {}
+    for k, v in d.items():
+        if isinstance(v, str):
+            normalized[k] = v.lower()
+        elif isinstance(v, dict):
+            normalized[k] = case_insensitive_hash(v)
+        else:
+            normalized[k] = v
+    return normalized
+
+
 # Map config rule strings to functions: each returns (transformed_value, target_proto or None)
 processors = {
     "map_to_hysteria2": map_to_hysteria2,
     "decode_b64_simple": decode_b64_simple,
     "decode_remarks": decode_remarks,
+    "case_insensitive_hash": case_insensitive_hash,
 }
