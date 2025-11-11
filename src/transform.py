@@ -99,10 +99,10 @@ def build_ss_object(components: Dict[str, str]) -> Dict[str, Any] | None:
     except ValueError:
         return None
 
-    result = processors["decode_b64_ss"](components["b64_part"], prefix="")
-    if not result:
+    decode_b64_ss = processors["decode_b64_ss"](components["b64_part"], prefix="")
+    if not decode_b64_ss:
         return None
-    transformed, target_proto = result
+    transformed, target_proto = decode_b64_ss
     method, password = transformed.split(":", 1)
 
     params_str = components["params_str"]
