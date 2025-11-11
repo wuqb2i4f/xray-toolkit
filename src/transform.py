@@ -99,11 +99,10 @@ def build_ss_object(components: Dict[str, str]) -> Dict[str, Any] | None:
     except ValueError:
         return None
 
-    decode_b64_ss = processors["decode_b64_ss"](components["b64_part"], prefix="")
-    if not decode_b64_ss:
+    decode_result = processors["decode_b64_simple"](components["b64_part"])
+    if not decode_result:
         return None
-    transformed, target_proto = decode_b64_ss
-    method, password = transformed.split(":", 1)
+    method, password = decode_result.split(":", 1)
 
     params_str = components["params_str"]
     params = {}
@@ -113,13 +112,15 @@ def build_ss_object(components: Dict[str, str]) -> Dict[str, Any] | None:
                 k, v = pair.split("=", 1)
                 params[k] = v
 
+    remarks = processors["decode_remarks"](components["remarks"])
+
     return {
         "address": components["address"],
         "port": port,
         "password": password,
         "method": method,
         "keys": params,
-        "remarks": components["remarks"],
+        "remarks": remarks,
     }
 
 

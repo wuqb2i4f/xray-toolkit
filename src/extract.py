@@ -4,6 +4,7 @@ import base64
 from typing import Dict, Set, Tuple, List
 from config.config import LINKS, REJECTED_URIS_PATH, PROXIES
 from utils.processors import processors
+import os
 
 
 def extract_content_to_file() -> None:
@@ -42,7 +43,7 @@ def extract_content_to_file() -> None:
             print(f"Error fetching {url}: {e}")
             continue
 
-    # Write files
+    # Write files (now cumulative with dedup and sort)
     write_rejected_file(rejected_lines)
     write_protocol_files(protocol_uris)
 
@@ -106,34 +107,72 @@ def normalize_uri(uri: str, prefix: str, norm_rule: str) -> Tuple[str, str]:
     """Apply normalization based on rule string; returns (normalized_uri, target_proto).
     Uses imported normalizers map for dynamic lookup.
     """
+    base_proto = prefix.rstrip("://")
     if norm_rule in processors:
-        return processors[norm_rule](uri, prefix)
+        uri = processors[norm_rule](uri)
+        return uri, base_proto
     else:
         print(
             f"Unknown normalize rule '{norm_rule}' - using original URI and base proto"
         )
-        base_proto = prefix.rstrip("://")
         return uri, base_proto
 
 
+def read_existing_lines(file_path: str) -> Set[str]:
+    """Read existing lines from file into a set for deduplication."""
+    existing_lines = set()
+    if os.path.exists(file_path):
+        with open(file_path, "r", encoding="utf-8") as f:
+            for line in f:
+                stripped = line.strip()
+                if stripped:
+                    existing_lines.add(stripped)
+    return existing_lines
+
+
 def write_protocol_files(protocol_uris: Dict[str, Set[str]]) -> None:
-    """Write each protocol's URIs to its output file."""
-    for proto, uris in protocol_uris.items():
-        if uris:
+    """Append new URIs to existing files, deduplicate, sort, and rewrite."""
+    for proto, new_uris in protocol_uris.items():
+        if new_uris:
             proto_config = PROXIES["PROTOCOLS"][proto]
             output_path = proto_config["uri"]["raw_output"]
+
+            # Read existing
+            existing_uris = read_existing_lines(output_path)
+
+            # Merge and dedup
+            all_uris = existing_uris.union(new_uris)
+
+            # Sort and write
             with open(output_path, "w", encoding="utf-8") as f:
-                for uri in sorted(uris):
+                for uri in sorted(all_uris):
                     f.write(uri + "\n")
-            print(f"Saved {len(uris)} unique {proto} URIs to {output_path}.")
+
+            added_count = len(new_uris) - len(new_uris.intersection(existing_uris))
+            print(
+                f"Appended {added_count} new unique {proto} URIs (total: {len(all_uris)}) to {output_path}."
+            )
 
 
-def write_rejected_file(rejected_lines: Set[str]) -> None:
-    """Write rejected lines to file."""
+def write_rejected_file(new_rejected_lines: Set[str]) -> None:
+    """Append new rejected lines to existing file, deduplicate, sort, and rewrite."""
+    # Read existing
+    existing_rejected = read_existing_lines(REJECTED_URIS_PATH)
+
+    # Merge and dedup
+    all_rejected = existing_rejected.union(new_rejected_lines)
+
+    # Sort and write
     with open(REJECTED_URIS_PATH, "w", encoding="utf-8") as f:
-        for line in sorted(rejected_lines):
+        for line in sorted(all_rejected):
             f.write(line + "\n")
-    print(f"Saved {len(rejected_lines)} unique rejected lines to {REJECTED_URIS_PATH}.")
+
+    added_count = len(new_rejected_lines) - len(
+        new_rejected_lines.intersection(existing_rejected)
+    )
+    print(
+        f"Appended {added_count} new unique rejected lines (total: {len(all_rejected)}) to {REJECTED_URIS_PATH}."
+    )
 
 
 # For testing
