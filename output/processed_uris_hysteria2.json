@@ -429,6 +429,33 @@
     "config_hash": "0a4024719473dd4c4a527d29f415f1c047995980dedbea6527271d543209152c"
   },
   {
+    "address": "dir.lightnright.com",
+    "port": 989,
+    "password": "6202ab997f570a6a180ae980b41f5789",
+    "keys": {
+      "insecure": "0",
+      "sni": "jnir-x.pichondan.com",
+      "obfs": "salamander",
+      "obfs-password": "@JavidnamanIran-Javid-SHAH-King-Reza-Pahlavi"
+    },
+    "remarks": "r♡ya",
+    "config_hash": "c6901ca6206ef5eb16a7774789ab9486730103105e8ad912cc444c7367228c7c"
+  },
+  {
+    "address": "dir.lightnright.com",
+    "port": 989,
+    "password": "6202ab997f570a6a180ae980b41f5789",
+    "keys": {
+      "security": "tls",
+      "obfs": "salamander",
+      "obfs-password": "@JavidnamanIran-Javid-SHAH-King-Reza-Pahlavi",
+      "insecure": "0",
+      "sni": "jnir-x.pichondan.com"
+    },
+    "remarks": "r♡ya",
+    "config_hash": "aa75e9cc9510d56f92250da81f2ff908b406a5661a779d6c309370c8a0c0a837"
+  },
+  {
     "address": "206.71.158.40",
     "port": 35000,
     "password": "680210f5-3b5f-4947-9983-e508a15cf169",
@@ -686,7 +713,7 @@
       "obfs": "salamander",
       "obfs-password": "U1wBrYQyFm"
     },
-    "remarks": "All--@V2rayAlpha--5 #1",
+    "remarks": "🇸🇪 - SE - @freeOnlineVPN #4",
     "config_hash": "5ad1fc5a846f54e5013268d9bc8ac38c218864905448f00af90e5ae9c362348d"
   },
   {
@@ -716,6 +743,21 @@
     },
     "remarks": "All--@IRAN_V2RAY1",
     "config_hash": "b7088ccb4c5bcc9a02775a656fc62a0fac794f75d3f6e16cbb974195b8b0d955"
+  },
+  {
+    "address": "drhystuichdfy.samanidempire.org",
+    "port": 20335,
+    "password": "80747420-96c4-4a2f-83e6-eea4e46beb09",
+    "keys": {
+      "security": "tls",
+      "obfs": "salamander",
+      "obfs-password": "U1wBrYQyFm",
+      "insecure": "1",
+      "sni": "drhystuichdfy.samanidempire.org",
+      "note": "@freeOnlineVPN"
+    },
+    "remarks": "🇸🇪 - SE - @freeOnlineVPN",
+    "config_hash": "a0ba91f97a5f8aef8c4a8a47c81088adbb6faf9118577d7300c49a492a52be8b"
   },
   {
     "address": "185.92.220.240",
@@ -796,7 +838,7 @@
       "obfs": "salamander",
       "obfs-password": "GdQ4bgvT8RFwuWi2"
     },
-    "remarks": "All--@V2rayAlpha--8",
+    "remarks": "🇳🇱 - NL - @freeOnlineVPN #4",
     "config_hash": "de2c1e27da944c0e4c045953544bde7c814564d739b7bc2cf346ee976875b47e"
   },
   {
@@ -826,6 +868,21 @@
     },
     "remarks": "All--@V2rayAlpha--8",
     "config_hash": "a432c38cacb029093005aaa1a0d4de146574ebb2bc77678743be547f0c739071"
+  },
+  {
+    "address": "net2025.afsharidempire.uk",
+    "port": 30205,
+    "password": "8864aa9f-7517-4fd5-aef1-32050eb3095d",
+    "keys": {
+      "security": "tls",
+      "obfs": "salamander",
+      "obfs-password": "GdQ4bgvT8RFwuWi2",
+      "insecure": "1",
+      "sni": "net2025.afsharidempire.uk",
+      "note": "@freeOnlineVPN"
+    },
+    "remarks": "🇳🇱 - NL - @freeOnlineVPN",
+    "config_hash": "ebb206a7cac933b120afd53d5317af5e0444f3ef5e877c50265ebe3a66624708"
   },
   {
     "address": "141.147.52.24",
@@ -1165,6 +1222,19 @@
     "port": 36300,
     "password": "Yet-Another-Public-Config-1",
     "keys": {
+      "insecure": "0",
+      "sni": "YAPC-1.afshin.ir",
+      "obfs": "salamander",
+      "obfs-password": "Yet-Another-Public-Config-1"
+    },
+    "remarks": "💎کانفیگ های بیشتر در چنل تلگرا... #1",
+    "config_hash": "4809a9b5ca83edb8dbc3ee236562a5900d81c081de7cb73de0f3923eb05c28eb"
+  },
+  {
+    "address": "yapc-1.adamhayward.co.uk",
+    "port": 36300,
+    "password": "Yet-Another-Public-Config-1",
+    "keys": {
       "insecure": "1",
       "sni": "YAPC-1.afshin.ir",
       "obfs": "salamander",
@@ -1277,6 +1347,20 @@
       "obfs": "salamander",
       "obfs-password": "khameniiko@smad@ret",
       "insecure": "1",
+      "sni": "kotlet.arshiacomplus.dpdns.org@V2rayNGVPN <= کانفیگ رایگان"
+    },
+    "remarks": "🌧🌧🌧7",
+    "config_hash": "c46ac5f4dfae280e38ab53d974c69e865267a072d6a87e9934a0bfd53126890c"
+  },
+  {
+    "address": "81.168.83.89",
+    "port": 2083,
+    "password": "YwuvGJk36B",
+    "keys": {
+      "security": "tls",
+      "obfs": "salamander",
+      "obfs-password": "khameniiko@smad@ret",
+      "insecure": "1",
       "sni": "kotlet.arshiacomplus.dpdns.org"
     },
     "remarks": "@Daily_Configs",
@@ -1357,6 +1441,20 @@
     },
     "remarks": "🇳🇱 - NL - @freeOnlineVPN",
     "config_hash": "80fbb5faf1e5c09a95b0140cb3b7a41fd6334ef5e5e42b50d2bd0d1e9f6fb0db"
+  },
+  {
+    "address": "206.71.158.41",
+    "port": 35000,
+    "password": "b4bd0613-ff7c-4f2f-954d-185915e6ddad",
+    "keys": {
+      "security": "tls",
+      "obfs": "salamander",
+      "obfs-password": "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi",
+      "insecure": "0",
+      "sni": "jnir.pichondan.com"
+    },
+    "remarks": "🌧🌧🌧8",
+    "config_hash": "07f68ab82896bd4791a2f6d4d906adb7b6938c0258e1a84edcfe2c07ee6faeef"
   },
   {
     "address": "206.71.158.41",
@@ -1453,7 +1551,7 @@
       "obfs": "salamander",
       "obfs-password": "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi"
     },
-    "remarks": "🇳🇱 - NL - @freeOnlineVPN #9",
+    "remarks": "🇩🇪 - DE - @freeOnlineVPN #3",
     "config_hash": "17c3a84320173c93e8a851168e5b4ff495711aecc4bc5d6e050d440cb4fc2b52"
   },
   {
@@ -1496,7 +1594,7 @@
       "sni": "jnir.pichondan.com",
       "note": "@freeOnlineVPN"
     },
-    "remarks": "🇳🇱 - NL - @freeOnlineVPN",
+    "remarks": "🇩🇪 - DE - @freeOnlineVPN",
     "config_hash": "d0d87d58e4688551f5e50acde7c8c053b5b6067e8550b8cb6fded4d3c6abbc4c"
   },
   {

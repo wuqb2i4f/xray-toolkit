@@ -30,6 +30,50 @@
     "config_hash": "795a10657fe2ef05a160008d2fa8dcb47e51cd154d0157edadf7ca718f5ceb24"
   },
   {
+    "address": "193.233.115.79",
+    "port": 8443,
+    "password": "0c7edd8f-96d8-4227-b086-1ffc3aeecc96",
+    "keys": {
+      "path": "/Free-VPN-CF-Geo-Project/193.233.115.79=8443",
+      "security": "tls",
+      "host": "joss.dus.biz.id",
+      "fp": "randomized",
+      "type": "ws",
+      "sni": "joss.dus.biz.id"
+    },
+    "remarks": "@meli_proxyy",
+    "config_hash": "dff86f0cdcfc4a22f111e01d158f3c847673d6e658375916fd47aa0a57f00147"
+  },
+  {
+    "address": "193.233.115.79",
+    "port": 8443,
+    "password": "0c7edd8f-96d8-4227-b086-1ffc3aeecc96",
+    "keys": {
+      "path": "/Free-VPN-CF-Geo-Project/193.233.115.79=8443",
+      "security": "tls",
+      "host": "joss.dus.biz.id",
+      "fp": "chrome",
+      "type": "ws",
+      "sni": "joss.dus.biz.id"
+    },
+    "remarks": "@meli_proxyy",
+    "config_hash": "5022f09ac9c26f104fa45eb8ee3a05cbb693baa5b5b3a3407574e81f7006ec99"
+  },
+  {
+    "address": "193.233.115.79",
+    "port": 8443,
+    "password": "0c7edd8f-96d8-4227-b086-1ffc3aeecc96",
+    "keys": {
+      "security": "tls",
+      "type": "ws",
+      "sni": "joss.dus.biz.id",
+      "path": "/Free-VPN-CF-Geo-Project/193.233.115.79=8443",
+      "host": "joss.dus.biz.id"
+    },
+    "remarks": "未知5",
+    "config_hash": "999d60eb82166167e0c2a773d6ba758ea80ff677ff37cfecfdbe106cce93e62b"
+  },
+  {
     "address": "54.38.156.210",
     "port": 443,
     "password": "10310a20-bbad-11ee-b279-1239d0255272",
@@ -55,6 +99,19 @@
     },
     "remarks": "🇩🇪 Germany - NA 🌍 TR-TCP-TLS 4⃣",
     "config_hash": "108a6c1b0c7ff83d33f123feeff8efdd217e164945621b92d2d527c40c889175"
+  },
+  {
+    "address": "172.66.44.109",
+    "port": 443,
+    "password": "1187ba87-8ebc-4a07-aa89-b331ed2cb356",
+    "keys": {
+      "security": "tls",
+      "sni": "meti-u9d.pages.dev",
+      "type": "ws",
+      "host": "meti-u9d.pages.dev"
+    },
+    "remarks": "t.me/entryNET/config=1848497101284218",
+    "config_hash": "a65966a5e613f5568dc3147b9ee3c394feee2c937f775309066b4ce7b2e3c30f"
   },
   {
     "address": "172.66.44.109",
@@ -113,7 +170,7 @@
       "path": "/Free-VPN-CF-Geo-Project/213.159.208.88=2053",
       "host": "joss.dus.biz.id"
     },
-    "remarks": "未知4",
+    "remarks": "未知13",
     "config_hash": "b41ae844c09fffb5cc0f72d4e0c3bdf4c8f4a3b9bf033f86f7ca1321777b318c"
   },
   {
@@ -279,6 +336,27 @@
     "config_hash": "6112c097fe8e8417b185aadc8a281cf03f3511442e25f4c3c11498e657452871"
   },
   {
+    "address": "153.121.39.240",
+    "port": 1334,
+    "password": "1b57001bd214304027025a740b6cf1ac",
+    "keys": {
+      "allowInsecure": "0",
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "日本2|@ripaojiedian",
+    "config_hash": "62c96c935f9e3404f1a8167e733b8af48d0dc78f5ca7eaeb48be34ccc752e259"
+  },
+  {
+    "address": "153.121.39.240",
+    "port": 1334,
+    "password": "1b57001bd214304027025a740b6cf1ac",
+    "keys": {
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "🇯🇵JP日本2",
+    "config_hash": "e570f342edb093bc29d1738354e638e40edce6e755032c44a1c2b00b9cddad38"
+  },
+  {
     "address": "153.121.44.99",
     "port": 1328,
     "password": "1b57001bd214304027025a740b6cf1ac",
@@ -301,6 +379,48 @@
     },
     "remarks": "🇺🇸US美国",
     "config_hash": "bbce5d8b4c63933001187a639bbadf25733fb2f56477b097e49d5484b8141a4c"
+  },
+  {
+    "address": "160.16.106.144",
+    "port": 127,
+    "password": "1b57001bd214304027025a740b6cf1ac",
+    "keys": {
+      "allowInsecure": "0",
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "新加坡2|@ripaojiedian",
+    "config_hash": "483fd1d85551bd9bad7cc302fea4d8400537bf58403ab358bb20cf429a8580f8"
+  },
+  {
+    "address": "160.16.106.144",
+    "port": 127,
+    "password": "1b57001bd214304027025a740b6cf1ac",
+    "keys": {
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "🇸🇬SG新加坡2 773.7KB/s",
+    "config_hash": "c3f5fbb4928af59b6a8d168310b732fe4b7774c6fdec3309be383edd1225539f"
+  },
+  {
+    "address": "160.16.106.144",
+    "port": 2760,
+    "password": "1b57001bd214304027025a740b6cf1ac",
+    "keys": {
+      "allowInsecure": "0",
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "新加坡|@ripaojiedian",
+    "config_hash": "521f5a797cba3f6923d88e96dac1b9c7aa27d30b6d2364542df90dbee8c4e184"
+  },
+  {
+    "address": "160.16.106.144",
+    "port": 2760,
+    "password": "1b57001bd214304027025a740b6cf1ac",
+    "keys": {
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "🇸🇬SG新加坡 836.6KB/s",
+    "config_hash": "a094f8cc9b1389e8c014c4145ef0cab96cd529291ed4066ea8c29cc87c3f3277"
   },
   {
     "address": "160.16.136.130",
@@ -408,6 +528,48 @@
     "config_hash": "61af7c8518c08bc0a575b940073841cd6993aae4f81fa7c609bdcfce4184de9c"
   },
   {
+    "address": "160.16.223.205",
+    "port": 31409,
+    "password": "1b57001bd214304027025a740b6cf1ac",
+    "keys": {
+      "allowInsecure": "0",
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "美国|@ripaojiedian",
+    "config_hash": "b4dbb591f10601d9ab439be25008a4cfe000a91fdee5c4d481cc4b2aa900c3f7"
+  },
+  {
+    "address": "160.16.223.205",
+    "port": 31409,
+    "password": "1b57001bd214304027025a740b6cf1ac",
+    "keys": {
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "🇺🇸US美国8 837.2KB/s",
+    "config_hash": "cd787eef053f508df0d5fe3479fef3b819d6892b83c09b8369cb0babffc128a8"
+  },
+  {
+    "address": "160.16.89.176",
+    "port": 4095,
+    "password": "1b57001bd214304027025a740b6cf1ac",
+    "keys": {
+      "allowInsecure": "0",
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "日本3|@ripaojiedian",
+    "config_hash": "70ad041c68513a51b42237eb5177cbba3a5448f058891aa552a36867ec45ac79"
+  },
+  {
+    "address": "160.16.89.176",
+    "port": 4095,
+    "password": "1b57001bd214304027025a740b6cf1ac",
+    "keys": {
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "🇯🇵JP日本3",
+    "config_hash": "6e7ad310624e27c49d2cd6ebba0223bb5992e04d162b6f0d0fdac60c5c53d97a"
+  },
+  {
     "address": "203.198.122.194",
     "port": 443,
     "password": "1b57001bd214304027025a740b6cf1ac",
@@ -419,6 +581,27 @@
     },
     "remarks": "Telegram:@tik7net_vpn - 🇭🇰 ⚡ |",
     "config_hash": "e4b4079aa689848af8c987a9dde111f76c416a98723cbbd7dafe740c77851c7a"
+  },
+  {
+    "address": "219.76.135.188",
+    "port": 443,
+    "password": "1b57001bd214304027025a740b6cf1ac",
+    "keys": {
+      "allowInsecure": "0",
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "香港3|@ripaojiedian",
+    "config_hash": "7aa583cccd44909e60da62ba69d60ff4be541f242264ce6fb24bfd2add002a4d"
+  },
+  {
+    "address": "219.76.135.188",
+    "port": 443,
+    "password": "1b57001bd214304027025a740b6cf1ac",
+    "keys": {
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "🇭🇰HK香港4 1.7MB/s",
+    "config_hash": "cc405b4cff1944b86e63370518d9d074daa4879faa56eae8224536c549f2c79c"
   },
   {
     "address": "221.128.195.13",
@@ -449,8 +632,21 @@
       "security": "tls",
       "sni": "www.nintendogames.net"
     },
-    "remarks": "🇭🇰HK-58.152.110.25-1307",
+    "remarks": "🇭🇰HK-58.152.110.25-0256",
     "config_hash": "74fe3ab7cf0a345b8a6c30648a1662a8330e3e2f5267e8ecb63cf3fd2a24aa51"
+  },
+  {
+    "address": "58.152.110.25",
+    "port": 443,
+    "password": "1b57001bd214304027025a740b6cf1ac",
+    "keys": {
+      "security": "tls",
+      "sni": "www.nintendogames.net",
+      "fp": "chrome",
+      "type": "tcp"
+    },
+    "remarks": "🇭🇰 HK | 🔒 TROJAN | @netfreedom0 [20]",
+    "config_hash": "d6cae4eb062269f618851d1d3548ca32f1f5a6e89a15f3d6f3b8b596a87f332b"
   },
   {
     "address": "58.152.110.25",
@@ -663,6 +859,19 @@
     },
     "remarks": "🇸🇬 Singapore - Singapore 🌏 TR-TCP-TLS 4⃣",
     "config_hash": "d9f3ccf87f8f19e539b06f6825676bbc2d29862ded983c3d4b94172f56d8d9d5"
+  },
+  {
+    "address": "104.18.1.125",
+    "port": 8080,
+    "password": "273df0aa-4151-4764-a654-67adc99b6027",
+    "keys": {
+      "security": "none",
+      "type": "ws",
+      "host": "a.1.www.speedtest.net.snapp.ir.parsdood.ir.",
+      "path": "/?ed=8080"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "a82e3322e790da1768c1e4119f79eb2d394cc1fbacd2e4b3bb6bc9003d1c0647"
   },
   {
     "address": "37.27.249.93",
@@ -1157,7 +1366,7 @@
       "path": "/Free-VPN-CF-Geo-Project/45.144.48.158=8443",
       "host": "joss.dus.biz.id"
     },
-    "remarks": "未知21",
+    "remarks": "未知17",
     "config_hash": "e6ec9c098a6d960c2e56506d373e189d267e3a102d4dbd5e5d66ec0f1abaec15"
   },
   {
@@ -1333,14 +1542,134 @@
     "port": 44004,
     "password": "6b5b50ff-7798-40dc-9888-b4dd581e5435",
     "keys": {
-      "security": "tls",
-      "type": "ws",
-      "sni": "joss.dus.biz.id",
       "path": "/Free-VPN-CF-Geo-Project/51.89.128.93=44004",
-      "host": "joss.dus.biz.id"
+      "security": "tls",
+      "host": "joss.dus.biz.id",
+      "type": "ws",
+      "sni": "joss.dus.biz.id"
     },
-    "remarks": "未知5",
+    "remarks": "r♡ya",
     "config_hash": "b6e5f3af990189fe453be8db61ac33835feef344b6251d25403ce4ae97fbeaf4"
+  },
+  {
+    "address": "104.16.148.244",
+    "port": 2083,
+    "password": "6c0ed3fb-f0b0-5b53-a762-f8f8d832bdba",
+    "keys": {
+      "security": "tls",
+      "sni": "vfarid.xcdi.WOrKErs.dEV",
+      "type": "ws",
+      "host": "vfarid.xcdi.WOrKErs.dEV",
+      "path": "trojan-ws/?ed=2048",
+      "alpn": "http/1.1"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "4b1da206b4fe0b66760fffeb2077d936adc527c5e7b609855ff982bed63cd2d4"
+  },
+  {
+    "address": "104.20.5.134",
+    "port": 2083,
+    "password": "6c0ed3fb-f0b0-5b53-a762-f8f8d832bdba",
+    "keys": {
+      "security": "tls",
+      "sni": "vfarid.xcdi.wOrKERS.DEV",
+      "type": "ws",
+      "host": "vfarid.xcdi.wOrKERS.DEV",
+      "path": "trojan-ws/?ed=2048",
+      "alpn": "http/1.1"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "2e2bdebafbe9164e558c2c0c9000d64cff7a7490ca9de4a3e7cf4899cd036f02"
+  },
+  {
+    "address": "104.20.6.134",
+    "port": 2083,
+    "password": "6c0ed3fb-f0b0-5b53-a762-f8f8d832bdba",
+    "keys": {
+      "security": "tls",
+      "sni": "vfarid.xcdi.wOrKERS.DEV",
+      "type": "ws",
+      "host": "vfarid.xcdi.wOrKERS.DEV",
+      "path": "trojan-ws/?ed=2048",
+      "alpn": "http/1.1"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram`",
+    "config_hash": "ffe33aa6911985b0325f76020d860016b35b860d1d4dfd6f430418ffde6281cc"
+  },
+  {
+    "address": "104.24.196.20",
+    "port": 2096,
+    "password": "6c0ed3fb-f0b0-5b53-a762-f8f8d832bdba",
+    "keys": {
+      "security": "tls",
+      "sni": "vfarid.xcdi.wORKeRS.dev",
+      "type": "ws",
+      "host": "vfarid.xcdi.wORKeRS.dev",
+      "path": "trojan-ws/?ed=2048",
+      "alpn": "http/1.1"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram`",
+    "config_hash": "581a53cd59150f88bdd76754baa1bf3857cb8e498ed5d7a6afb146dd234f3051"
+  },
+  {
+    "address": "104.26.12.54",
+    "port": 2053,
+    "password": "6c0ed3fb-f0b0-5b53-a762-f8f8d832bdba",
+    "keys": {
+      "security": "tls",
+      "sni": "vfarid.xcdi.woRkeRS.deV",
+      "type": "ws",
+      "host": "vfarid.xcdi.woRkeRS.deV",
+      "path": "trojan-ws/?ed=2048",
+      "alpn": "http/1.1"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "4bc3654c3f3804351c679ba8d14e93fe148e0a69037dd739dc6915ffbc717df7"
+  },
+  {
+    "address": "104.26.12.54",
+    "port": 8443,
+    "password": "6c0ed3fb-f0b0-5b53-a762-f8f8d832bdba",
+    "keys": {
+      "security": "tls",
+      "sni": "vfarid.xcdi.wORKERS.DEv",
+      "type": "ws",
+      "host": "vfarid.xcdi.wORKERS.DEv",
+      "path": "trojan-ws/?ed=2048",
+      "alpn": "http/1.1"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "fd3ad4c7fad4ccc19029216fa3f3774832b096aec607c133e841ad65ef22f0ad"
+  },
+  {
+    "address": "172.67.214.246",
+    "port": 2096,
+    "password": "6c0ed3fb-f0b0-5b53-a762-f8f8d832bdba",
+    "keys": {
+      "security": "tls",
+      "sni": "vfarid.xcdi.woRKerS.DEv",
+      "type": "ws",
+      "host": "vfarid.xcdi.woRKerS.DEv",
+      "path": "trojan-ws/?ed=2048",
+      "alpn": "http/1.1"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "bd4fa4a6bc1132cc513bf4614a8b7b2065bf0b3511cc36dfc6050cb0c0db09c0"
+  },
+  {
+    "address": "172.67.66.177",
+    "port": 2096,
+    "password": "6c0ed3fb-f0b0-5b53-a762-f8f8d832bdba",
+    "keys": {
+      "security": "tls",
+      "sni": "vfarid.xcdi.wORKeRS.dev",
+      "type": "ws",
+      "host": "vfarid.xcdi.wORKeRS.dev",
+      "path": "trojan-ws/?ed=2048",
+      "alpn": "http/1.1"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram`",
+    "config_hash": "e7263400c5c198e7e2f8af2a971201436b67cd584b75c327b4ae1ce21dcd5610"
   },
   {
     "address": "120.241.226.94",
@@ -1718,6 +2047,50 @@
     "config_hash": "0347b5c04e018efba9262d5603bc69cc867ae0406cf5ec022405bd00d436623c"
   },
   {
+    "address": "45.159.251.8",
+    "port": 81,
+    "password": "8221436f-1b7e-4517-9698-0da2a53443e3",
+    "keys": {
+      "path": "/Free-VPN-CF-Geo-Project/45.159.251.8=81",
+      "security": "tls",
+      "host": "joss.dus.biz.id",
+      "fp": "randomized",
+      "type": "ws",
+      "sni": "joss.dus.biz.id"
+    },
+    "remarks": "@meli_proxyy`",
+    "config_hash": "7e4028745f464bd6177e375bef1d187692706186502f5f01ff39bf67631d7350"
+  },
+  {
+    "address": "45.159.251.8",
+    "port": 81,
+    "password": "8221436f-1b7e-4517-9698-0da2a53443e3",
+    "keys": {
+      "path": "/Free-VPN-CF-Geo-Project/45.159.251.8=81",
+      "security": "tls",
+      "host": "joss.dus.biz.id",
+      "fp": "chrome",
+      "type": "ws",
+      "sni": "joss.dus.biz.id"
+    },
+    "remarks": "@meli_proxyy",
+    "config_hash": "3c87a59919a467fad16827b37d60831d5457baa7cce2d4d5d90ae366e0641e87"
+  },
+  {
+    "address": "45.159.251.8",
+    "port": 81,
+    "password": "8221436f-1b7e-4517-9698-0da2a53443e3",
+    "keys": {
+      "security": "tls",
+      "type": "ws",
+      "sni": "joss.dus.biz.id",
+      "path": "/Free-VPN-CF-Geo-Project/45.159.251.8=81",
+      "host": "joss.dus.biz.id"
+    },
+    "remarks": "未知4",
+    "config_hash": "2d662a23d4cd92dc9a9278fa00a059fb9e0377ca5d778dacb89415bd522831db"
+  },
+  {
     "address": "65.108.205.61",
     "port": 443,
     "password": "88939272-790a-441f-b12b-8ce531aca810",
@@ -1810,6 +2183,19 @@
     },
     "remarks": "🔥Join Telegram:@AZARBAYJAB1🟣",
     "config_hash": "a9ce0ad3db378b959006254481df3351df66ecaf64ff0e805fefc40e7a177f7c"
+  },
+  {
+    "address": "104.18.23.19",
+    "port": 443,
+    "password": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+    "keys": {
+      "security": "tls",
+      "sni": "56897854.PaGeS.DEv",
+      "type": "ws",
+      "host": "56897854.pAGES.dEv"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "a2995350e4b2fce1ff986d74fb8a52d1a5f013d12da4294ccee60e41f71a9100"
   },
   {
     "address": "176.32.39.29",
@@ -2884,6 +3270,27 @@
   },
   {
     "address": "116.49.237.130",
+    "port": 2173,
+    "password": "BxceQaOe",
+    "keys": {
+      "allowInsecure": "1",
+      "sni": "t.me/ripaojiedian"
+    },
+    "remarks": "美国3|@ripaojiedian",
+    "config_hash": "11bee1beda19989bc7b4bc3e1a0386eaa50accd50939886cd79c45020bd95abc"
+  },
+  {
+    "address": "116.49.237.130",
+    "port": 2173,
+    "password": "BxceQaOe",
+    "keys": {
+      "sni": "t.me/ripaojiedian"
+    },
+    "remarks": "🇺🇸US美国6",
+    "config_hash": "d6ee71687e36251b19d12f565d4d9d10af016e64b513cc0f3335f4cc3e6ccf4c"
+  },
+  {
+    "address": "116.49.237.130",
     "port": 4569,
     "password": "BxceQaOe",
     "keys": {
@@ -2900,8 +3307,29 @@
     "keys": {
       "sni": "t.me/ripaojiedian"
     },
-    "remarks": "🇺🇸US美国2",
+    "remarks": "🇭🇰HK香港6",
     "config_hash": "2223a23c9595a175766aacb990616eb0bbb3408b5cfe96d1249cdc0f4d7cc4de"
+  },
+  {
+    "address": "116.49.237.130",
+    "port": 518,
+    "password": "BxceQaOe",
+    "keys": {
+      "allowInsecure": "1",
+      "sni": "t.me/ripaojiedian"
+    },
+    "remarks": "新加坡3|@ripaojiedian",
+    "config_hash": "428effc71d471f624ceeb4ac2797dacfb2be5e5507aa778deafe81ecc78eea81"
+  },
+  {
+    "address": "116.49.237.130",
+    "port": 518,
+    "password": "BxceQaOe",
+    "keys": {
+      "sni": "t.me/ripaojiedian"
+    },
+    "remarks": "🇸🇬SG新加坡3",
+    "config_hash": "253aba90f4496074eae2f16b455cdc7d55b77a76fb3cb399465ace270a4949f3"
   },
   {
     "address": "203.198.122.129",
@@ -2911,7 +3339,7 @@
       "allowInsecure": "1",
       "sni": "203.198.122.129"
     },
-    "remarks": "HK_speednode_0023",
+    "remarks": "🇭🇰 香港 电讯盈科有限公司",
     "config_hash": "ff72a66db2568d9ea981ea89efae6e3db5b9095ba55b62131007bd563b1ce46f"
   },
   {
@@ -2955,8 +3383,29 @@
     "keys": {
       "sni": "t.me/ripaojiedian"
     },
-    "remarks": "🇭🇰HK香港5",
+    "remarks": "🇭🇰HK香港",
     "config_hash": "ebc5ea95bb81813de84b18915e3ded9d5bbc80945312ef76794aa73a10b0ab3f"
+  },
+  {
+    "address": "219.77.239.35",
+    "port": 443,
+    "password": "BxceQaOe",
+    "keys": {
+      "allowInsecure": "1",
+      "sni": "t.me/ripaojiedian"
+    },
+    "remarks": "香港5|@ripaojiedian",
+    "config_hash": "c15aac7c0fa46eca09eb46e3897146fda6dd34e0a568b579a13891d32ea3bf56"
+  },
+  {
+    "address": "219.77.239.35",
+    "port": 443,
+    "password": "BxceQaOe",
+    "keys": {
+      "sni": "t.me/ripaojiedian"
+    },
+    "remarks": "🇭🇰HK香港5",
+    "config_hash": "860e2b51c255a8e1bec564361eb97572fefb8331666180d370ed836b5c2cb726"
   },
   {
     "address": "36.150.215.147",
@@ -2981,6 +3430,27 @@
   },
   {
     "address": "36.150.215.246",
+    "port": 4011,
+    "password": "BxceQaOe",
+    "keys": {
+      "allowInsecure": "1",
+      "sni": "t.me/ripaojiedian"
+    },
+    "remarks": "日本|@ripaojiedian",
+    "config_hash": "76feb27714ea9f70514bcc12c49d967e85304d28e27d197969b1c6f5ca5792a4"
+  },
+  {
+    "address": "36.150.215.246",
+    "port": 4011,
+    "password": "BxceQaOe",
+    "keys": {
+      "sni": "t.me/ripaojiedian"
+    },
+    "remarks": "🇯🇵JP日本",
+    "config_hash": "127de93a3fafa802d6202d3842f4b6e997aeb912658bc04fa0ab686663d512f3"
+  },
+  {
+    "address": "36.150.215.246",
     "port": 5156,
     "password": "BxceQaOe",
     "keys": {
@@ -2997,7 +3467,7 @@
     "keys": {
       "sni": "t.me/ripaojiedian"
     },
-    "remarks": "🇯🇵JP日本",
+    "remarks": "🇨🇳江苏",
     "config_hash": "e83ff3cc93d75176d4d4972f867ce65a45c7d6ce5ac65ad13aa952222d1495d6"
   },
   {
@@ -3080,7 +3550,7 @@
     "keys": {
       "sni": "t.me/ripaojiedian"
     },
-    "remarks": "未知22",
+    "remarks": "未知10",
     "config_hash": "e61c1547da1d20e55636d08cb050aca6aca55466fcff1e263adaab66abc5bf8f"
   },
   {
@@ -3103,6 +3573,14 @@
     },
     "remarks": "🇭🇰HK香港3",
     "config_hash": "616cdb2004c1e87803d8c82faf3459b646266f41fbbc160fdc2c3fccc79037fb"
+  },
+  {
+    "address": "58.152.46.98",
+    "port": 443,
+    "password": "BxceQaOe",
+    "keys": {},
+    "remarks": "🇭🇰HK香港2",
+    "config_hash": "fcf7a1bd386fbf6772e1d07491b34208f98d9465985b67d013ed42d26e20f7b4"
   },
   {
     "address": "58.152.46.98",
@@ -3159,7 +3637,7 @@
     "keys": {
       "sni": "t.me/ripaojiedian"
     },
-    "remarks": "🇭🇰HK香港2",
+    "remarks": "🇨🇳CN中国",
     "config_hash": "a724b795bffb6d8ec2756dbf6d06ee5e36ef515bb9fe9a5df72415bfc4c18aa0"
   },
   {
@@ -3187,6 +3665,21 @@
     },
     "remarks": "🔥Join Telegram:@azarbayjab1🟣",
     "config_hash": "0845c1b074e3861789cbae49131c2fd3374add3c046705ab86718ddfb8992204"
+  },
+  {
+    "address": "104.18.32.47",
+    "port": 2087,
+    "password": "DailyConfigs",
+    "keys": {
+      "security": "tls",
+      "sni": "kanale-daily-configs.blackoutconnection.ir",
+      "type": "ws",
+      "host": "kanale-daily-configs.blackoutconnection.ir",
+      "path": "/@Daily_Configs,@Daily_Configs?ed=2560",
+      "fp": "chrome"
+    },
+    "remarks": "t.me/entryNET/config=1848512200716380",
+    "config_hash": "1baeaaeb67431bedc34e5156ae6771e8d1c7e802e60d1224f4f5d7300a53b955"
   },
   {
     "address": "51.68.13.106",
@@ -3217,6 +3710,18 @@
     },
     "remarks": "@NoForcedHeaven",
     "config_hash": "ad4e9ab52721da34d7a89d5a5240988a08d16505d8de9ac67723748da8b93ab2"
+  },
+  {
+    "address": "78.46.38.121",
+    "port": 110,
+    "password": "KbSAM9jgvo",
+    "keys": {
+      "security": "tls",
+      "sni": "dk1.ftpcomand.com",
+      "type": "tcp"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "753eb4e75fd86d1c4d06bfe507d5dcfaa9b5411344a2f5c29255d75bc9fff694"
   },
   {
     "address": "83.217.9.70",
@@ -3425,7 +3930,7 @@
       "type": "ws",
       "sni": "kotlet.arshiacomplus.dpdns.org"
     },
-    "remarks": "@EuServer",
+    "remarks": ">>@vmess_vless_v2rayng::XX",
     "config_hash": "50efa8c70beaf4079b28173ba5eb6d4e3c497bb4dce5ea2630a0d8576d3b7e24"
   },
   {
@@ -3700,6 +4205,20 @@
     "config_hash": "7b3c08acb1bba4ad368817553749b822536c823ec1f280d2c6bc34aa934f7d50"
   },
   {
+    "address": "151.101.130.228",
+    "port": 443,
+    "password": "b98aec40-e52c-4e26-87d5-c406fe342dd7",
+    "keys": {
+      "security": "tls",
+      "sni": "seminarsinmcb.faculty.ucdavis.edu",
+      "type": "ws",
+      "host": "example.ir",
+      "path": "/asdkjgk?ed=1024"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "bb44fb2891b0a0fbcb6033e48fde6bcc4866b77342c5919c2b00b739c00705a6"
+  },
+  {
     "address": "104.17.97.5",
     "port": 2053,
     "password": "bIa-DailY_cOnFIgs",
@@ -3751,6 +4270,35 @@
     },
     "remarks": "@Hope_Net-join-us-on-Telegram",
     "config_hash": "52633bd705825125e4764935eeb55a3e72059fff8697955f3e2b4c060e6fa5f5"
+  },
+  {
+    "address": "162.159.152.227",
+    "port": 443,
+    "password": "bpb-trojan",
+    "keys": {
+      "security": "tls",
+      "sni": "cf.090227.xyz",
+      "allowInsecure": "1",
+      "type": "tcp"
+    },
+    "remarks": "https://t.me/ShadowsocksM1ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpjdklJODVUclc2bjBPR3lmcEhWUzF1@45.87.175.187:8080#https://t.me/ShadowsocksM2vless://df0680ca-e43c-498d-ed86-8e196eedd012@185.231.205.164:8880?security=&type=grpc&encryption=none#https://t.me/ShadowsocksM3vless://49d74535-837e-4132-90c7-4e06de7db303@89.58.55.196:49406?security=reality&sni=ilovepdf.com&fp=chrome&pbk=UsAOmf7X1yYkjF73ChFECcZb2PFNuhqqvOUxcybV-20&sid=a7&spx=/&type=tcp&flow=xtls-rprx-vision&encryption=none#https://t.me/ShadowsocksM4vless://06c4d024-6079-430e-bbc4-53a340ac933e@167.172.51.202:2096?security=reality&sni=zula.ir&fp=chrome&pbk=29iCBehXD9OCK1B5fDd7hwiOZEtm7BXiwzZpwggESzo&spx=/&type=grpc&encryption=none#https://t.me/ShadowsocksM5hy2://Yet-Another-Public-Config-1@206.71.158.37:35000?obfs=salamander&obfs-password=Yet-Another-Public-Config-1&insecure=1&sni=YAPC-1.afshin.ir#https://t.me/ShadowsocksM6vless://29397c5b-be3b-41d9-8a49-21575668e915@152.53.147.191:37876?security=reality&sni=yelp.com&fp=chrome&pbk=ldoGIafEPJu2W4gODAoLjobXOOe9NKb-110WCz1-EwM&sid=907e&type=tcp&flow=xtls-rprx-vision&encryption=none#https://t.me/ShadowsocksM7vless://2d7c48f4-482b-4520-b192-abdb9a4c9c5b@194.182.79.240:22725?security=&type=grpc&serviceName=ZEDMODEON-ZEDMODEON-bia-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON-ZEDMODEON&encryption=none#https://t.me/ShadowsocksM8vless://c495405a-41d7-429e-b999-94136197b211@104.21.7.162:2053?security=tls&sni=dashboard.app-browser.org&type=ws&path=/J5aLQOY1R9ONWYCM&host=dashboard.app-browser.org&encryption=none#https://t.me/ShadowsocksM9vmess://eyJhZGQiOiIyMDguNzYuMjIzLjIxOCIsImFpZCI6IjAiLCJob3N0IjoiIiwiaWQiOiJhMDU5NmJhNi03MmEzLTQzNjYtODk5Mi03NzA4OGRhNjViZDgiLCJuZXQiOiJ0Y3AiLCJwYXRoIjoiLyIsInBvcnQiOiIyNzA5MiIsInBzIjoi8J+RifCfhpRAdjJyYXlfY29uZmlnc19wb29s8J+TofCfh6rwn4e4wq7vuI9TcGFpbsKp77iPWmFyYWdvemHwn4W/77iPcGluZzo5Nm1zIiwic2N5IjoiYXV0byIsInNuaSI6IiIsInRscyI6IiIsInR5cGUiOiJub25lIiwidiI6IjIifQ==#https://t.me/ShadowsocksM10ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpWVmxBZmY3N0NuQVU0M0FvYzVqMTVZ@90.156.203.62:5112#https://t.me/ShadowsocksM11ss://YWVzLTI1Ni1jZmI6ZjhmN2FDemNQS2JzRjhwMw==@185.153.197.5:989#https://t.me/ShadowsocksM12",
+    "config_hash": "6c35ab822649705da1a13c80ada9d3d99e226358eeb56cc27f7a4a8bc1890a12"
+  },
+  {
+    "address": "172.67.180.238",
+    "port": 443,
+    "password": "bpb-trojan",
+    "keys": {
+      "security": "tls",
+      "sni": "403b3611-99BC-43B7-88d7-26eD5D0825A9-3.PAges.DEV",
+      "type": "ws",
+      "host": "403b3611-99bc-43b7-88d7-26ed5d0825a9-3.pages.dev",
+      "path": "/trep2km0aVhJcl29WO?ed=2560",
+      "fp": "chrome",
+      "alpn": "h2,http/1.1"
+    },
+    "remarks": "t.me/entryNET/config=1848534849269178",
+    "config_hash": "23db3f3b8e3ea3104cb766fd6064cf8005a718382d517e13bae694658df8e29f"
   },
   {
     "address": "45.142.120.4",
@@ -3847,7 +4395,7 @@
       "path": "/Free-VPN-CF-Geo-Project/194.147.115.149=443",
       "host": "joss.dus.biz.id"
     },
-    "remarks": "未知3",
+    "remarks": "未知12",
     "config_hash": "103aa270f3db7db8b257f4eaafdf22bfd15b554c13ac41efb482c1d4d50ce839"
   },
   {
@@ -4060,6 +4608,19 @@
     "config_hash": "e4229253c69222ad6601714640f644e4fbce2873368643ac0d0a7b3b1ab9e80b"
   },
   {
+    "address": "104.17.148.22",
+    "port": 8880,
+    "password": "d4ff43e1-3131-4c32-e41b-716303c8ee49",
+    "keys": {
+      "security": "none",
+      "type": "ws",
+      "host": "ch.我的名字伊斯梅洛.site.",
+      "path": "/melo/"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "c2d885d4d0c1c1c03da1d58eb54ac7af2a4e360caaadabab1c40c94d36876e79"
+  },
+  {
     "address": "94.131.122.157",
     "port": 8443,
     "password": "da86c6b5-a130-4bb8-a6ef-00b77b85b9e7",
@@ -4143,6 +4704,22 @@
     "config_hash": "7ed2a3a87d36de8182083558622608f75ca3c9b3ac842f2135544dae6993737c"
   },
   {
+    "address": "172.67.134.196",
+    "port": 443,
+    "password": "dfc79b00-a51a-45cf-9c0a-d061a01295b4",
+    "keys": {
+      "security": "tls",
+      "sni": "pAHlAvi-184.pAGEs.DeV",
+      "type": "ws",
+      "host": "PaHLAvi-184.PAgES.dEV",
+      "path": "/Tel-@V2ray_Alpha/?ed=2560",
+      "fp": "randomized",
+      "alpn": "h2,http/1.1"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "332e7817edcdecfb6356cbd8c1b49da866e2eef17109c9db44c481db163b5482"
+  },
+  {
     "address": "s.isvspeedtest.ir",
     "port": 1010,
     "password": "dqLPBI4gsI",
@@ -4203,6 +4780,38 @@
     "config_hash": "39a9f9e780eb5536bcce34980c6aaa8dcf1e5dea65af00cc71f5f56f2842f926"
   },
   {
+    "address": "117.172.176.25",
+    "port": 4054,
+    "password": "e4e262d453466988575c397a30562337",
+    "keys": {
+      "allowInsecure": "0",
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "🇺🇸 美国2|@stairnode",
+    "config_hash": "009eef4b76f5f1af4e31f0c9a66043cb3acafb6a67f7d10f25ef9fc3690d3a90"
+  },
+  {
+    "address": "117.172.176.25",
+    "port": 4054,
+    "password": "e4e262d453466988575c397a30562337",
+    "keys": {
+      "allowInsecure": "1",
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "美国2|@ripaojiedian",
+    "config_hash": "511f278f8515f3b5a56f625ed54621b70dc1ed1f8e17321174511227a822bbd9"
+  },
+  {
+    "address": "117.172.176.25",
+    "port": 4054,
+    "password": "e4e262d453466988575c397a30562337",
+    "keys": {
+      "sni": "www.nintendogames.net"
+    },
+    "remarks": "🇺🇸US美国2",
+    "config_hash": "a42f709b2541d24ace86f100e3d910e8d1b1d3f350978590fbd797bbde9a9a8e"
+  },
+  {
     "address": "160.16.138.24",
     "port": 674,
     "password": "e4e262d453466988575c397a30562337",
@@ -4236,6 +4845,21 @@
     },
     "remarks": "@meli_proxyy",
     "config_hash": "169feb2842011f0434513a9cb83d2e6cf27b1b5b181f0aa10722054a5d164e82"
+  },
+  {
+    "address": "104.20.78.17",
+    "port": 443,
+    "password": "e8b87dd9-cc8f-407c-a1f3-a564009fe6ee",
+    "keys": {
+      "security": "tls",
+      "sni": "dc1bf227.vf-8co.pages.dev",
+      "type": "ws",
+      "host": "dc1bf227.vf-8co.pages.dev",
+      "path": "/Telegram@V2ray_Alpha/?ed=2048",
+      "fp": "randomized"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "cb3be4b541830fa279b9f8014d580f599bea7ae3f18925b7946272178278f51b"
   },
   {
     "address": "221.128.195.222",
@@ -4667,6 +5291,34 @@
     "config_hash": "bfec2df49de3c62fcb2e3062e5eddac8148f23a8070dbd87c3c9722bf5ddccd0"
   },
   {
+    "address": "13.38.248.4",
+    "port": 22223,
+    "password": "telegram-id-directvpn",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "OurChannel : @DirectVPN",
+    "config_hash": "9c7d8c3048eb695fa504d8432554cfc3ecab3ed6c2c8fd944b9a6437b338d985"
+  },
+  {
+    "address": "13.39.206.112",
+    "port": 22223,
+    "password": "telegram-id-directvpn",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "OurChannel : @DirectVPN",
+    "config_hash": "02a9e55e24c81d2470b9f2e4b6ab0e4bbbe72ff9e199dd7d7dbe6721e0a869ac"
+  },
+  {
     "address": "15.222.9.61",
     "port": 22222,
     "password": "telegram-id-directvpn",
@@ -4695,6 +5347,20 @@
     "config_hash": "26f80d714a7ddd820fc341742bcbf7d4f786c5513e3215109db77869e0d0e07d"
   },
   {
+    "address": "18.192.168.117",
+    "port": 22223,
+    "password": "telegram-id-directvpn",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "OurChannel : @DirectVPN",
+    "config_hash": "2b37f137945c716157eaaac351c01f86779fd36efe76b33943efd2c21a0c55be"
+  },
+  {
     "address": "18.199.28.235",
     "port": 22223,
     "password": "telegram-id-directvpn",
@@ -4709,6 +5375,20 @@
     "config_hash": "0f0c4c18f1c525174528c154f90ebc9d01049304d261c5e53a5fa1aaa367e87c"
   },
   {
+    "address": "3.121.111.178",
+    "port": 22223,
+    "password": "telegram-id-directvpn",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "OurChannel : @DirectVPN",
+    "config_hash": "24378fa840be72dbbb55cb955d5eb470e662499768c247de3c701dcf5dfe4d22"
+  },
+  {
     "address": "3.65.217.252",
     "port": 22223,
     "password": "telegram-id-directvpn",
@@ -4721,6 +5401,20 @@
     },
     "remarks": "OurChannel : @DirectVPN",
     "config_hash": "7d7573ffb4d73ddda231c90e4d0dc43dcfbc18e838cb03b6c051cb2da9f69e9b"
+  },
+  {
+    "address": "3.69.117.35",
+    "port": 22223,
+    "password": "telegram-id-directvpn",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "OurChannel : @DirectVPN",
+    "config_hash": "21f43c212498df5104b9596eedf8b6e9c8f1de43a48bf164288f85b9eb2c971f"
   },
   {
     "address": "3.70.91.201",
@@ -4749,6 +5443,19 @@
     },
     "remarks": "OurChannel : @DirectVPN",
     "config_hash": "5cb5f86be0da1066de9923c92efb9d745c2ee20f6a7d88bbb75e11f2037714ef"
+  },
+  {
+    "address": "3.97.3.63",
+    "port": 22222,
+    "password": "telegram-id-directvpn",
+    "keys": {
+      "security": "tls",
+      "sni": "trojan.burgerip.co.uk",
+      "type": "tcp",
+      "alpn": "http/1.1"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "169f45eba9b289014f9a2bfa77c3c86fc79fe650c8ce565752b435ea170d0b30"
   },
   {
     "address": "35.180.222.18",
@@ -4807,6 +5514,20 @@
     "config_hash": "f0a533f9fd2598f41a06e89181db2334c623fef974922b3105e27bfcfc37f030"
   },
   {
+    "address": "51.44.99.222",
+    "port": 22223,
+    "password": "telegram-id-directvpn",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "OurChannel : @DirectVPN",
+    "config_hash": "3da689e41bde9eb04333b047cc9d1852c1f671368cd8de05d168c8c5ea68fc50"
+  },
+  {
     "address": "51.45.27.162",
     "port": 22223,
     "password": "telegram-id-directvpn",
@@ -4842,6 +5563,20 @@
     "config_hash": "2320b3d0c8514e5a1728e5ea110eaf057c59ba9385c77510a10586cb644a0e4a"
   },
   {
+    "address": "52.47.54.160",
+    "port": 22223,
+    "password": "telegram-id-directvpn",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "OurChannel : @DirectVPN",
+    "config_hash": "2896de557cf3e98c7cc469a2080987b4b5d52da924a45a93366b196803d2e94c"
+  },
+  {
     "address": "52.47.55.254",
     "port": 22223,
     "password": "telegram-id-directvpn",
@@ -4854,6 +5589,34 @@
     },
     "remarks": "OurChannel : @DirectVPN",
     "config_hash": "6176e1f083f002b14405914c449798b4f9be6bcc431b608d72ac3e355236c017"
+  },
+  {
+    "address": "52.57.73.220",
+    "port": 22223,
+    "password": "telegram-id-directvpn",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "OurChannel : @DirectVPN",
+    "config_hash": "3465abe2a9efa76281ccd5fa51d0525a8eefcad35f0d73de83628c7b42ccbf65"
+  },
+  {
+    "address": "63.178.117.249",
+    "port": 22223,
+    "password": "telegram-id-directvpn",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "OurChannel : @DirectVPN",
+    "config_hash": "09fa5a379fbdfbee2f1db820b0e0a7af4d18410c6b34580a4b7574d0f867d9ee"
   },
   {
     "address": "63.178.130.192",
@@ -4898,6 +5661,19 @@
     "config_hash": "eb827aa026728983e57180debf21353932cab06ffa5a4a13946a3817958ad9a8"
   },
   {
+    "address": "63.33.218.180",
+    "port": 22222,
+    "password": "telegram-id-directvpn",
+    "keys": {
+      "security": "tls",
+      "sni": "trojan.burgerip.co.uk",
+      "type": "tcp",
+      "alpn": "http/1.1"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "aa4d1445b7de34356f48660fe0e4f845cb15a055baf2ef6e7b36fcdb0ca4700a"
+  },
+  {
     "address": "13.38.160.159",
     "port": 22222,
     "password": "telegram-id-privatevpns",
@@ -4926,6 +5702,60 @@
     "config_hash": "8e2ab29bbc52ce658a24af06fffdfb60dae6bb9421c74d301771793bfbb3c58c"
   },
   {
+    "address": "13.38.248.4",
+    "port": 22222,
+    "password": "telegram-id-privatevpns",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "(S103)🇨🇵t.me/PrivateVPNs",
+    "config_hash": "e03e5fffd99a9ea244f7749fca7bf848f4bfef6318169b7ba417f64298637b0f"
+  },
+  {
+    "address": "13.39.206.112",
+    "port": 22222,
+    "password": "telegram-id-privatevpns",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "(S103)🇨🇵t.me/PrivateVPNs",
+    "config_hash": "64970c022765f1770ff376f0d61709f52c62211ebdc1da30b1f60f016e4840ef"
+  },
+  {
+    "address": "176.34.117.143",
+    "port": 22222,
+    "password": "telegram-id-privatevpns",
+    "keys": {
+      "security": "tls",
+      "sni": "trojan.burgerip.co.uk",
+      "type": "tcp",
+      "alpn": "http/1.1"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "1bb688f9a350c20cb8d3f6e0e9e30f760e470b226bb648a1f42ff3621b1674d7"
+  },
+  {
+    "address": "18.135.128.135",
+    "port": 22222,
+    "password": "telegram-id-privatevpns",
+    "keys": {
+      "security": "tls",
+      "sni": "trojan.burgerip.co.uk",
+      "type": "tcp",
+      "alpn": "http/1.1"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram`",
+    "config_hash": "0d4bfdfd0e70fb5aafe87e8f7c2dc30f099a58ee9ea5c1e6a444ab197842fa76"
+  },
+  {
     "address": "18.157.213.150",
     "port": 22222,
     "password": "telegram-id-privatevpns",
@@ -4938,6 +5768,20 @@
     },
     "remarks": "(S101)🇩🇪t.me/PrivateVPNs",
     "config_hash": "ea7ab525035f9f31b667f0976592c7a1772ff8bef4094d7c9fe1c494854bdd4a"
+  },
+  {
+    "address": "18.192.168.117",
+    "port": 22222,
+    "password": "telegram-id-privatevpns",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "(S102)🇩🇪t.me/PrivateVPNs",
+    "config_hash": "715e4d569ec2cb598656833d212af5675b41c9cccdb96df0ac3a9076ecd03d98"
   },
   {
     "address": "18.196.39.57",
@@ -4965,6 +5809,20 @@
     "config_hash": "17da063c8b8e62c359d69436dceca484bb2da37aabe352b941e437e4aa84d405"
   },
   {
+    "address": "3.121.111.178",
+    "port": 22222,
+    "password": "telegram-id-privatevpns",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "🇩🇪 DE | 🔒 TROJAN | @privatevpns [13]",
+    "config_hash": "5bbcc192656ad1c5c653a61d1ef33a72307af114ef6fcb82fa9f4301c3783c35"
+  },
+  {
     "address": "3.65.217.252",
     "port": 22222,
     "password": "telegram-id-privatevpns",
@@ -4977,6 +5835,20 @@
     },
     "remarks": "(S102)🇩🇪t.me/PrivateVPNs",
     "config_hash": "f906066d7b3196fb572987b795808b725cb0e850e10a15de594d36e43d3a899a"
+  },
+  {
+    "address": "3.69.117.35",
+    "port": 22222,
+    "password": "telegram-id-privatevpns",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "🇩🇪 DE | 🔒 TROJAN | @privatevpns [14]",
+    "config_hash": "df93543b3ad75bbe8eace3d97b4a862417733f073bfa55b6a44d2c5916fcb76a"
   },
   {
     "address": "3.70.91.201",
@@ -5046,6 +5918,19 @@
     "config_hash": "c5876a6ccf3608d55ef296b5e50330e6709e9165956dbfd75bb2af1028901eba"
   },
   {
+    "address": "51.21.80.185",
+    "port": 22222,
+    "password": "telegram-id-privatevpns",
+    "keys": {
+      "security": "tls",
+      "sni": "trojan.burgerip.co.uk",
+      "type": "tcp",
+      "alpn": "http/1.1"
+    },
+    "remarks": "t.me/entryNET/config=1848508425603726",
+    "config_hash": "b1a91c5455f8191576d7f751d222e9483b509c20a477dc6a5fe69d49c2fee5c5"
+  },
+  {
     "address": "51.44.231.225",
     "port": 22222,
     "password": "telegram-id-privatevpns",
@@ -5074,6 +5959,20 @@
     "config_hash": "85fac4f24aa2e06536e9909f693843f1feb2d97441cc013ac10540366ae2229f"
   },
   {
+    "address": "51.44.99.222",
+    "port": 22222,
+    "password": "telegram-id-privatevpns",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "🇫🇷 FR | 🔒 TROJAN | @privatevpns [12]",
+    "config_hash": "ac0032b89c848704f343a1674a2c7b8610c4e1ace36af3d582cfd8497681beb6"
+  },
+  {
     "address": "51.45.31.208",
     "port": 22222,
     "password": "telegram-id-privatevpns",
@@ -5088,6 +5987,20 @@
     "config_hash": "48bd6ea89a308166b00e180c916774a3ec762b349129ced55b87affd3440b581"
   },
   {
+    "address": "52.47.54.160",
+    "port": 22222,
+    "password": "telegram-id-privatevpns",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "(S104)🇨🇵t.me/PrivateVPNs",
+    "config_hash": "a6ab0876c2aadf7ac774a69756140f3cc21ad5fafcd62b39c7448087125d011b"
+  },
+  {
     "address": "52.47.55.254",
     "port": 22222,
     "password": "telegram-id-privatevpns",
@@ -5100,6 +6013,34 @@
     },
     "remarks": "(S104)🇨🇵t.me/PrivateVPNs",
     "config_hash": "359f51fc26faa980bd2256651e76c65580ecaeb940da447c890750d721aa154d"
+  },
+  {
+    "address": "52.57.73.220",
+    "port": 22222,
+    "password": "telegram-id-privatevpns",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "(S102)🇩🇪t.me/PrivateVPNs",
+    "config_hash": "d85100755a6771d00af67ad0da28b4090561cadd5d243d747efec40516c50dd0"
+  },
+  {
+    "address": "63.178.117.249",
+    "port": 22222,
+    "password": "telegram-id-privatevpns",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "(S101)🇩🇪t.me/PrivateVPNs",
+    "config_hash": "3ca5965367021c8092bbd48cbd896fb8fd0cd1a9211a68db41aecae2eedbdfda"
   },
   {
     "address": "63.178.130.192",
@@ -5159,6 +6100,20 @@
     "config_hash": "2322836cc4cffe944f8fe977f2ae56d4e8f32c718e98b44833c1e5ad8b92ee7b"
   },
   {
+    "address": "13.39.206.112",
+    "port": 22223,
+    "password": "telegram-id-v2rayvpnchannel",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "🇫🇷 FR | 🔒 TROJAN | @v2rayvpnchannel [13]",
+    "config_hash": "99280f36852811e043527af475ec069e2f4df6c20762dfcc2e9baf9ce4d1a7b4"
+  },
+  {
     "address": "18.199.28.235",
     "port": 22223,
     "password": "telegram-id-v2rayvpnchannel",
@@ -5171,6 +6126,20 @@
     },
     "remarks": "🇩🇪 DE | 🔒 TROJAN | @v2rayvpnchannel [16]",
     "config_hash": "d38c3fa8921c5942772149ccb42b528763538be53f28447e80c557e855984915"
+  },
+  {
+    "address": "3.121.111.178",
+    "port": 22223,
+    "password": "telegram-id-v2rayvpnchannel",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "🇩🇪 DE | 🔒 TROJAN | @v2rayvpnchannel [15]",
+    "config_hash": "a7632b9c3175512973efc31bb9a0cf09f395b0cd67f211be98e77d8febd80d6c"
   },
   {
     "address": "51.44.231.225",
@@ -5187,6 +6156,20 @@
     "config_hash": "6bf7672296a38ddfb3372ba7c4f638e96b71aa0cbe464ece9dd3c1708b966d38"
   },
   {
+    "address": "51.44.99.222",
+    "port": 22223,
+    "password": "telegram-id-v2rayvpnchannel",
+    "keys": {
+      "security": "tls",
+      "alpn": "http/1.1",
+      "headerType": "none",
+      "type": "tcp",
+      "sni": "trojan.burgerip.co.uk"
+    },
+    "remarks": "🇫🇷 FR | 🔒 TROJAN | @v2rayvpnchannel [14]",
+    "config_hash": "d88e293ba3f3a79ae970227b50fa477a50b4bbff464956b8355d82f549ac6c06"
+  },
+  {
     "address": "51.45.31.208",
     "port": 22223,
     "password": "telegram-id-v2rayvpnchannel",
@@ -5199,6 +6182,38 @@
     },
     "remarks": "🇫🇷 FR | 🔒 TROJAN | @v2rayvpnchannel [14]",
     "config_hash": "e5dcc940c1ab12d60da3409063c5dacbf27b03c13637871d9c0e7752449ae80f"
+  },
+  {
+    "address": "162.159.152.234",
+    "port": 443,
+    "password": "tg-dns68",
+    "keys": {
+      "security": "tls",
+      "sni": "vip.putata.eu.org",
+      "type": "ws",
+      "host": "vip.putata.eu.org",
+      "path": "/?ed=2560",
+      "fp": "chrome",
+      "alpn": "h3"
+    },
+    "remarks": "t.me/entryNET/config=1848526666886055",
+    "config_hash": "59a0444825cb46f07149e02614dafe73ddf178bef6bbc11afad95580b7ef6559"
+  },
+  {
+    "address": "162.159.153.239",
+    "port": 443,
+    "password": "tg-dns68",
+    "keys": {
+      "security": "tls",
+      "sni": "vip.putata.eu.org",
+      "type": "ws",
+      "host": "vip.putata.eu.org",
+      "path": "/?ed=2560",
+      "fp": "randomized",
+      "alpn": "h3"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram`",
+    "config_hash": "754f9b1a9c60310a0b86a91482b2ece352008423655472c33ab40d245a7847dd"
   },
   {
     "address": "104.18.12.229",
@@ -5354,6 +6369,22 @@
     },
     "remarks": "🇪🇸 Spain - NA 🌍 TR-WS-TLS 4⃣",
     "config_hash": "d2d5312d8b603486d183ea025736e04cebf83762352044e05e25f815ab5d5f82"
+  },
+  {
+    "address": "172.67.130.66",
+    "port": 443,
+    "password": "trojan",
+    "keys": {
+      "security": "tls",
+      "sni": "test-a23.pages.dev",
+      "type": "ws",
+      "host": "test-a23.pages.dev",
+      "path": "/?ed=2560",
+      "fp": "chrome",
+      "alpn": "h2,http/1.1"
+    },
+    "remarks": "@Hope_Net-join-us-on-Telegram",
+    "config_hash": "02f92937a93f5ba8eef4a5fd36d78edc06e5989331b59507c17c8a35241753de"
   },
   {
     "address": "172.67.75.172",
@@ -5683,6 +6714,22 @@
     },
     "remarks": "[AstroVPN_Official] 🇳🇱",
     "config_hash": "a3aa593616ed4033b2281ee59e6d744161cfc703d8037b012202fd3ced57fe28"
+  },
+  {
+    "address": "170.39.216.138",
+    "port": 8441,
+    "password": "tunnel-astrovpn_official6",
+    "keys": {
+      "security": "tls",
+      "sni": "zula.ir.AstroVPN-official.AstroVPN-official.workers.dev.AstroVPN_Official.org.AstroVPN.com.AstroVPN_Official.xyz.AstroVPN_Official.AstroVPN_Official.AstroVPN_Official.AstroVPN_Official.AstroVPN_Official.AstroVPN_Official.AstroVPN_Official.AstroVPN_Official.monster.AstroVPN_OfficialJoinTelegram-------------AstroVPN_Official----------Join.ir",
+      "alpn": "http/1.1",
+      "allowInsecure": "1",
+      "type": "tcp",
+      "headerType": "none",
+      "host": "170.39.216.138"
+    },
+    "remarks": "AstroVPN_Official 🇫🇷",
+    "config_hash": "b26f12e4b1aa3fbb4afd2242fefa39653dca6885dc197c7f452736709a9c8e4a"
   },
   {
     "address": "5.188.200.224",
@@ -6044,6 +7091,20 @@
     },
     "remarks": "@V2rayNG3",
     "config_hash": "c41f6751c5e032f9586dc60c4066e210b95cd0042d92d9ee2d5f842bda38caa8"
+  },
+  {
+    "address": "155.138.228.41",
+    "port": 19313,
+    "password": "vp0GmFj.yIw1RZrd",
+    "keys": {
+      "encryption": "none",
+      "security": "tls",
+      "sni": "raincoat.bluetigeraa.click",
+      "type": "raw",
+      "headertype": "none"
+    },
+    "remarks": "t.me/entryNET/config=1848571965167177",
+    "config_hash": "7efc4a44b9bb97d8840a55964540aee02378febec85f551a6ba5f71e8073e969"
   },
   {
     "address": "2.56.125.113",

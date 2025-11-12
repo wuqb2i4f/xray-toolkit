@@ -161,7 +161,7 @@ PROXIES = {
         "hy2": {
             "uri": {
                 "raw_output": "output/raw_uris_hysteria2.txt",
-                "normalize": "map_to_hysteria2",
+                "normalize": "hy2_to_hysteria2",
             }
         },
     }
