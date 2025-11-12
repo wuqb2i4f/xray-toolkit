@@ -1,4 +1,5 @@
 import re
+import uuid
 from typing import Dict, Callable
 
 
@@ -21,9 +22,18 @@ def validate_domain(addr: str) -> bool:
     )
 
 
+def validate_uuid(val: str) -> bool:
+    try:
+        uuid.UUID(str(val))
+        return True
+    except (ValueError, TypeError):
+        return False
+
+
 # Map config validator strings to functions
 validators_map: Dict[str, Callable[[str], bool]] = {
     "ipv4": validate_ipv4,
     "ipv6": validate_ipv6,
     "domain": validate_domain,
+    "uuid": validate_uuid,
 }

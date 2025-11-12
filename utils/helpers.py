@@ -1,5 +1,5 @@
 from typing import Dict, Any, List
-from .validators import validators_map
+from utils.validators import validators_map
 
 
 def validate_object(obj: Dict[str, Any], fields_config: Dict[str, Any]) -> bool:

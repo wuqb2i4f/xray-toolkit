@@ -45,6 +45,7 @@ PROXIES = {
                 "id": {
                     "required": True,
                     "type": "string",
+                    "validators": ["uuid"],
                 },
                 "keys": {
                     "required": False,

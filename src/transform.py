@@ -4,7 +4,7 @@ import hashlib
 from typing import Dict, List, Any
 from config.config import PROXIES
 from utils.helpers import validate_object
-from utils.processors import processors
+from utils.processors import processors_map
 
 
 def transform_uris() -> None:
@@ -90,7 +90,7 @@ def parse_params(params_str: str) -> Dict[str, str]:
 def compute_config_hash(obj: Dict[str, Any]) -> str:
     """Compute SHA256 hash from all fields except 'remarks' (case-insensitive)."""
     hash_input = {k: v for k, v in obj.items() if k not in ["remarks"]}
-    hash_input = processors["case_insensitive_hash"](hash_input)
+    hash_input = processors_map["case_insensitive_hash"](hash_input)
     hash_string = json.dumps(hash_input, sort_keys=True)
     hash_obj = hashlib.sha256(hash_string.encode("utf-8"))
     return hash_obj.hexdigest()
@@ -117,16 +117,17 @@ def parse_vless_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] |
         return None
 
     # Parse params and remarks
-    decode_id = processors["decode_url_encode"](id)
-    decoded_params = processors["decode_url_encode"](params_str)
+    decode_id = processors_map["decode_url_encode"](id)
+    uuid = processors_map["id_to_uuid"](decode_id)
+    decoded_params = processors_map["decode_url_encode"](params_str)
     params = parse_params(decoded_params)
-    decoded_remarks = processors["decode_url_encode"](remarks)
+    decoded_remarks = processors_map["decode_url_encode"](remarks)
 
     # Build object
     obj = {
         "address": address,
         "port": port,
-        "id": decode_id,
+        "id": uuid,
         "keys": params,
         "remarks": decoded_remarks,
     }
@@ -163,7 +164,7 @@ def parse_ss_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] | No
         return None
 
     # Decode base64 to method:password
-    decode_result = processors["decode_b64_simple"](b64_part)
+    decode_result = processors_map["decode_b64_simple"](b64_part)
     if not decode_result:
         return None
     try:
@@ -172,9 +173,9 @@ def parse_ss_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] | No
         return None
 
     # Parse params and remarks
-    decoded_params = processors["decode_url_encode"](params_str)
+    decoded_params = processors_map["decode_url_encode"](params_str)
     params = parse_params(decoded_params)
-    decoded_remarks = processors["decode_url_encode"](remarks)
+    decoded_remarks = processors_map["decode_url_encode"](remarks)
 
     # Build object
     obj = {
@@ -218,10 +219,10 @@ def parse_trojan_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] 
         return None
 
     # Parse params and remarks
-    decode_password = processors["decode_url_encode"](password)
-    decoded_params = processors["decode_url_encode"](params_str)
+    decode_password = processors_map["decode_url_encode"](password)
+    decoded_params = processors_map["decode_url_encode"](params_str)
     params = parse_params(decoded_params)
-    decoded_remarks = processors["decode_url_encode"](remarks)
+    decoded_remarks = processors_map["decode_url_encode"](remarks)
 
     # Build object
     obj = {
@@ -266,9 +267,9 @@ def parse_hysteria2_uri(
         return None
 
     # Parse params and remarks
-    decoded_params = processors["decode_url_encode"](params_str)
+    decoded_params = processors_map["decode_url_encode"](params_str)
     params = parse_params(decoded_params)
-    decoded_remarks = processors["decode_url_encode"](remarks)
+    decoded_remarks = processors_map["decode_url_encode"](remarks)
 
     # Build object
     obj = {

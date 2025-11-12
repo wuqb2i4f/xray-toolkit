@@ -3,7 +3,7 @@ import urllib.error
 import base64
 from typing import Dict, Set, Tuple, List
 from config.config import LINKS, REJECTED_URIS_PATH, PROXIES
-from utils.processors import processors
+from utils.processors import processors_map
 import os
 
 
@@ -108,8 +108,8 @@ def normalize_uri(uri: str, prefix: str, norm_rule: str) -> Tuple[str, str]:
     Uses imported normalizers map for dynamic lookup.
     """
     base_proto = prefix.rstrip("://")
-    if norm_rule in processors:
-        uri = processors[norm_rule](uri)
+    if norm_rule in processors_map:
+        uri = processors_map[norm_rule](uri)
         return uri, base_proto
     else:
         print(

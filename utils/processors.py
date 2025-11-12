@@ -1,9 +1,11 @@
 import base64
+import uuid
 from urllib.parse import unquote
 from typing import Dict, Any
+from utils.validators import validators_map
 
 
-def map_to_hysteria2(uri: str) -> str:
+def hy2_to_hysteria2(uri: str) -> str:
     """Map the URI to a Hysteria2 scheme by replacing the prefix."""
     uri = uri.replace("hy2://", "hysteria2://", 1)
     return uri
@@ -45,10 +47,20 @@ def case_insensitive_hash(d: Dict[str, Any]) -> Dict[str, Any]:
     return normalized
 
 
+def id_to_uuid(id_str: str) -> str:
+    """Convert input ID to UUID: return as-is if valid UUID, else generate UUIDv5 from nil namespace."""
+    if id_str and not validators_map["uuid"](id_str):
+        namespace = uuid.UUID("00000000-0000-0000-0000-000000000000")
+        generated_uuid = uuid.uuid5(namespace, id_str)
+        return str(generated_uuid)
+    return id_str
+
+
 # Map config rule strings to functions: each returns (transformed_value, target_proto or None)
-processors = {
-    "map_to_hysteria2": map_to_hysteria2,
+processors_map = {
+    "hy2_to_hysteria2": hy2_to_hysteria2,
     "decode_b64_simple": decode_b64_simple,
     "decode_url_encode": decode_url_encode,
     "case_insensitive_hash": case_insensitive_hash,
+    "id_to_uuid": id_to_uuid,
 }
