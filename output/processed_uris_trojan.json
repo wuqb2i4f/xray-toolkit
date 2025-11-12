@@ -65,18 +65,18 @@
       "sni": "meti-u9d.pages.dev",
       "type": "ws",
       "host": "meti-u9d.pages.dev",
-      "path": "%2FTelegram%40V2ray_Alpha%2F%3Fed%3D2048",
+      "path": "/Telegram@V2ray_Alpha/?ed=2048",
       "fp": "chrome"
     },
     "remarks": "@Hope_Net-join-us-on-Telegram",
-    "config_hash": "faf005989ab221d6470ddccbaabd1bdf0731868e06da6375e9e69b83e1eb584c"
+    "config_hash": "1c6e4df1400ac23df70eceaa2a267d59d275438b0a9f0f1c10e2c29a0689dfe1"
   },
   {
     "address": "amin.karkas1.ir",
     "port": 443,
     "password": "11ae0edd-2f63-4495-8683-037abbda9986",
     "keys": {
-      "path": "%2F6vuNVgOFnqUEvj0sNkGkxxW7",
+      "path": "/6vuNVgOFnqUEvj0sNkGkxxW7",
       "security": "tls",
       "alpn": "h2",
       "host": "amin.karkas1.ir",
@@ -85,14 +85,14 @@
       "sni": "amin.karkas1.ir"
     },
     "remarks": "❔ XX | 🔒 TROJAN | @xrayzxn [5]",
-    "config_hash": "0ac4e4a4789c87ec519af933268982ee6b883332594cc17adf96dd22685a35da"
+    "config_hash": "a8b92bc828a167930c7a023496b5a2f5dc58a1bb46e73d37f201b376d4602a29"
   },
   {
     "address": "213.159.208.88",
     "port": 2053,
     "password": "14d6efcf-b0d3-4054-9d4e-e1347e3ceaa2",
     "keys": {
-      "path": "%2FFree-VPN-CF-Geo-Project%2F213.159.208.88%3D2053",
+      "path": "/Free-VPN-CF-Geo-Project/213.159.208.88=2053",
       "security": "tls",
       "host": "joss.dus.biz.id",
       "fp": "randomized",
@@ -100,7 +100,7 @@
       "sni": "joss.dus.biz.id"
     },
     "remarks": "@v2FreeHub 🇷🇺",
-    "config_hash": "c291d941f86a3ecabaae2db3ffb2585a75f6e8ad1c4835b2cef59e1ec0a83cc3"
+    "config_hash": "2e76bb41f2c5776ba9719a3a5a659d5d51ed8b7bfb23453ab586998f39ac846b"
   },
   {
     "address": "213.159.208.88",
@@ -176,7 +176,7 @@
     "port": 81,
     "password": "19f8e29a-3f0b-448c-92e8-ae035ea5f9ba",
     "keys": {
-      "path": "%2FFree-VPN-CF-Geo-Project%2F45.159.251.8%3D81",
+      "path": "/Free-VPN-CF-Geo-Project/45.159.251.8=81",
       "security": "tls",
       "host": "joss.dus.biz.id",
       "fp": "randomized",
@@ -184,7 +184,7 @@
       "sni": "joss.dus.biz.id"
     },
     "remarks": "@v2FreeHub 🇵🇹",
-    "config_hash": "e74775db067241809b86422fafedb73aaf2392b60485e0d18c056206c558ec0d"
+    "config_hash": "c7f3ac6fa424c0d26b2859aa2ffe23bca6af349b8e7480607ddbf6f019abd767"
   },
   {
     "address": "45.159.251.8",
@@ -563,10 +563,10 @@
       "sni": "jobscareerforlawyers.com",
       "type": "ws",
       "host": "jobscareerforlawyers.com",
-      "path": "%2F6b777a91"
+      "path": "/6b777a91"
     },
     "remarks": "@Hope_Net-join-us-on-Telegram",
-    "config_hash": "fc88d72308c37d63a4d3b71de00ed299c0222496596796b2536248087d644608"
+    "config_hash": "da3f3273bbbd2b5a3cbbefabc5fd9e5faba8935b24e6d4cfd3b144d870019bf8"
   },
   {
     "address": "157.120.32.122",
@@ -712,10 +712,10 @@
       "sni": "jobscareerforstudent.com",
       "type": "ws",
       "host": "jobscareerforstudent.com",
-      "path": "%2F6b777a91"
+      "path": "/6b777a91"
     },
     "remarks": "@Hope_Net-join-us-on-Telegram",
-    "config_hash": "8d987bcf0f1e59ed2468a2829cae6aafa1d65077f80d1bdd1c9e92ac406e2966"
+    "config_hash": "6495227cb723d8b565cd3da7fff93c48c020537c0ba803c14e58f21cf4a30461"
   },
   {
     "address": "103.224.182.210",
@@ -1125,18 +1125,18 @@
       "sni": "bangladeshipatri.com",
       "type": "ws",
       "host": "bangladeshipatri.com",
-      "path": "%2F6b777a91",
+      "path": "/6b777a91",
       "fp": "chrome"
     },
     "remarks": "@Hope_Net-join-us-on-Telegram",
-    "config_hash": "c973750cd62586a367962e6967c892ac8d55ed2d65455236bf77f353cad585c9"
+    "config_hash": "56c0ef96f5e58d240f8fa96a14d8cdf2ac258f531a1d264483ecbdb3a7b1a296"
   },
   {
     "address": "45.144.48.158",
     "port": 8443,
     "password": "49d416e1-4cec-41e1-bff6-3748c466f275",
     "keys": {
-      "path": "%2FFree-VPN-CF-Geo-Project%2F45.144.48.158%3D8443",
+      "path": "/Free-VPN-CF-Geo-Project/45.144.48.158=8443",
       "security": "tls",
       "host": "joss.dus.biz.id",
       "fp": "randomized",
@@ -1144,7 +1144,7 @@
       "sni": "joss.dus.biz.id"
     },
     "remarks": "@v2FreeHub 🇵🇱",
-    "config_hash": "83b1ddf175075ef098e4e0bcb420152c8bef8f25bb484aeb1cbc1675b4d0a9de"
+    "config_hash": "eb26cad0a90c99ac7bf1155510a9560a7f289880fcf114011aa2566940919bcb"
   },
   {
     "address": "45.144.48.158",
@@ -1233,7 +1233,7 @@
     "port": 443,
     "password": "63b8ce6d-9a30-4122-a00f-fd47f020dc27",
     "keys": {
-      "path": "%2FFree-VPN-CF-Geo-Project%2F89.28.236.243%3D443",
+      "path": "/Free-VPN-CF-Geo-Project/89.28.236.243=443",
       "security": "tls",
       "host": "joss.dus.biz.id",
       "fp": "randomized",
@@ -1241,7 +1241,7 @@
       "sni": "joss.dus.biz.id"
     },
     "remarks": "@v2FreeHub 🇩🇰",
-    "config_hash": "df5875abbd25e2cfb0e6822abf62cfa31bae810d5bb45846e816a0925d375263"
+    "config_hash": "10a24c4af48141e0cdcdad48219561eabd0113b0704537e93444edaeaa269ba1"
   },
   {
     "address": "89.28.236.243",
@@ -1318,7 +1318,7 @@
     "port": 44004,
     "password": "6b5b50ff-7798-40dc-9888-b4dd581e5435",
     "keys": {
-      "path": "%2FFree-VPN-CF-Geo-Project%2F51.89.128.93%3D44004",
+      "path": "/Free-VPN-CF-Geo-Project/51.89.128.93=44004",
       "security": "tls",
       "host": "joss.dus.biz.id",
       "fp": "randomized",
@@ -1326,7 +1326,7 @@
       "sni": "joss.dus.biz.id"
     },
     "remarks": "@v2FreeHub 🇬🇧",
-    "config_hash": "109ced9559e644f53b6be007f0e83621515451f912203d60451f0fbe3f731165"
+    "config_hash": "9890649dc162418509af76388c154d818eb3b5675317f75f05240817d83c9360"
   },
   {
     "address": "51.89.128.93",
@@ -1858,7 +1858,7 @@
     "port": 2053,
     "password": "8bf6e7d7-23e8-4655-8f07-c3827e2d6ebf",
     "keys": {
-      "path": "%2FFree-VPN-CF-Geo-Project%2F51.38.226.4%3D2053",
+      "path": "/Free-VPN-CF-Geo-Project/51.38.226.4=2053",
       "security": "tls",
       "host": "joss.dus.biz.id",
       "fp": "randomized",
@@ -1866,7 +1866,7 @@
       "sni": "joss.dus.biz.id"
     },
     "remarks": "@v2FreeHub 🇫🇷",
-    "config_hash": "94bef73d8927fce621c8b42aec4e68f555a2e12b0081799910ccabb055c3d66d"
+    "config_hash": "1b4b83a518fee7c5ca43d291cdbd78aa9274ac8b736b8d7e3cee39a4b05ee1ae"
   },
   {
     "address": "51.38.226.4",
@@ -2833,13 +2833,13 @@
     "port": 2053,
     "password": "Aimer",
     "keys": {
-      "security": "t...%20",
+      "security": "t... ",
       "allowInsecure": "1",
       "fp": "chrome",
       "type": "tcp"
     },
     "remarks": "🇳🇦 Namibia - NA 🌍 TR-TCP-T...  4⃣",
-    "config_hash": "62989415170f02d0427c4c4a7c7d755f82205c5ba7e6d701632668cc5e68d6ee"
+    "config_hash": "e735ad802c80417cf490d04cbf5bdbd92f3c29e0271444ad79763806f52d44ee"
   },
   {
     "address": "162.159.38.101",
@@ -2888,10 +2888,10 @@
     "password": "BxceQaOe",
     "keys": {
       "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
+      "sni": "t.me/ripaojiedian"
     },
     "remarks": "美国3|@ripaojiedian",
-    "config_hash": "4341785c21e4fc85ad743e40e695a31ec6339fbeb3026c4281afb0d32ed2bd27"
+    "config_hash": "730b3480ff6ff45616373b6033879520eec7a49dda81203a9864029a01326ab1"
   },
   {
     "address": "116.49.237.130",
@@ -2943,10 +2943,10 @@
     "password": "BxceQaOe",
     "keys": {
       "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
+      "sni": "t.me/ripaojiedian"
     },
     "remarks": "香港4|@ripaojiedian",
-    "config_hash": "160009959c79bbc4315f827784acb8f00b23157fc488b478e758466628f64959"
+    "config_hash": "b2adbf70ae8645c6fa9e64aea8c3635690184a24e8c1318cdbbbba33880c793e"
   },
   {
     "address": "203.198.122.97",
@@ -2964,10 +2964,10 @@
     "password": "BxceQaOe",
     "keys": {
       "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
+      "sni": "t.me/ripaojiedian"
     },
     "remarks": "新加坡3|@ripaojiedian",
-    "config_hash": "275b6d85312e4cfe8bf16730a90452e5547127cd2600e35104868546cd34970a"
+    "config_hash": "d2df93496209db8d055f7de1d86f685dd97c07154d0096db22108b1a5db51fb9"
   },
   {
     "address": "36.150.215.147",
@@ -2985,10 +2985,10 @@
     "password": "BxceQaOe",
     "keys": {
       "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
+      "sni": "t.me/ripaojiedian"
     },
     "remarks": "日本|@ripaojiedian",
-    "config_hash": "8daf256d2100c42333ffbf4e08c0a81553cddb69d2d0931e6fc01944fba2aade"
+    "config_hash": "4e29f53c917baa589db006007169d1c1ffac72509cef7feee3e2cb5b96aeb0a9"
   },
   {
     "address": "36.150.215.246",
@@ -3006,10 +3006,10 @@
     "password": "BxceQaOe",
     "keys": {
       "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
+      "sni": "t.me/ripaojiedian"
     },
     "remarks": "_CN_中国",
-    "config_hash": "6b31c5c25a3f2ae0ba1cfbfa9e4835c97bb5a05e7b047ca1ac6e23095dcc036a"
+    "config_hash": "f54c4164cde9017bf37d4e3967a8faee8e4893dc3f85c5f843250d5584a921b0"
   },
   {
     "address": "36.150.215.247",
@@ -3027,10 +3027,10 @@
     "password": "BxceQaOe",
     "keys": {
       "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
+      "sni": "t.me/ripaojiedian"
     },
     "remarks": "_CN_中国",
-    "config_hash": "7753c59cec8cd3493004f94b1c276c4378b9160013afdb15ad54113a3fdbe6ba"
+    "config_hash": "a2788ff38d08e90e542d386a0e68ceaeee5663c10c05bef67a6d82ad28aeeb32"
   },
   {
     "address": "36.150.215.248",
@@ -3068,20 +3068,9 @@
     "password": "BxceQaOe",
     "keys": {
       "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
-    },
-    "remarks": "CN_speednode_0012",
-    "config_hash": "e41d70c4665c9715a7a19b356e9f8220c26005827872a4d05266f8cc14b5ce08"
-  },
-  {
-    "address": "36.151.251.38",
-    "port": 38799,
-    "password": "BxceQaOe",
-    "keys": {
-      "allowInsecure": "1",
       "sni": "t.me/ripaojiedian"
     },
-    "remarks": "CN_speednode_0009",
+    "remarks": "CN_speednode_0012",
     "config_hash": "25ca1e8b4498705f01ac88a5ef6352746b77697efacdcacd3719a0d0315a950c"
   },
   {
@@ -3100,20 +3089,20 @@
     "password": "BxceQaOe",
     "keys": {
       "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
+      "sni": "t.me/ripaojiedian"
     },
     "remarks": "_CN_中国",
-    "config_hash": "9f80b95b5f683f6ce897700efca2c7af0bd90b12ccd87a106c2a91e1333526d2"
+    "config_hash": "fe3228e02cd071a39576e3349ebd05537de32ddf598ed58aa15aba2e3c082763"
   },
   {
     "address": "58.152.30.26",
     "port": 443,
     "password": "BxceQaOe",
     "keys": {
-      "sni": "t.me%2Fripaojiedian"
+      "sni": "t.me/ripaojiedian"
     },
     "remarks": "🇭🇰HK香港3",
-    "config_hash": "1097a517668d652a721f389c265e709bdc03893733488b36ac9938de3475bd5f"
+    "config_hash": "616cdb2004c1e87803d8c82faf3459b646266f41fbbc160fdc2c3fccc79037fb"
   },
   {
     "address": "58.152.46.98",
@@ -3143,10 +3132,10 @@
     "password": "BxceQaOe",
     "keys": {
       "allowInsecure": "1",
-      "sni": "t.me%2Fripaojiedian"
+      "sni": "t.me/ripaojiedian"
     },
     "remarks": "香港5|@ripaojiedian",
-    "config_hash": "f98ba63e3a9aed573416846f5ed43f7a48229fc5e63db5557aceccb4e192d335"
+    "config_hash": "1d4d1ed9e8e0dd3486bec76052a02f569007a13fa93b577c171d04fc56da8d81"
   },
   {
     "address": "58.152.53.186",
@@ -3428,16 +3417,16 @@
     "port": 2053,
     "password": "YwuvGJk36B",
     "keys": {
-      "path": "%2Fyamtekodasayahhh",
+      "path": "/yamtekodasayahhh",
       "security": "tls",
-      "alpn": "http%2F1.1",
+      "alpn": "http/1.1",
       "host": "kotlet.arshiacomplus.dpdns.org",
       "fp": "firefox",
       "type": "ws",
       "sni": "kotlet.arshiacomplus.dpdns.org"
     },
     "remarks": "@EuServer",
-    "config_hash": "315ff0d9c03a8584c803d3621d7b85ca89446848cb2162afe4fffeb940acc822"
+    "config_hash": "50efa8c70beaf4079b28173ba5eb6d4e3c497bb4dce5ea2630a0d8576d3b7e24"
   },
   {
     "address": "creativecommons.org",
@@ -3474,23 +3463,23 @@
     "port": 443,
     "password": "ZU%290ryc%24VSrG",
     "keys": {
-      "path": "%2Ftrg2dhGAnG15ULOP7i%3Fed%3D2560",
+      "path": "/trg2dhGAnG15ULOP7i?ed=2560",
       "security": "tls",
-      "alpn": "http%2F1.1",
+      "alpn": "http/1.1",
       "host": "uk2wbo0ikx3iyi4i9wjdyu6y-o28et7o.pages.dev",
       "fp": "randomized",
       "type": "ws",
       "sni": "uk2WbO0iKx3IyI4i9WjdYU6Y-O28ET7o.pagEs.DeV"
     },
     "remarks": "🇧🇷@vpn_ioss ♻️ عضو شو",
-    "config_hash": "ee8b582f722f71d2bc64edddd757bfacf502fcf874066523908cf457ca0929bd"
+    "config_hash": "96c806342bc0e1befa6be63a993effb9469365f779fa2104a47c7388233751f1"
   },
   {
     "address": "94.131.114.50",
     "port": 81,
     "password": "a5a3350e-6ea2-4e12-ae84-20db849ce1fc",
     "keys": {
-      "path": "%2FFree-VPN-CF-Geo-Project%2F94.131.114.50%3D81",
+      "path": "/Free-VPN-CF-Geo-Project/94.131.114.50=81",
       "security": "tls",
       "host": "joss.dus.biz.id",
       "fp": "randomized",
@@ -3498,7 +3487,7 @@
       "sni": "joss.dus.biz.id"
     },
     "remarks": "@v2FreeHub 🇮🇱",
-    "config_hash": "061ad27d1207e1ceb76b966884d3d6f8bd9cfb9078e239125d1f19cedbe25510"
+    "config_hash": "80e755f0c55ca55f834817f281a7a6436cfc83c659553c9433a104497cc4e194"
   },
   {
     "address": "94.131.114.50",
@@ -3758,10 +3747,10 @@
       "allowInsecure": "0",
       "sni": "403B3611-99bc-43b7-88d7-26eD5d0825a9-3.paGes.dEV",
       "ws": "1",
-      "wspath": "%2Ftr0WG9WFiuFLs8Uip5%3Fed%3D2560"
+      "wspath": "/tr0WG9WFiuFLs8Uip5?ed=2560"
     },
     "remarks": "@Hope_Net-join-us-on-Telegram",
-    "config_hash": "7eb838e0f30bfd31d61de81344e25fd329ba7afbda047ec71e1441f332fdd4d1"
+    "config_hash": "52633bd705825125e4764935eeb55a3e72059fff8697955f3e2b4c060e6fa5f5"
   },
   {
     "address": "45.142.120.4",
@@ -3771,10 +3760,10 @@
       "allowInsecure": "1",
       "sni": "403B3611-99bC-43b7-88D7-26ed5d0825A9-3.PageS.DEV",
       "ws": "1",
-      "wspath": "%2FtroUbg9Q3QgD0TJRfy%3Fed%3D2560"
+      "wspath": "/troUbg9Q3QgD0TJRfy?ed=2560"
     },
     "remarks": "@Hope_Net-join-us-on-Telegram`",
-    "config_hash": "a51fbde1e8ab8cd73bbf19d9680184514cc401e1b89e6282f90d30a013f3ee64"
+    "config_hash": "bf58cc390019c79cfadaaeea8057ab20678b7c2737b27a40477334e8d7d48850"
   },
   {
     "address": "www.vpslook.com",
@@ -3837,7 +3826,7 @@
     "port": 443,
     "password": "c2d6a850-7e35-44f5-ab9f-8299f6f8c72b",
     "keys": {
-      "path": "%2FFree-VPN-CF-Geo-Project%2F194.147.115.149%3D443",
+      "path": "/Free-VPN-CF-Geo-Project/194.147.115.149=443",
       "security": "tls",
       "host": "joss.dus.biz.id",
       "fp": "randomized",
@@ -3845,7 +3834,7 @@
       "sni": "joss.dus.biz.id"
     },
     "remarks": "@v2FreeHub 🇳🇱",
-    "config_hash": "50b44d893d38d8f4d37e8564fb6f4bc357b0c66d4fcd3001411b80520eb4dbd6"
+    "config_hash": "dc53c24410534465f2ea2c7623596e3bdcc5e8f36a981f05308aefb716956198"
   },
   {
     "address": "194.147.115.149",
@@ -4426,11 +4415,11 @@
       "security": "none",
       "type": "ws",
       "headerType": "none",
-      "path": "%252Ftrojan-ntls",
+      "path": "/trojan-ntls",
       "host": "asia.artunnel57.host"
     },
     "remarks": "❔ XX | 🔓 TROJAN | @armodchannel [61]",
-    "config_hash": "ec47c47b68695018a1cf97227a4beb0d65d063c92e743233f4eaaca511e92f0c"
+    "config_hash": "70d11e7e1665e50814996b01b7221bc575f6516b181d3f3934db4c1274285f79"
   },
   {
     "address": "91.107.172.48",
@@ -4684,12 +4673,12 @@
     "keys": {
       "security": "tls",
       "sni": "trj.rollingnext.co.uk",
-      "alpn": "http%2F1.1",
+      "alpn": "http/1.1",
       "type": "tcp",
       "headerType": "none"
     },
     "remarks": "🇨🇦 CA | 🔒 TROJAN | @v2rayngconfig [44]",
-    "config_hash": "faaf868efd995b169dad7269c993f2d74a4de96ec37eaa6a1e0b2098a8377e47"
+    "config_hash": "6dc8c5d0c831022e3875cb8f91ab3c0076c61d5ee16c7847d63895ba19dbd8a6"
   },
   {
     "address": "18.157.213.150",
@@ -4967,26 +4956,12 @@
     "password": "telegram-id-privatevpns",
     "keys": {
       "security": "tls",
-      "alpn": "http%2F1.1",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "trojan.burgerip.co.uk"
-    },
-    "remarks": "🇩🇪 DE | 🔒 TROJAN | @privatevpns [16]",
-    "config_hash": "5278f7bcede625410344086e3ee843b18e6a1c813054cfcf96c936ee4f435123"
-  },
-  {
-    "address": "18.199.28.235",
-    "port": 22222,
-    "password": "telegram-id-privatevpns",
-    "keys": {
-      "security": "tls",
       "alpn": "http/1.1",
       "headerType": "none",
       "type": "tcp",
       "sni": "trojan.burgerip.co.uk"
     },
-    "remarks": "(S101)🇩🇪t.me/PrivateVPNs",
+    "remarks": "🇩🇪 DE | 🔒 TROJAN | @privatevpns [16]",
     "config_hash": "17da063c8b8e62c359d69436dceca484bb2da37aabe352b941e437e4aa84d405"
   },
   {
@@ -5076,26 +5051,12 @@
     "password": "telegram-id-privatevpns",
     "keys": {
       "security": "tls",
-      "alpn": "http%2F1.1",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "trojan.burgerip.co.uk"
-    },
-    "remarks": "🇫🇷 FR | 🔒 TROJAN | @privatevpns [15]",
-    "config_hash": "054fb7e34a0c120c159a0b26c623813c6f22cbe25cfb8ef12a5399ad2a1ed735"
-  },
-  {
-    "address": "51.44.231.225",
-    "port": 22222,
-    "password": "telegram-id-privatevpns",
-    "keys": {
-      "security": "tls",
       "alpn": "http/1.1",
       "headerType": "none",
       "type": "tcp",
       "sni": "trojan.burgerip.co.uk"
     },
-    "remarks": "(S104)🇨🇵t.me/PrivateVPNs",
+    "remarks": "🇫🇷 FR | 🔒 TROJAN | @privatevpns [15]",
     "config_hash": "f862687687f139fe210f37d084f9aa3bc248670a78f994e105a243858dc1bd5c"
   },
   {
@@ -5118,26 +5079,12 @@
     "password": "telegram-id-privatevpns",
     "keys": {
       "security": "tls",
-      "alpn": "http%2F1.1",
-      "headerType": "none",
-      "type": "tcp",
-      "sni": "trojan.burgerip.co.uk"
-    },
-    "remarks": "🇫🇷 FR | 🔒 TROJAN | @privatevpns [14]",
-    "config_hash": "2e56555e5879b592c86a5a4a1c84b553d20de2eef927a67edfd1503708dd1f20"
-  },
-  {
-    "address": "51.45.31.208",
-    "port": 22222,
-    "password": "telegram-id-privatevpns",
-    "keys": {
-      "security": "tls",
       "alpn": "http/1.1",
       "headerType": "none",
       "type": "tcp",
       "sni": "trojan.burgerip.co.uk"
     },
-    "remarks": "(S103)🇨🇵t.me/PrivateVPNs",
+    "remarks": "🇫🇷 FR | 🔒 TROJAN | @privatevpns [14]",
     "config_hash": "48bd6ea89a308166b00e180c916774a3ec762b349129ced55b87affd3440b581"
   },
   {
@@ -5217,13 +5164,13 @@
     "password": "telegram-id-v2rayvpnchannel",
     "keys": {
       "security": "tls",
-      "alpn": "http%2F1.1",
+      "alpn": "http/1.1",
       "headerType": "none",
       "type": "tcp",
       "sni": "trojan.burgerip.co.uk"
     },
     "remarks": "🇩🇪 DE | 🔒 TROJAN | @v2rayvpnchannel [16]",
-    "config_hash": "53e545a4285d4580874a94b5b425eb3c66b82e99126a6bd281fd20b7d9419a28"
+    "config_hash": "d38c3fa8921c5942772149ccb42b528763538be53f28447e80c557e855984915"
   },
   {
     "address": "51.44.231.225",
@@ -5231,13 +5178,13 @@
     "password": "telegram-id-v2rayvpnchannel",
     "keys": {
       "security": "tls",
-      "alpn": "http%2F1.1",
+      "alpn": "http/1.1",
       "headerType": "none",
       "type": "tcp",
       "sni": "trojan.burgerip.co.uk"
     },
     "remarks": "🇫🇷 FR | 🔒 TROJAN | @v2rayvpnchannel [15]",
-    "config_hash": "85e7fddbe32bae461ce6de6ff2725c092e5ce9245e5455e0a4b2e91432747509"
+    "config_hash": "6bf7672296a38ddfb3372ba7c4f638e96b71aa0cbe464ece9dd3c1708b966d38"
   },
   {
     "address": "51.45.31.208",
@@ -5245,13 +5192,13 @@
     "password": "telegram-id-v2rayvpnchannel",
     "keys": {
       "security": "tls",
-      "alpn": "http%2F1.1",
+      "alpn": "http/1.1",
       "headerType": "none",
       "type": "tcp",
       "sni": "trojan.burgerip.co.uk"
     },
     "remarks": "🇫🇷 FR | 🔒 TROJAN | @v2rayvpnchannel [14]",
-    "config_hash": "9ee355a609df7e6e48fb3d7133b9bfb03e8203aebdd06dd62698a7bb42e004cd"
+    "config_hash": "e5dcc940c1ab12d60da3409063c5dacbf27b03c13637871d9c0e7752449ae80f"
   },
   {
     "address": "104.18.12.229",
@@ -5263,11 +5210,11 @@
       "allowInsecure": "1",
       "fp": "chrome",
       "type": "ws",
-      "path": "/?ed%3D2560",
+      "path": "/?ed=2560",
       "host": "azadnet-f03.pages.dev"
     },
     "remarks": "🇳🇦 Namibia - NA 🌍 TR-WS-TLS 4⃣",
-    "config_hash": "fbe99a404ab85cc8a12557df9c6a096e35339ca6586f0313296b20f02fe56eca"
+    "config_hash": "f52799152d197b20272d62915a57eb411dde744bf3cdf54240050989e4245a08"
   },
   {
     "address": "104.18.13.229",
@@ -5279,11 +5226,11 @@
       "allowInsecure": "1",
       "fp": "chrome",
       "type": "ws",
-      "path": "/?ed%3D2560",
+      "path": "/?ed=2560",
       "host": "azadnet-f03.pages.dev"
     },
     "remarks": "🇳🇦 Namibia - NA 🌍 TR-WS-TLS 4⃣",
-    "config_hash": "c5f13a5134082c9e6d662ef50984b9e71e90ece87ee28a304e3fbde88470c18a"
+    "config_hash": "3086a179b0813325f8863c9dbc169fc1a3dad79afd13797b08018db1add8405f"
   },
   {
     "address": "104.18.13.229",
@@ -5326,11 +5273,11 @@
       "allowInsecure": "1",
       "fp": "chrome",
       "type": "ws",
-      "path": "/?ed%3D2560",
+      "path": "/?ed=2560",
       "host": "fofang.pages.dev"
     },
     "remarks": "🇳🇦 Namibia - NA 🌍 TR-WS-TLS 4⃣",
-    "config_hash": "4171ceddbf9d93057d3110dd91789998b79d6548d2270ba5b344a087fc55d410"
+    "config_hash": "87acd06fd37cdce1ad17deb2dc2851ae898ed0b781302e55208201f2ebc85b1e"
   },
   {
     "address": "104.26.12.31",
@@ -5342,11 +5289,11 @@
       "allowInsecure": "1",
       "fp": "chrome",
       "type": "ws",
-      "path": "/?ed%3D2560",
+      "path": "/?ed=2560",
       "host": "qianlang.pages.dev"
     },
     "remarks": "🇳🇦 Namibia - NA 🌍 TR-WS-TLS 4⃣",
-    "config_hash": "61e84c0d3570c6ab2f1f5533eb35ad980b05a22f9b0f44033fea9c110935be50"
+    "config_hash": "ad4e360208513a1300eb72c2d384c2462afcbde1ef2a820c0a15e796fcedbdb9"
   },
   {
     "address": "104.26.13.31",
@@ -5358,11 +5305,11 @@
       "allowInsecure": "1",
       "fp": "chrome",
       "type": "ws",
-      "path": "/?ed%3D2560",
+      "path": "/?ed=2560",
       "host": "qianlang.pages.dev"
     },
     "remarks": "🇳🇦 Namibia - NA 🌍 TR-WS-TLS 4⃣",
-    "config_hash": "313f8044d7113105a2f068a5b4d6f1397d3cfc8beaeca28420bd9e0d955e55ff"
+    "config_hash": "bee270da4e8322d1d7cc316b6f4dbdb17f17634cd647ce3dc4bc3570077ac695"
   },
   {
     "address": "109.234.211.66",
@@ -5418,11 +5365,11 @@
       "allowInsecure": "1",
       "fp": "chrome",
       "type": "ws",
-      "path": "/?ed%3D2560",
+      "path": "/?ed=2560",
       "host": "fofang.pages.dev"
     },
     "remarks": "🇳🇦 Namibia - NA 🌍 TR-WS-TLS 4⃣",
-    "config_hash": "838620f3c9a7719b1ef8f265338840ed88494a55d7b239320a6fe405cd6502b4"
+    "config_hash": "4881312afe16c4c166641b3b2c802fde3bc710c2380ae58cdf04c582346305e4"
   },
   {
     "address": "172.67.75.172",
@@ -5434,11 +5381,11 @@
       "allowInsecure": "1",
       "fp": "chrome",
       "type": "ws",
-      "path": "/?ed%3D2560",
+      "path": "/?ed=2560",
       "host": "qianlang.pages.dev"
     },
     "remarks": "🇳🇦 Namibia - NA 🌍 TR-WS-TLS 4⃣",
-    "config_hash": "ef6eaa9056253479eab5b0b19401e3dce9c3db87c4d766d9e9a05bf2e02d7c2e"
+    "config_hash": "0265abc8d73ee938f43101b66e3696374ca55c9ee4bd60aca75c34139b197bea"
   },
   {
     "address": "22b.net",

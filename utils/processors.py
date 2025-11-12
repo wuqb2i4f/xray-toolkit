@@ -16,8 +16,8 @@ def decode_b64_simple(b64_part: str) -> str:
     return decoded
 
 
-def decode_remarks(remarks: str) -> str:
-    """Process remarks string: iteratively decode URL-encoding if present, otherwise leave as is.
+def decode_url_encode(remarks: str) -> str:
+    """Process string: iteratively decode URL-encoding if present, otherwise leave as is.
     Handles multi-layer encoding and strips junk.
     """
     current = remarks
@@ -51,6 +51,6 @@ def case_insensitive_hash(d: Dict[str, Any]) -> Dict[str, Any]:
 processors = {
     "map_to_hysteria2": map_to_hysteria2,
     "decode_b64_simple": decode_b64_simple,
-    "decode_remarks": decode_remarks,
+    "decode_url_encode": decode_url_encode,
     "case_insensitive_hash": case_insensitive_hash,
 }

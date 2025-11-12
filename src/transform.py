@@ -60,7 +60,9 @@ def parse_and_validate_uri(
     uri: str, proto: str, fields_config: Dict[str, Any]
 ) -> Dict[str, Any] | None:
     """Parse URI to dict based on protocol, validate using fields config."""
-    if proto == "ss":
+    if proto == "vless":
+        return parse_vless_uri(uri, fields_config)
+    elif proto == "ss":
         return parse_ss_uri(uri, fields_config)
     elif proto == "trojan":
         return parse_trojan_uri(uri, fields_config)
@@ -72,13 +74,122 @@ def parse_and_validate_uri(
         return None
 
 
-def parse_ss_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] | None:
-    """Parse SS URI using small helpers, then validate full object."""
-    components = extract_ss_components(uri)
-    if not components:
+def parse_params(params_str: str) -> Dict[str, str]:
+    """Parse query params from string into a dict."""
+    params = {}
+    if params_str:
+        # Split on either & or ; as separators
+        pairs = re.split(r"[&;]", params_str)
+        for pair in pairs:
+            if "=" in pair:
+                k, v = pair.split("=", 1)
+                params[k] = v
+    return params
+
+
+def compute_config_hash(obj: Dict[str, Any]) -> str:
+    """Compute SHA256 hash from all fields except 'remarks' (case-insensitive)."""
+    hash_input = {k: v for k, v in obj.items() if k not in ["remarks"]}
+    hash_input = processors["case_insensitive_hash"](hash_input)
+    hash_string = json.dumps(hash_input, sort_keys=True)
+    hash_obj = hashlib.sha256(hash_string.encode("utf-8"))
+    return hash_obj.hexdigest()
+
+
+def parse_vless_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] | None:
+    """Parse VLESS URI using small helpers, then validate full object."""
+    # Extract id, address, port, params, remarks from VLESS URI regex match.
+    pattern = r"vless://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
+    match = re.match(pattern, uri)
+    if not match:
         return None
 
-    obj = build_ss_object(components)
+    id = match.group(1)
+    address = match.group(2)
+    port_str = match.group(3)
+    params_str = match.group(4) or ""
+    remarks = match.group(5) or ""
+
+    # Parse port
+    try:
+        port = int(port_str)
+    except ValueError:
+        return None
+
+    # Parse params and remarks
+    decoded_params = processors["decode_url_encode"](params_str)
+    params = parse_params(decoded_params)
+    decoded_remarks = processors["decode_url_encode"](remarks)
+
+    # Build object
+    obj = {
+        "address": address,
+        "port": port,
+        "id": id,
+        "keys": params,
+        "remarks": decoded_remarks,
+    }
+
+    # Compute and add config_hash
+    config_hash = compute_config_hash(obj)
+    obj["config_hash"] = config_hash
+
+    # Validate
+    if not validate_object(obj, fields_config):
+        return None
+
+    return obj
+
+
+def parse_ss_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] | None:
+    """Parse SS URI using small helpers, then validate full object."""
+    # Extract base64, address, port, params, remarks from SS URI regex match.
+    pattern = r"ss://([A-Za-z0-9+/=]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
+    match = re.match(pattern, uri)
+    if not match:
+        return None
+
+    b64_part = match.group(1)
+    address = match.group(2)
+    port_str = match.group(3)
+    params_str = match.group(4) or ""
+    remarks = match.group(5) or ""
+
+    # Parse port
+    try:
+        port = int(port_str)
+    except ValueError:
+        return None
+
+    # Decode base64 to method:password
+    decode_result = processors["decode_b64_simple"](b64_part)
+    if not decode_result:
+        return None
+    try:
+        method, password = decode_result.split(":", 1)
+    except ValueError:
+        return None
+
+    # Parse params and remarks
+    decoded_params = processors["decode_url_encode"](params_str)
+    params = parse_params(decoded_params)
+    decoded_remarks = processors["decode_url_encode"](remarks)
+
+    # Build object
+    obj = {
+        "address": address,
+        "port": port,
+        "method": method,
+        "password": password,
+        "keys": params,
+        "remarks": decoded_remarks,
+    }
+
+    # Compute and add config_hash
+    config_hash = compute_config_hash(obj)
+    obj["config_hash"] = config_hash
+
+    # Validate
     if not validate_object(obj, fields_config):
         return None
 
@@ -87,11 +198,43 @@ def parse_ss_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] | No
 
 def parse_trojan_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] | None:
     """Parse Trojan URI using small helpers, then validate full object."""
-    components = extract_trojan_components(uri)
-    if not components:
+    # Extract password, address, port, params, remarks from Trojan URI regex match.
+    pattern = r"trojan://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
+    match = re.match(pattern, uri)
+    if not match:
         return None
 
-    obj = build_trojan_object(components)
+    password = match.group(1)
+    address = match.group(2)
+    port_str = match.group(3)
+    params_str = match.group(4) or ""
+    remarks = match.group(5) or ""
+
+    # Parse port
+    try:
+        port = int(port_str)
+    except ValueError:
+        return None
+
+    # Parse params and remarks
+    decoded_params = processors["decode_url_encode"](params_str)
+    params = parse_params(decoded_params)
+    decoded_remarks = processors["decode_url_encode"](remarks)
+
+    # Build object
+    obj = {
+        "address": address,
+        "port": port,
+        "password": password,
+        "keys": params,
+        "remarks": decoded_remarks,
+    }
+
+    # Compute and add config_hash
+    config_hash = compute_config_hash(obj)
+    obj["config_hash"] = config_hash
+
+    # Validate
     if not validate_object(obj, fields_config):
         return None
 
@@ -102,179 +245,46 @@ def parse_hysteria2_uri(
     uri: str, fields_config: Dict[str, Any]
 ) -> Dict[str, Any] | None:
     """Parse Hysteria2 URI using small helpers, then validate full object."""
-    components = extract_hysteria2_components(uri)
-    if not components:
-        return None
-
-    obj = build_hysteria2_object(components)
-    if not validate_object(obj, fields_config):
-        return None
-
-    return obj
-
-
-def extract_ss_components(uri: str) -> Dict[str, str] | None:
-    """Extract base64, address, port, params, remarks from SS URI regex match."""
-    pattern = r"ss://([A-Za-z0-9+/=]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
-    match = re.match(pattern, uri)
-    if not match:
-        return None
-
-    return {
-        "b64_part": match.group(1),
-        "address": match.group(2),
-        "port_str": match.group(3),
-        "params_str": match.group(4) or "",
-        "remarks": match.group(5) or "",
-    }
-
-
-def extract_trojan_components(uri: str) -> Dict[str, str] | None:
-    """Extract password, address, port, params, remarks from Trojan URI regex match."""
-    pattern = r"trojan://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
-    match = re.match(pattern, uri)
-    if not match:
-        return None
-
-    return {
-        "password": match.group(1),
-        "address": match.group(2),
-        "port_str": match.group(3),
-        "params_str": match.group(4) or "",
-        "remarks": match.group(5) or "",
-    }
-
-
-def extract_hysteria2_components(uri: str) -> Dict[str, str] | None:
-    """Extract password, address, port, params, remarks from Hysteria2 URI regex match."""
+    # Extract password, address, port, params, remarks from Hysteria2 URI regex match.
     pattern = r"hysteria2://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
     match = re.match(pattern, uri)
     if not match:
         return None
 
-    return {
-        "password": match.group(1),
-        "address": match.group(2),
-        "port_str": match.group(3),
-        "params_str": match.group(4) or "",
-        "remarks": match.group(5) or "",
-    }
+    password = match.group(1)
+    address = match.group(2)
+    port_str = match.group(3)
+    params_str = match.group(4) or ""
+    remarks = match.group(5) or ""
 
-
-def build_ss_object(components: Dict[str, str]) -> Dict[str, Any] | None:
-    """Build SS dict from components."""
-    port_str = components["port_str"]
+    # Parse port
     try:
         port = int(port_str)
     except ValueError:
         return None
 
-    decode_result = processors["decode_b64_simple"](components["b64_part"])
-    if not decode_result:
-        return None
-    method, password = decode_result.split(":", 1)
+    # Parse params and remarks
+    decoded_params = processors["decode_url_encode"](params_str)
+    params = parse_params(decoded_params)
+    decoded_remarks = processors["decode_url_encode"](remarks)
 
-    params_str = components["params_str"]
-    params = {}
-    if params_str:
-        for pair in params_str.split("&"):
-            if "=" in pair:
-                k, v = pair.split("=", 1)
-                params[k] = v
-
-    remarks = processors["decode_remarks"](components["remarks"])
-
+    # Build object
     obj = {
-        "address": components["address"],
+        "address": address,
         "port": port,
-        "method": method,
         "password": password,
         "keys": params,
-        "remarks": remarks,
+        "remarks": decoded_remarks,
     }
 
-    # Compute config_hash from all fields except 'remarks'
-    hash_input = {k: v for k, v in obj.items() if k not in ["remarks"]}
-    hash_input = processors["case_insensitive_hash"](hash_input)
-    hash_string = json.dumps(hash_input, sort_keys=True)
-    hash_obj = hashlib.sha256(hash_string.encode("utf-8"))
-    config_hash = hash_obj.hexdigest()
-
+    # Compute and add config_hash
+    config_hash = compute_config_hash(obj)
     obj["config_hash"] = config_hash
-    return obj
 
-
-def build_trojan_object(components: Dict[str, str]) -> Dict[str, Any] | None:
-    """Build Trojan dict from components."""
-    port_str = components["port_str"]
-    try:
-        port = int(port_str)
-    except ValueError:
+    # Validate
+    if not validate_object(obj, fields_config):
         return None
 
-    params_str = components["params_str"]
-    params = {}
-    if params_str:
-        for pair in params_str.split("&"):
-            if "=" in pair:
-                k, v = pair.split("=", 1)
-                params[k] = v
-
-    remarks = processors["decode_remarks"](components["remarks"])
-
-    obj = {
-        "address": components["address"],
-        "port": port,
-        "password": components["password"],
-        "keys": params,
-        "remarks": remarks,
-    }
-
-    # Compute config_hash from all fields except 'remarks'
-    hash_input = {k: v for k, v in obj.items() if k not in ["remarks"]}
-    hash_input = processors["case_insensitive_hash"](hash_input)
-    hash_string = json.dumps(hash_input, sort_keys=True)
-    hash_obj = hashlib.sha256(hash_string.encode("utf-8"))
-    config_hash = hash_obj.hexdigest()
-
-    obj["config_hash"] = config_hash
-    return obj
-
-
-def build_hysteria2_object(components: Dict[str, str]) -> Dict[str, Any] | None:
-    """Build Hysteria2 dict from components."""
-    port_str = components["port_str"]
-    try:
-        port = int(port_str)
-    except ValueError:
-        return None
-
-    params_str = components["params_str"]
-    params = {}
-    if params_str:
-        for pair in params_str.split("&"):
-            if "=" in pair:
-                k, v = pair.split("=", 1)
-                params[k] = v
-
-    remarks = processors["decode_remarks"](components["remarks"])
-
-    obj = {
-        "address": components["address"],
-        "port": port,
-        "password": components["password"],
-        "keys": params,
-        "remarks": remarks,
-    }
-
-    # Compute config_hash from all fields except 'remarks'
-    hash_input = {k: v for k, v in obj.items() if k not in ["remarks"]}
-    hash_input = processors["case_insensitive_hash"](hash_input)
-    hash_string = json.dumps(hash_input, sort_keys=True)
-    hash_obj = hashlib.sha256(hash_string.encode("utf-8"))
-    config_hash = hash_obj.hexdigest()
-
-    obj["config_hash"] = config_hash
     return obj
 
 

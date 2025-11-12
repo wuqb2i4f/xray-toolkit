@@ -5954,21 +5954,14 @@
     "method": "aes-256-gcm",
     "password": "ccf426f1fe78",
     "keys": {
-      "plugin": "v2ray-plugin%3Bmode%3Dwebsocket%3Bmux%3D8%3Bpath%3D%2Fzksuapgx%3Bhost%3Dnewroot2v1.dsjsapp.com%3Btls"
+      "plugin": "v2ray-plugin",
+      "mode": "websocket",
+      "mux": "8",
+      "path": "/zksuapgx",
+      "host": "newroot2v1.dsjsapp.com"
     },
     "remarks": "香港2|@ripaojiedian",
-    "config_hash": "8024bc6e76889d1db2cc995f32a7e471c915d44441300270fa83a0ee9e5d435d"
-  },
-  {
-    "address": "103.103.245.158",
-    "port": 443,
-    "method": "aes-256-gcm",
-    "password": "ccf426f1fe78",
-    "keys": {
-      "plugin": "v2ray-plugin;mode=websocket;mux=8;path=/zksuapgx;host=newroot2v1.dsjsapp.com;tls"
-    },
-    "remarks": "香港2|@ripaojiedian",
-    "config_hash": "68ce8309478b2d8c60bc0e0eaa77ac4578f0972a3d34cac8b267fe10336afa36"
+    "config_hash": "7eeca3e1dfc56744a6dfa879d6a5d193d78bd6a9a29a01b75b158f139e4cf88f"
   },
   {
     "address": "23.154.136.37",
