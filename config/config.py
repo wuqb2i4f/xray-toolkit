@@ -115,7 +115,27 @@ PROXIES = {
             "uri": {
                 "raw_output": "output/raw_uris_hysteria2.txt",
                 "processed_output": "output/processed_uris_hysteria2.json",
-            }
+            },
+            "fields": {
+                "address": {
+                    "required": True,
+                    "type": "string",
+                    "validators": ["ipv4", "ipv6", "domain"],
+                },
+                "port": {"required": True, "type": "int", "range": [1, 65535]},
+                "password": {
+                    "required": True,
+                    "type": "string",
+                },
+                "keys": {
+                    "required": False,
+                    "type": "dict",
+                },
+                "remarks": {
+                    "required": False,
+                    "type": "string",
+                },
+            },
         },
         "hy2": {
             "uri": {
