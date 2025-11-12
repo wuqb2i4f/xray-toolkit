@@ -3461,7 +3461,7 @@
   {
     "address": "104.17.148.22",
     "port": 443,
-    "password": "ZU%290ryc%24VSrG",
+    "password": "ZU)0ryc$VSrG",
     "keys": {
       "path": "/trg2dhGAnG15ULOP7i?ed=2560",
       "security": "tls",
@@ -3472,7 +3472,7 @@
       "sni": "uk2WbO0iKx3IyI4i9WjdYU6Y-O28ET7o.pagEs.DeV"
     },
     "remarks": "🇧🇷@vpn_ioss ♻️ عضو شو",
-    "config_hash": "96c806342bc0e1befa6be63a993effb9469365f779fa2104a47c7388233751f1"
+    "config_hash": "75715c67e816b53da387152c251c11f11a0d9c86c3bc0453fd514114a1510959"
   },
   {
     "address": "94.131.114.50",

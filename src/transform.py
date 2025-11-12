@@ -117,6 +117,7 @@ def parse_vless_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] |
         return None
 
     # Parse params and remarks
+    decode_id = processors["decode_url_encode"](id)
     decoded_params = processors["decode_url_encode"](params_str)
     params = parse_params(decoded_params)
     decoded_remarks = processors["decode_url_encode"](remarks)
@@ -125,7 +126,7 @@ def parse_vless_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] |
     obj = {
         "address": address,
         "port": port,
-        "id": id,
+        "id": decode_id,
         "keys": params,
         "remarks": decoded_remarks,
     }
@@ -217,6 +218,7 @@ def parse_trojan_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] 
         return None
 
     # Parse params and remarks
+    decode_password = processors["decode_url_encode"](password)
     decoded_params = processors["decode_url_encode"](params_str)
     params = parse_params(decoded_params)
     decoded_remarks = processors["decode_url_encode"](remarks)
@@ -225,7 +227,7 @@ def parse_trojan_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] 
     obj = {
         "address": address,
         "port": port,
-        "password": password,
+        "password": decode_password,
         "keys": params,
         "remarks": decoded_remarks,
     }

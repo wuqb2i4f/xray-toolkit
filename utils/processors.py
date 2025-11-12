@@ -16,13 +16,12 @@ def decode_b64_simple(b64_part: str) -> str:
     return decoded
 
 
-def decode_url_encode(remarks: str) -> str:
+def decode_url_encode(misc_string: str) -> str:
     """Process string: iteratively decode URL-encoding if present, otherwise leave as is.
     Handles multi-layer encoding and strips junk.
     """
-    current = remarks
-    max_iters = 10
-    for _ in range(max_iters):
+    current = misc_string
+    while True:
         try:
             decoded = unquote(current)
             decoded = decoded.rstrip("\0")
@@ -30,8 +29,7 @@ def decode_url_encode(remarks: str) -> str:
                 return decoded
             current = decoded
         except Exception:
-            return remarks
-    return current
+            return misc_string
 
 
 def case_insensitive_hash(d: Dict[str, Any]) -> Dict[str, Any]:
