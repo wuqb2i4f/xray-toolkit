@@ -62,10 +62,12 @@ def parse_and_validate_uri(
     """Parse URI to dict based on protocol, validate using fields config."""
     if proto == "vless":
         return parse_vless_uri(uri, fields_config)
-    elif proto == "ss":
-        return parse_ss_uri(uri, fields_config)
     elif proto == "trojan":
         return parse_trojan_uri(uri, fields_config)
+    elif proto == "ss":
+        return parse_ss_uri(uri, fields_config)
+    elif proto == "vmess":
+        return parse_vmess_uri(uri, fields_config)
     elif proto == "hysteria2":
         return parse_hysteria2_uri(uri, fields_config)
     # Placeholder for other protocols
@@ -143,6 +145,52 @@ def parse_vless_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] |
     return obj
 
 
+def parse_trojan_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] | None:
+    """Parse Trojan URI using small helpers, then validate full object."""
+    # Extract password, address, port, params, remarks from Trojan URI regex match.
+    pattern = r"trojan://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
+    match = re.match(pattern, uri)
+    if not match:
+        return None
+
+    password = match.group(1)
+    address = match.group(2)
+    port_str = match.group(3)
+    params_str = match.group(4) or ""
+    remarks = match.group(5) or ""
+
+    # Parse port
+    try:
+        port = int(port_str)
+    except ValueError:
+        return None
+
+    # Parse params and remarks
+    decode_password = processors_map["decode_url_encode"](password)
+    decoded_params = processors_map["decode_url_encode"](params_str)
+    params = parse_params(decoded_params)
+    decoded_remarks = processors_map["decode_url_encode"](remarks)
+
+    # Build object
+    obj = {
+        "address": address,
+        "port": port,
+        "password": decode_password,
+        "keys": params,
+        "remarks": decoded_remarks,
+    }
+
+    # Compute and add config_hash
+    config_hash = compute_config_hash(obj)
+    obj["config_hash"] = config_hash
+
+    # Validate
+    if not validate_object(obj, fields_config):
+        return None
+
+    return obj
+
+
 def parse_ss_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] | None:
     """Parse SS URI using small helpers, then validate full object."""
     # Extract base64, address, port, params, remarks from SS URI regex match.
@@ -198,15 +246,118 @@ def parse_ss_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] | No
     return obj
 
 
-def parse_trojan_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] | None:
-    """Parse Trojan URI using small helpers, then validate full object."""
-    # Extract password, address, port, params, remarks from Trojan URI regex match.
-    pattern = r"trojan://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
+def parse_vmess_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] | None:
+    """Parse VMess URI: detect format and delegate to appropriate parser."""
+    # Try base64 JSON format first (most common)
+    pattern_b64 = r"vmess://([^#]+)$"
+    if re.match(pattern_b64, uri):
+        return parse_vmess_b64_format(uri, fields_config)
+
+    # If not, try URI format (similar to VLESS)
+    pattern_uri = r"vmess://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
+    if re.match(pattern_uri, uri):
+        return parse_vmess_uri_format(uri, fields_config)
+
+    # Neither format matched
+    return None
+
+
+def parse_vmess_b64_format(
+    uri: str, fields_config: Dict[str, Any]
+) -> Dict[str, Any] | None:
+    """Parse VMess base64 JSON format."""
+    # Extract base64 part and remarks
+    pattern = r"vmess://([^#]+)(?:#(.*))?$"
     match = re.match(pattern, uri)
     if not match:
         return None
 
-    password = match.group(1)
+    b64_part = match.group(1)
+    raw_remarks = match.group(2) or ""
+    decoded_remarks = processors_map["decode_url_encode"](raw_remarks)
+
+    # Decode base64 to JSON string
+    json_str = processors_map["decode_b64_simple"](b64_part)
+    if not json_str:
+        return None
+
+    # Parse JSON
+    try:
+        obj_data = json.loads(json_str)
+    except json.JSONDecodeError:
+        return None
+
+    # Extract core fields
+    address = obj_data.get("add", "")
+    port_obj = obj_data.get("port")
+    id = obj_data.get("id", "")
+
+    if not address or port_obj is None or not id:
+        return None
+
+    # Parse port
+    try:
+        port = int(port_obj)
+    except ValueError:
+        return None
+
+    # Process ID to UUID
+    uuid = processors_map["id_to_uuid"](id)
+
+    # Extract additional fields for keys
+    aid = obj_data.get("aid", 0)
+    net = obj_data.get("net", "")
+    type_ = obj_data.get("type", "")  # header type
+    host = obj_data.get("host", "")
+    path = obj_data.get("path", "")
+    tls = obj_data.get("tls", "")
+
+    # Use #remarks if present, otherwise fall back to "ps"
+    final_remarks = decoded_remarks or obj_data.get("ps", "")
+
+    # Build keys dict
+    keys = {
+        "aid": aid,
+        "net": net,
+        "type": type_,
+        "host": host,
+        "path": path,
+        "tls": tls,
+    }
+    # Remove empty values
+    keys = {k: v for k, v in keys.items() if v is not None and str(v).strip() != ""}
+
+    # Build object
+    obj = {
+        "address": address,
+        "port": port,
+        "id": uuid,
+        "keys": keys,
+        "remarks": final_remarks,
+    }
+
+    # Compute and add config_hash
+    config_hash = compute_config_hash(obj)
+    obj["config_hash"] = config_hash
+
+    # Validate
+    if not validate_object(obj, fields_config):
+        return None
+
+    return obj
+
+
+def parse_vmess_uri_format(
+    uri: str, fields_config: Dict[str, Any]
+) -> Dict[str, Any] | None:
+    """Parse VMESS URI using small helpers, then validate full object."""
+    # Extract id, address, port, params, remarks from VMESS URI regex match.
+    pattern = r"vmess://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
+    match = re.match(pattern, uri)
+    if not match:
+        return None
+
+    id = match.group(1)
     address = match.group(2)
     port_str = match.group(3)
     params_str = match.group(4) or ""
@@ -219,7 +370,8 @@ def parse_trojan_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] 
         return None
 
     # Parse params and remarks
-    decode_password = processors_map["decode_url_encode"](password)
+    decode_id = processors_map["decode_url_encode"](id)
+    uuid = processors_map["id_to_uuid"](decode_id)
     decoded_params = processors_map["decode_url_encode"](params_str)
     params = parse_params(decoded_params)
     decoded_remarks = processors_map["decode_url_encode"](remarks)
@@ -228,7 +380,7 @@ def parse_trojan_uri(uri: str, fields_config: Dict[str, Any]) -> Dict[str, Any] 
     obj = {
         "address": address,
         "port": port,
-        "password": decode_password,
+        "id": uuid,
         "keys": params,
         "remarks": decoded_remarks,
     }

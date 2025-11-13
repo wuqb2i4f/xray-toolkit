@@ -130,7 +130,28 @@ PROXIES = {
             "uri": {
                 "raw_output": "output/raw_uris_vmess.txt",
                 "processed_output": "output/processed_uris_vmess.json",
-            }
+            },
+            "fields": {
+                "address": {
+                    "required": True,
+                    "type": "string",
+                    "validators": ["ipv4", "ipv6", "domain"],
+                },
+                "port": {"required": True, "type": "int", "range": [1, 65535]},
+                "id": {
+                    "required": True,
+                    "type": "string",
+                    "validators": ["uuid"],
+                },
+                "keys": {
+                    "required": False,
+                    "type": "dict",
+                },
+                "remarks": {
+                    "required": False,
+                    "type": "string",
+                },
+            },
         },
         "hysteria2": {
             "uri": {
