@@ -267,14 +267,12 @@ def parse_vmess_b64_format(
 ) -> Dict[str, Any] | None:
     """Parse VMess base64 JSON format."""
     # Extract base64 part and remarks
-    pattern = r"vmess://([^#]+)(?:#(.*))?$"
+    pattern = r"vmess://([^#]+)$"
     match = re.match(pattern, uri)
     if not match:
         return None
 
     b64_part = match.group(1)
-    raw_remarks = match.group(2) or ""
-    decoded_remarks = processors_map["decode_url_encode"](raw_remarks)
 
     # Decode base64 to JSON string
     json_str = processors_map["decode_b64_simple"](b64_part)
@@ -291,6 +289,7 @@ def parse_vmess_b64_format(
     address = obj_data.get("add", "")
     port_obj = obj_data.get("port")
     id = obj_data.get("id", "")
+    remarks = obj_data.get("ps", "")
 
     if not address or port_obj is None or not id:
         return None
@@ -304,28 +303,12 @@ def parse_vmess_b64_format(
     # Process ID to UUID
     uuid = processors_map["id_to_uuid"](id)
 
-    # Extract additional fields for keys
-    aid = obj_data.get("aid", 0)
-    net = obj_data.get("net", "")
-    type_ = obj_data.get("type", "")  # header type
-    host = obj_data.get("host", "")
-    path = obj_data.get("path", "")
-    tls = obj_data.get("tls", "")
-
-    # Use #remarks if present, otherwise fall back to "ps"
-    final_remarks = decoded_remarks or obj_data.get("ps", "")
-
-    # Build keys dict
-    keys = {
-        "aid": aid,
-        "net": net,
-        "type": type_,
-        "host": host,
-        "path": path,
-        "tls": tls,
-    }
-    # Remove empty values
-    keys = {k: v for k, v in keys.items() if v is not None and str(v).strip() != ""}
+    # Extract all other fields into 'keys' (excluding address/add, port, id, ps/remarks)
+    excluded_keys = {"add", "port", "id", "ps", "v", "aid"}
+    keys = {}
+    for key, value in obj_data.items():
+        if key not in excluded_keys and value is not None and str(value) != "":
+            keys[key] = value
 
     # Build object
     obj = {
@@ -333,7 +316,7 @@ def parse_vmess_b64_format(
         "port": port,
         "id": uuid,
         "keys": keys,
-        "remarks": final_remarks,
+        "remarks": remarks,
     }
 
     # Compute and add config_hash
