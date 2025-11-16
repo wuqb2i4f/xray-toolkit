@@ -1,75 +1,66 @@
-from typing import Dict, Any, List
+import json
+import re
+from urllib.parse import unquote_plus
 from utils.validators import validators_map
+from utils.processors import processors_map
 
 
-def validate_object(obj: Dict[str, Any], fields_config: Dict[str, Any]) -> bool:
-    """Validate object fields using config (general for any protocol)."""
+def validate_object(obj, fields_config):
     for field, field_def in fields_config.items():
         if field not in obj:
             if field_def.get("required", False):
                 return False
             continue
-
         value = obj[field]
         if not validate_field(value, field_def):
             return False
-
     return True
 
 
-def validate_field(value: Any, field_def: Dict[str, Any]) -> bool:
-    """Validate field value based on config (delegates to small checkers)."""
+def validate_field(value, field_def):
     field_type = field_def.get("type", "string")
-
-    # Type check
     if not check_type(value, field_type):
         return False
-
-    # Range check (for ints)
     if "range" in field_def and field_type == "int":
         if not check_range(value, field_def["range"]):
             return False
-
-    # Allowed values check
     if "allowed" in field_def:
         if not check_allowed(value, field_def["allowed"]):
             return False
-
-    # Validators list
     validators = field_def.get("validators", [])
     if not apply_validators(value, validators):
         return False
-
     return True
 
 
-def check_type(value: Any, field_type: str) -> bool:
-    """Check if value matches the field type."""
+def check_type(value, field_type):
     if field_type == "int" and not isinstance(value, int):
         return False
     elif field_type == "string" and not isinstance(value, str):
         return False
     elif field_type == "dict" and not isinstance(value, dict):
         return False
+    elif field_type == "list" and not isinstance(value, list):
+        return False
     return True
 
 
-def check_range(value: int, range_def: List[int]) -> bool:
-    """Check if int value is in range [min, max]."""
+def check_range(value, range_def):
     min_val, max_val = range_def
     return min_val <= value <= max_val
 
 
-def check_allowed(value: Any, allowed_list: List[Any]) -> bool:
-    """Check if value is in the allowed list."""
-    return value in allowed_list
+def check_allowed(value, allowed):
+    if isinstance(allowed, set):
+        return value in allowed
+    elif isinstance(allowed, list):
+        return value in allowed
+    return False
 
 
-def apply_validators(value: str, validators: List[str]) -> bool:
-    """Apply validators from config: Returns True if ANY matches (OR logic), or if empty list (no checks)."""
+def apply_validators(value, validators):
     if not validators:
         return True
-
     for validator in validators:
         if validator in validators_map:
             if validators_map[validator](value):
@@ -78,5 +69,67 @@ def apply_validators(value: str, validators: List[str]) -> bool:
             print(
                 f"Unknown validator '{validator}' in config - skipping (add to validators_map)."
             )
-
     return False
+
+
+def parse_params(params_str):
+    params = {}
+    if params_str:
+        pairs = re.split(r"[&;]", params_str)
+        for pair in pairs:
+            if "=" in pair:
+                k, v = pair.split("=", 1)
+                v = (
+                    v.replace("True", "true")
+                    .replace("False", "false")
+                    .replace("None", "none")
+                )
+                if v.startswith("{") and v.endswith("}"):
+                    k = unquote_plus(k)
+                    v = unquote_plus(v)
+                    k = k.replace("'", '"')
+                    v = v.replace("'", '"')
+                    try:
+                        params[k] = json.loads(v)
+                    except json.JSONDecodeError:
+                        params[k] = v
+                else:
+                    params[k] = v
+    return params
+
+
+def read_raw_file(file_path):
+    with open(file_path, "r", encoding="utf-8") as f:
+        return [line.strip() for line in f if line.strip()]
+
+
+def write_json_file(objects, file_path):
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(objects, f, indent=2, ensure_ascii=False)
+    print(f"Saved JSON with {len(objects)} processed URIs to {file_path}.")
+
+
+def extract_params(params, field_values):
+    if not isinstance(field_values, dict):
+        return None
+    result = {}
+    for field_key, field_value in field_values.items():
+        if not isinstance(field_value, dict):
+            continue
+        source = field_value.get("source")
+        if source != "params":
+            continue
+        raw_value = params.get(field_key)
+        if raw_value is None:
+            default = field_value.get("default")
+            if default is not None:
+                result[field_key] = default
+            else:
+                return None
+        else:
+            processors_list = field_value.get("processors", [])
+            for rule in processors_list:
+                if rule in processors_map:
+                    raw_value = processors_map[rule](raw_value)
+            result[field_key] = raw_value
+    return result
