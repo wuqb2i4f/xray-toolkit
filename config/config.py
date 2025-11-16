@@ -141,6 +141,8 @@ PROXIES = {
                     "none",
                     "zero",
                 ],
+                "source": "params",
+                "processors": ["to_lower"],
             },
         },
         "hysteria2": {

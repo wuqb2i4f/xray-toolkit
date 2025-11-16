@@ -141,23 +141,17 @@ def parse_ss_uri(uri, protocol_values):
     return obj
 
 
-def parse_vmess_uri(uri, fields_config):
-    # """Parse VMess URI: detect format and delegate to appropriate parser."""
-    # # Try base64 JSON format first (most common)
-    # pattern_b64 = r"vmess://([^#]+)$"
-    # if re.match(pattern_b64, uri):
-    #     return parse_vmess_b64_format(uri, fields_config)
-
-    # # If not, try URI format (similar to VLESS)
-    # pattern_uri = r"vmess://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
-    # if re.match(pattern_uri, uri):
-    #     return parse_vmess_uri_format(uri, fields_config)
-
-    # # Neither format matched
+def parse_vmess_uri(uri, protocol_values):
+    pattern_b64 = r"vmess://([^#]+)$"
+    if re.match(pattern_b64, uri):
+        return parse_vmess_b64_format(uri, protocol_values)
+    pattern_uri = r"vmess://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
+    if re.match(pattern_uri, uri):
+        return parse_vmess_uri_format(uri, protocol_values)
     return None
 
 
-def parse_vmess_b64_format(uri, fields_config):
+def parse_vmess_b64_format(uri, protocol_values):
     # """Parse VMess base64 JSON format."""
     # # Extract base64 part and remarks
     # pattern = r"vmess://([^#]+)$"
@@ -224,55 +218,38 @@ def parse_vmess_b64_format(uri, fields_config):
     return None
 
 
-def parse_vmess_uri_format(uri, fields_config):
-    # """Parse VMESS URI using small helpers, then validate full object."""
-    # # Extract id, address, port, params, remarks from VMESS URI regex match.
-    # pattern = r"vmess://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
-    # match = re.match(pattern, uri)
-    # if not match:
-    #     return None
-
-    # id = match.group(1)
-    # address = match.group(2)
-    # port_str = match.group(3)
-    # params_str = match.group(4) or ""
-    # remarks = match.group(5) or ""
-
-    # # Parse port
-    # try:
-    #     port = int(port_str)
-    # except ValueError:
-    #     return None
-
-    # # Parse params and remarks
-    # decode_id = processors_map["decode_url_encode"](id)
-    # uuid = processors_map["id_to_uuid"](decode_id)
-    # decoded_params = processors_map["decode_url_encode"](params_str)
-    # params = parse_params(decoded_params)
-    # decoded_remarks = processors_map["decode_url_encode"](remarks)
-
-    # # Build object
-    # obj = {
-    #     "address": address,
-    #     "port": port,
-    #     "id": uuid,
-    #     "keys": params,
-    #     "remarks": decoded_remarks,
-    # }
-
-    # # Compute and add config_hash
-    # config_hash = compute_hash(obj)
-    # obj["config_hash"] = config_hash
-
-    # # Validate
-    # if not validate_object(obj, fields_config):
-    #     return None
-
-    # return obj
-    return None
+def parse_vmess_uri_format(uri, protocol_values):
+    pattern = r"vmess://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
+    match = re.match(pattern, uri)
+    if not match:
+        return None
+    id_raw = match.group(1)
+    address_raw = match.group(2)
+    port_raw = match.group(3)
+    query_raw = match.group(4) or ""
+    params = parse_params(query_raw)
+    address = processors_map["to_lower"](address_raw)
+    port = processors_map["to_int"](port_raw)
+    uuid = processors_map["id_to_uuid"](id_raw)
+    params_protocol = extract_params(params, protocol_values)
+    if params_protocol is None:
+        return None
+    obj = {
+        "protocol": {
+            "type": "vmess",
+            "address": address,
+            "port": port,
+            "id": uuid,
+            **params_protocol,
+        },
+        "security": {},
+        "transport": {},
+        "params": params,
+    }
+    return obj
 
 
-def parse_hysteria2_uri(uri, fields_config):
+def parse_hysteria2_uri(uri, protocol_values):
     # """Parse Hysteria2 URI using small helpers, then validate full object."""
     # # Extract password, address, port, params, remarks from Hysteria2 URI regex match.
     # pattern = r"hysteria2://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
