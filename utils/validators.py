@@ -30,13 +30,11 @@ def validate_uuid(val):
 
 
 def validate_path(path):
-    """Validate path starts with '/' and is a basic URI path (no invalid chars)."""
     if not path.startswith("/"):
         return False
     return bool(re.match(r"^/[^ ]*$", path))
 
 
-# Map config validator strings to functions
 validators_map = {
     "ipv4": validate_ipv4,
     "ipv6": validate_ipv6,

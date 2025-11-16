@@ -227,6 +227,8 @@ PROXIES = {
             "extra": {
                 "required": False,
                 "type": "dict",
+                "default": {},
+                "source": "params",
             },
         },
         "grpc": {
@@ -262,10 +264,10 @@ PROXIES = {
             },
             "host": {
                 "required": False,
-                "type": "string",
-                "default": "",
+                "type": "list",
+                "default": "[]",
                 "source": "params",
-                "processors": ["to_lower"],
+                "processors": ["to_lower", "split_comma_to_list"],
                 "validators": ["domain"],
             },
             "path": {
@@ -287,10 +289,10 @@ PROXIES = {
             },
             "host": {
                 "required": False,
-                "type": "string",
-                "default": "",
+                "type": "list",
+                "default": "[]",
                 "source": "params",
-                "processors": ["to_lower"],
+                "processors": ["to_lower", "split_comma_to_list"],
                 "validators": ["domain"],
             },
             "path": {

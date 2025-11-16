@@ -400,7 +400,6 @@ def process_transport(proxy_object, transports):
     return proxy_object
 
 
-# Define a mapping of protocol keys to their respective parser functions
 parsers_map = {
     "vless": parse_vless_uri,
     "trojan": parse_trojan_uri,
