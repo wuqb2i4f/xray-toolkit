@@ -25,165 +25,370 @@ LINKS = [
 DB_PATH = "data/database.db"
 
 # Extract output path
-REJECTED_URIS_PATH = "output/raw_uris_rejected.txt"
+URIS_RAW_PATH = "output/uris_raw.txt"
+URIS_RAW_REJECTED_PATH = "output/uris_raw_rejected.txt"
+URIS_TRANSFORM_PATH = "output/uris_transform.json"
 
 # Unified proxies config
 PROXIES = {
     "PROTOCOLS": {
         "vless": {
-            "uri": {
-                "raw_output": "output/raw_uris_vless.txt",
-                "processed_output": "output/processed_uris_vless.json",
+            "address": {
+                "required": True,
+                "type": "string",
+                "validators": ["ipv4", "ipv6", "domain"],
             },
-            "fields": {
-                "address": {
-                    "required": True,
-                    "type": "string",
-                    "validators": ["ipv4", "ipv6", "domain"],
-                },
-                "port": {"required": True, "type": "int", "range": [1, 65535]},
-                "id": {
-                    "required": True,
-                    "type": "string",
-                    "validators": ["uuid"],
-                },
-                "keys": {
-                    "required": False,
-                    "type": "dict",
-                },
-                "remarks": {
-                    "required": False,
-                    "type": "string",
-                },
+            "port": {
+                "required": True,
+                "type": "int",
+                "range": [1, 65535],
+            },
+            "id": {
+                "required": True,
+                "type": "string",
+                "validators": ["uuid"],
+            },
+            "encryption": {
+                "required": False,
+                "type": "string",
+                "default": "none",
+                "allowed": ["none"],
+                "source": "params",
+                "processors": ["to_lower"],
+            },
+            "flow": {
+                "required": False,
+                "type": "string",
+                "default": "",
+                "allowed": {"", "xtls-rprx-vision", "xtls-rprx-vision-udp443"},
+                "source": "params",
+                "processors": ["to_lower"],
             },
         },
         "trojan": {
-            "uri": {
-                "raw_output": "output/raw_uris_trojan.txt",
-                "processed_output": "output/processed_uris_trojan.json",
+            "address": {
+                "required": True,
+                "type": "string",
+                "validators": ["ipv4", "ipv6", "domain"],
             },
-            "fields": {
-                "address": {
-                    "required": True,
-                    "type": "string",
-                    "validators": ["ipv4", "ipv6", "domain"],
-                },
-                "port": {"required": True, "type": "int", "range": [1, 65535]},
-                "password": {
-                    "required": True,
-                    "type": "string",
-                },
-                "keys": {
-                    "required": False,
-                    "type": "dict",
-                },
-                "remarks": {
-                    "required": False,
-                    "type": "string",
-                },
+            "port": {
+                "required": True,
+                "type": "int",
+                "range": [1, 65535],
+            },
+            "password": {
+                "required": True,
+                "type": "string",
             },
         },
         "ss": {
-            "uri": {
-                "raw_output": "output/raw_uris_ss.txt",
-                "processed_output": "output/processed_uris_ss.json",
+            "address": {
+                "required": True,
+                "type": "string",
+                "validators": ["ipv4", "ipv6", "domain"],
             },
-            "fields": {
-                "address": {
-                    "required": True,
-                    "type": "string",
-                    "validators": ["ipv4", "ipv6", "domain"],
-                },
-                "port": {"required": True, "type": "int", "range": [1, 65535]},
-                "password": {
-                    "required": True,
-                    "type": "string",
-                },
-                "method": {
-                    "required": True,
-                    "type": "string",
-                    "allowed": [
-                        "2022-blake3-aes-128-gcm",
-                        "2022-blake3-aes-256-gcm",
-                        "2022-blake3-chacha20-poly1305",
-                        "aes-256-gcm",
-                        "aes-128-gcm",
-                        "chacha20-poly1305",
-                        "chacha20-ietf-poly1305",
-                        "xchacha20-poly1305",
-                        "xchacha20-ietf-poly1305",
-                        "none",
-                        "plain",
-                    ],
-                },
-                "keys": {
-                    "required": False,
-                    "type": "dict",
-                },
-                "remarks": {
-                    "required": False,
-                    "type": "string",
-                },
+            "port": {
+                "required": True,
+                "type": "int",
+                "range": [1, 65535],
+            },
+            "method": {
+                "required": True,
+                "type": "string",
+                "allowed": [
+                    "2022-blake3-aes-128-gcm",
+                    "2022-blake3-aes-256-gcm",
+                    "2022-blake3-chacha20-poly1305",
+                    "aes-256-gcm",
+                    "aes-128-gcm",
+                    "chacha20-poly1305",
+                    "chacha20-ietf-poly1305",
+                    "xchacha20-poly1305",
+                    "xchacha20-ietf-poly1305",
+                    "none",
+                    "plain",
+                ],
+            },
+            "password": {
+                "required": True,
+                "type": "string",
             },
         },
         "vmess": {
-            "uri": {
-                "raw_output": "output/raw_uris_vmess.txt",
-                "processed_output": "output/processed_uris_vmess.json",
+            "address": {
+                "required": True,
+                "type": "string",
+                "validators": ["ipv4", "ipv6", "domain"],
             },
-            "fields": {
-                "address": {
-                    "required": True,
-                    "type": "string",
-                    "validators": ["ipv4", "ipv6", "domain"],
-                },
-                "port": {"required": True, "type": "int", "range": [1, 65535]},
-                "id": {
-                    "required": True,
-                    "type": "string",
-                    "validators": ["uuid"],
-                },
-                "keys": {
-                    "required": False,
-                    "type": "dict",
-                },
-                "remarks": {
-                    "required": False,
-                    "type": "string",
-                },
+            "port": {
+                "required": True,
+                "type": "int",
+                "range": [1, 65535],
+            },
+            "id": {
+                "required": True,
+                "type": "string",
+                "validators": ["uuid"],
+            },
+            "encryption": {
+                "required": False,
+                "type": "string",
+                "default": "auto",
+                "allowed": [
+                    "aes-128-gcm",
+                    "chacha20-poly1305",
+                    "auto",
+                    "none",
+                    "zero",
+                ],
             },
         },
         "hysteria2": {
-            "uri": {
-                "raw_output": "output/raw_uris_hysteria2.txt",
-                "processed_output": "output/processed_uris_hysteria2.json",
+            "address": {
+                "required": True,
+                "type": "string",
+                "validators": ["ipv4", "ipv6", "domain"],
             },
-            "fields": {
-                "address": {
-                    "required": True,
-                    "type": "string",
-                    "validators": ["ipv4", "ipv6", "domain"],
-                },
-                "port": {"required": True, "type": "int", "range": [1, 65535]},
-                "password": {
-                    "required": True,
-                    "type": "string",
-                },
-                "keys": {
-                    "required": False,
-                    "type": "dict",
-                },
-                "remarks": {
-                    "required": False,
-                    "type": "string",
-                },
+            "port": {
+                "required": True,
+                "type": "int",
+                "range": [1, 65535],
+            },
+            "password": {
+                "required": True,
+                "type": "string",
             },
         },
         "hy2": {
             "uri": {
-                "raw_output": "output/raw_uris_hysteria2.txt",
-                "normalize": "hy2_to_hysteria2",
+                "processors": ["to_hysteria2"],
             }
         },
-    }
+    },
+    "TRANSPORTS": {
+        "ws": {
+            "host": {
+                "required": False,
+                "type": "string",
+                "default": "",
+                "source": "params",
+                "processors": ["to_lower"],
+                "validators": ["domain"],
+            },
+            "path": {
+                "required": True,
+                "type": "string",
+                "default": "/",
+                "source": "params",
+                "validators": ["path"],
+            },
+        },
+        "httpupgrade": {
+            "host": {
+                "required": False,
+                "type": "string",
+                "default": "",
+                "source": "params",
+                "processors": ["to_lower"],
+                "validators": ["domain"],
+            },
+            "path": {
+                "required": True,
+                "type": "string",
+                "default": "/",
+                "source": "params",
+                "validators": ["path"],
+            },
+        },
+        "xhttp": {
+            "host": {
+                "required": False,
+                "type": "string",
+                "default": "",
+                "source": "params",
+                "processors": ["to_lower"],
+                "validators": ["domain"],
+            },
+            "path": {
+                "required": True,
+                "type": "string",
+                "default": "/",
+                "source": "params",
+                "validators": ["path"],
+            },
+            "mode": {
+                "required": True,
+                "type": "string",
+                "default": "auto",
+                "source": "params",
+                "processors": ["to_lower"],
+                "allowed": ["auto", "packet-up", "stream-up", "stream-one"],
+            },
+            "extra": {
+                "required": False,
+                "type": "dict",
+            },
+        },
+        "grpc": {
+            "serviceName": {
+                "required": False,
+                "type": "string",
+                "default": "",
+                "source": "params",
+            },
+            "mode": {
+                "required": True,
+                "type": "string",
+                "default": "gun",
+                "source": "params",
+                "processors": ["to_lower"],
+                "allowed": ["gun", "multi"],
+            },
+            "authority": {
+                "required": False,
+                "type": "string",
+                "default": "",
+                "source": "params",
+            },
+        },
+        "raw": {
+            "headerType": {
+                "required": False,
+                "type": "string",
+                "default": "none",
+                "source": "params",
+                "processors": ["to_lower"],
+                "allowed": {"none", "http"},
+            },
+            "host": {
+                "required": False,
+                "type": "string",
+                "default": "",
+                "source": "params",
+                "processors": ["to_lower"],
+                "validators": ["domain"],
+            },
+            "path": {
+                "required": False,
+                "type": "string",
+                "default": "/",
+                "source": "params",
+                "validators": ["path"],
+            },
+        },
+        "tcp": {
+            "headerType": {
+                "required": False,
+                "type": "string",
+                "default": "none",
+                "source": "params",
+                "processors": ["to_lower"],
+                "allowed": {"none", "http"},
+            },
+            "host": {
+                "required": False,
+                "type": "string",
+                "default": "",
+                "source": "params",
+                "processors": ["to_lower"],
+                "validators": ["domain"],
+            },
+            "path": {
+                "required": False,
+                "type": "string",
+                "default": "/",
+                "source": "params",
+                "validators": ["path"],
+            },
+        },
+    },
+    "SECURITIES": {
+        "tls": {
+            "sni": {
+                "required": False,
+                "type": "string",
+                "default": "",
+                "source": "params",
+                "processors": ["to_lower"],
+                "validators": ["domain"],
+            },
+            "fp": {
+                "required": False,
+                "type": "string",
+                "default": "chrome",
+                "source": "params",
+                "processors": ["to_lower"],
+                "allowed": {
+                    "",
+                    "chrome",
+                    "firefox",
+                    "safari",
+                    "ios",
+                    "android",
+                    "edge",
+                    "360",
+                    "qq",
+                    "random",
+                    "randomized",
+                },
+            },
+            "alpn": {
+                "required": False,
+                "type": "list",
+                "default": ["h2", "http/1.1"],
+                "source": "params",
+                "processors": ["split_comma_to_list"],
+                "allowed": {"h2", "http/1.1", "http/1.0", "fromMitM"},
+            },
+        },
+        "reality": {
+            "sni": {
+                "required": False,
+                "type": "string",
+                "default": "",
+                "source": "params",
+                "processors": ["to_lower"],
+                "validators": ["domain"],
+            },
+            "fp": {
+                "required": False,
+                "type": "string",
+                "default": "chrome",
+                "source": "params",
+                "processors": ["to_lower"],
+                "allowed": {
+                    "",
+                    "chrome",
+                    "firefox",
+                    "safari",
+                    "ios",
+                    "android",
+                    "edge",
+                    "360",
+                    "qq",
+                    "random",
+                    "randomized",
+                },
+            },
+            "pbk": {
+                "required": False,
+                "type": "string",
+                "default": "",
+                "source": "params",
+            },
+            "sid": {
+                "required": False,
+                "type": "string",
+                "default": "",
+                "source": "params",
+            },
+            "spx": {
+                "required": False,
+                "type": "string",
+                "default": "",
+                "source": "params",
+            },
+        },
+        "none": {},
+    },
 }
