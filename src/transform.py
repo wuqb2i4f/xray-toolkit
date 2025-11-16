@@ -103,60 +103,42 @@ def parse_trojan_uri(uri, protocol_values):
     return obj
 
 
-def parse_ss_uri(uri, fields_config):
-    # """Parse SS URI using small helpers, then validate full object."""
-    # # Extract base64, address, port, params, remarks from SS URI regex match.
-    # pattern = r"ss://([A-Za-z0-9+/=]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
-    # match = re.match(pattern, uri)
-    # if not match:
-    #     return None
-
-    # b64_part = match.group(1)
-    # address = match.group(2)
-    # port_str = match.group(3)
-    # params_str = match.group(4) or ""
-    # remarks = match.group(5) or ""
-
-    # # Parse port
-    # try:
-    #     port = int(port_str)
-    # except ValueError:
-    #     return None
-
-    # # Decode base64 to method:password
-    # decode_result = processors_map["decode_b64_simple"](b64_part)
-    # if not decode_result:
-    #     return None
-    # try:
-    #     method, password = decode_result.split(":", 1)
-    # except ValueError:
-    #     return None
-
-    # # Parse params and remarks
-    # decoded_params = processors_map["decode_url_encode"](params_str)
-    # params = parse_params(decoded_params)
-    # decoded_remarks = processors_map["decode_url_encode"](remarks)
-
-    # # Build object
-    # obj = {
-    #     "address": address,
-    #     "port": port,
-    #     "method": method,
-    #     "password": password,
-    #     "keys": params,
-    #     "remarks": decoded_remarks,
-    # }
-
-    # # Compute and add config_hash
-    # config_hash = compute_hash(obj)
-    # obj["config_hash"] = config_hash
-
-    # # Validate
-    # if not validate_object(obj, fields_config):
-    #     return None
-
-    # return obj
-    return None
+def parse_ss_uri(uri, protocol_values):
+    pattern = r"ss://([A-Za-z0-9+/=]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
+    match = re.match(pattern, uri)
+    if not match:
+        return None
+    b64_part_raw = match.group(1)
+    address_raw = match.group(2)
+    port_raw = match.group(3)
+    query_raw = match.group(4) or ""
+    params = parse_params(query_raw)
+    address = processors_map["to_lower"](address_raw)
+    port = processors_map["to_int"](port_raw)
+    b64_part_decode = processors_map["decode_b64_simple"](b64_part_raw)
+    if not b64_part_decode:
+        return None
+    try:
+        method, password = b64_part_decode.split(":", 1)
+    except ValueError:
+        return None
+    params_protocol = extract_params(params, protocol_values)
+    if params_protocol is None:
+        return None
+    obj = {
+        "protocol": {
+            "type": "ss",
+            "address": address,
+            "port": port,
+            "method": method,
+            "password": password,
+            **params_protocol,
+        },
+        "security": {},
+        "transport": {},
+        "params": params,
+    }
+    return obj
 
 
 def parse_vmess_uri(uri, fields_config):
