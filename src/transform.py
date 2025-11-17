@@ -22,6 +22,8 @@ def transform_uris():
         proxy_object = process_security(proxy_object, PROXIES["SECURITIES"])
         proxy_object = process_transport(proxy_object, PROXIES["TRANSPORTS"])
         if proxy_object:
+            if "params" in proxy_object:
+                del proxy_object["params"]
             hash = compute_hash(proxy_object)
             proxy_object["hash"] = hash
             if proxy_object["hash"] not in hashes:
