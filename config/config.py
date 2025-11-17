@@ -162,6 +162,7 @@ PROXIES = {
             "insecure": {
                 "required": True,
                 "type": "string",
+                "default": "0",
                 "allowed": ["0", "1"],
                 "source": "params",
             },

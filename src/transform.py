@@ -56,16 +56,16 @@ def parse_vless_uri(uri, protocol_values):
     port = processors_map["to_int"](port_raw)
     uuid = processors_map["id_to_uuid"](id_raw)
     params_protocol = extract_params(params, protocol_values)
-    if params_protocol is None:
-        return None
+    protocol_dict = {
+        "type": "vless",
+        "address": address,
+        "port": port,
+        "id": uuid,
+    }
+    if params_protocol is not None:
+        protocol_dict.update(params_protocol)
     obj = {
-        "protocol": {
-            "type": "vless",
-            "address": address,
-            "port": port,
-            "id": uuid,
-            **params_protocol,
-        },
+        "protocol": protocol_dict,
         "security": {},
         "transport": {},
         "params": params,
@@ -86,16 +86,16 @@ def parse_trojan_uri(uri, protocol_values):
     address = processors_map["to_lower"](address_raw)
     port = processors_map["to_int"](port_raw)
     params_protocol = extract_params(params, protocol_values)
-    if params_protocol is None:
-        return None
+    protocol_dict = {
+        "type": "trojan",
+        "address": address,
+        "port": port,
+        "password": password_raw,
+    }
+    if params_protocol is not None:
+        protocol_dict.update(params_protocol)
     obj = {
-        "protocol": {
-            "type": "trojan",
-            "address": address,
-            "port": port,
-            "password": password_raw,
-            **params_protocol,
-        },
+        "protocol": protocol_dict,
         "security": {},
         "transport": {},
         "params": params,
@@ -123,17 +123,17 @@ def parse_ss_uri(uri, protocol_values):
     except ValueError:
         return None
     params_protocol = extract_params(params, protocol_values)
-    if params_protocol is None:
-        return None
+    protocol_dict = {
+        "type": "ss",
+        "address": address,
+        "port": port,
+        "method": method,
+        "password": password,
+    }
+    if params_protocol is not None:
+        protocol_dict.update(params_protocol)
     obj = {
-        "protocol": {
-            "type": "ss",
-            "address": address,
-            "port": port,
-            "method": method,
-            "password": password,
-            **params_protocol,
-        },
+        "protocol": protocol_dict,
         "security": {},
         "transport": {},
         "params": params,
@@ -232,16 +232,16 @@ def parse_vmess_uri_format(uri, protocol_values):
     port = processors_map["to_int"](port_raw)
     uuid = processors_map["id_to_uuid"](id_raw)
     params_protocol = extract_params(params, protocol_values)
-    if params_protocol is None:
-        return None
+    protocol_dict = {
+        "type": "vmess",
+        "address": address,
+        "port": port,
+        "id": uuid,
+    }
+    if params_protocol is not None:
+        protocol_dict.update(params_protocol)
     obj = {
-        "protocol": {
-            "type": "vmess",
-            "address": address,
-            "port": port,
-            "id": uuid,
-            **params_protocol,
-        },
+        "protocol": protocol_dict,
         "security": {},
         "transport": {},
         "params": params,
@@ -262,16 +262,16 @@ def parse_hysteria2_uri(uri, protocol_values):
     address = processors_map["to_lower"](address_raw)
     port = processors_map["to_int"](port_raw)
     params_protocol = extract_params(params, protocol_values)
-    if params_protocol is None:
-        return None
+    protocol_dict = {
+        "type": "hysteria2",
+        "address": address,
+        "port": port,
+        "password": password_raw,
+    }
+    if params_protocol is not None:
+        protocol_dict.update(params_protocol)
     obj = {
-        "protocol": {
-            "type": "hysteria2",
-            "address": address,
-            "port": port,
-            "password": password_raw,
-            **params_protocol,
-        },
+        "protocol": protocol_dict,
         "params": params,
     }
     return obj
