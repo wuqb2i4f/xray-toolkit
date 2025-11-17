@@ -59,8 +59,7 @@ PROXIES = {
             "flow": {
                 "required": False,
                 "type": "string",
-                "default": "",
-                "allowed": {"", "xtls-rprx-vision", "xtls-rprx-vision-udp443"},
+                "allowed": {"xtls-rprx-vision", "xtls-rprx-vision-udp443"},
                 "source": "params",
                 "processors": ["to_lower"],
             },
@@ -160,6 +159,35 @@ PROXIES = {
                 "required": True,
                 "type": "string",
             },
+            "insecure": {
+                "required": True,
+                "type": "string",
+                "allowed": ["0", "1"],
+                "source": "params",
+            },
+            "sni": {
+                "required": False,
+                "type": "string",
+                "source": "params",
+                "processors": ["to_lower"],
+                "validators": ["domain"],
+            },
+            "pinSHA256": {
+                "required": False,
+                "type": "string",
+                "source": "params",
+            },
+            "obfs": {
+                "required": False,
+                "type": "string",
+                "allowed": ["salamander"],
+                "source": "params",
+            },
+            "obfs-password": {
+                "required": False,
+                "type": "string",
+                "source": "params",
+            },
         },
         "hy2": {
             "uri": {
@@ -172,7 +200,6 @@ PROXIES = {
             "host": {
                 "required": False,
                 "type": "string",
-                "default": "",
                 "source": "params",
                 "processors": ["to_lower"],
                 "validators": ["domain"],
@@ -189,7 +216,6 @@ PROXIES = {
             "host": {
                 "required": False,
                 "type": "string",
-                "default": "",
                 "source": "params",
                 "processors": ["to_lower"],
                 "validators": ["domain"],
@@ -206,7 +232,6 @@ PROXIES = {
             "host": {
                 "required": False,
                 "type": "string",
-                "default": "",
                 "source": "params",
                 "processors": ["to_lower"],
                 "validators": ["domain"],
@@ -229,7 +254,6 @@ PROXIES = {
             "extra": {
                 "required": False,
                 "type": "dict",
-                "default": {},
                 "source": "params",
             },
         },
@@ -237,7 +261,6 @@ PROXIES = {
             "serviceName": {
                 "required": False,
                 "type": "string",
-                "default": "",
                 "source": "params",
             },
             "mode": {
@@ -251,7 +274,6 @@ PROXIES = {
             "authority": {
                 "required": False,
                 "type": "string",
-                "default": "",
                 "source": "params",
             },
         },
@@ -267,7 +289,6 @@ PROXIES = {
             "host": {
                 "required": False,
                 "type": "list",
-                "default": "[]",
                 "source": "params",
                 "processors": ["to_lower", "split_comma_to_list"],
                 "validators": ["domain"],
@@ -292,7 +313,6 @@ PROXIES = {
             "host": {
                 "required": False,
                 "type": "list",
-                "default": "[]",
                 "source": "params",
                 "processors": ["to_lower", "split_comma_to_list"],
                 "validators": ["domain"],
@@ -311,7 +331,6 @@ PROXIES = {
             "sni": {
                 "required": False,
                 "type": "string",
-                "default": "",
                 "source": "params",
                 "processors": ["to_lower"],
                 "validators": ["domain"],
@@ -319,11 +338,9 @@ PROXIES = {
             "fp": {
                 "required": False,
                 "type": "string",
-                "default": "chrome",
                 "source": "params",
                 "processors": ["to_lower"],
                 "allowed": {
-                    "",
                     "chrome",
                     "firefox",
                     "safari",
@@ -349,7 +366,6 @@ PROXIES = {
             "sni": {
                 "required": False,
                 "type": "string",
-                "default": "",
                 "source": "params",
                 "processors": ["to_lower"],
                 "validators": ["domain"],
@@ -357,11 +373,9 @@ PROXIES = {
             "fp": {
                 "required": False,
                 "type": "string",
-                "default": "chrome",
                 "source": "params",
                 "processors": ["to_lower"],
                 "allowed": {
-                    "",
                     "chrome",
                     "firefox",
                     "safari",
@@ -377,19 +391,16 @@ PROXIES = {
             "pbk": {
                 "required": False,
                 "type": "string",
-                "default": "",
                 "source": "params",
             },
             "sid": {
                 "required": False,
                 "type": "string",
-                "default": "",
                 "source": "params",
             },
             "spx": {
                 "required": False,
                 "type": "string",
-                "default": "",
                 "source": "params",
             },
         },

@@ -250,49 +250,31 @@ def parse_vmess_uri_format(uri, protocol_values):
 
 
 def parse_hysteria2_uri(uri, protocol_values):
-    # """Parse Hysteria2 URI using small helpers, then validate full object."""
-    # # Extract password, address, port, params, remarks from Hysteria2 URI regex match.
-    # pattern = r"hysteria2://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
-    # match = re.match(pattern, uri)
-    # if not match:
-    #     return None
-
-    # password = match.group(1)
-    # address = match.group(2)
-    # port_str = match.group(3)
-    # params_str = match.group(4) or ""
-    # remarks = match.group(5) or ""
-
-    # # Parse port
-    # try:
-    #     port = int(port_str)
-    # except ValueError:
-    #     return None
-
-    # # Parse params and remarks
-    # decoded_params = processors_map["decode_url_encode"](params_str)
-    # params = parse_params(decoded_params)
-    # decoded_remarks = processors_map["decode_url_encode"](remarks)
-
-    # # Build object
-    # obj = {
-    #     "address": address,
-    #     "port": port,
-    #     "password": password,
-    #     "keys": params,
-    #     "remarks": decoded_remarks,
-    # }
-
-    # # Compute and add config_hash
-    # config_hash = compute_hash(obj)
-    # obj["config_hash"] = config_hash
-
-    # # Validate
-    # if not validate_object(obj, fields_config):
-    #     return None
-
-    # return obj
-    return None
+    pattern = r"hysteria2://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
+    match = re.match(pattern, uri)
+    if not match:
+        return None
+    password_raw = match.group(1)
+    address_raw = match.group(2)
+    port_raw = match.group(3)
+    query_raw = match.group(4) or ""
+    params = parse_params(query_raw)
+    address = processors_map["to_lower"](address_raw)
+    port = processors_map["to_int"](port_raw)
+    params_protocol = extract_params(params, protocol_values)
+    if params_protocol is None:
+        return None
+    obj = {
+        "protocol": {
+            "type": "hysteria2",
+            "address": address,
+            "port": port,
+            "password": password_raw,
+            **params_protocol,
+        },
+        "params": params,
+    }
+    return obj
 
 
 def compute_hash(obj):
@@ -306,6 +288,8 @@ def compute_hash(obj):
 def process_security(proxy_object, securities):
     if not proxy_object:
         return None
+    if proxy_object.get("security") != {}:
+        return proxy_object
     params = proxy_object.get("params", {})
     security_raw = params.get("security", "").strip().lower()
     if not security_raw or security_raw not in securities:
@@ -326,6 +310,8 @@ def process_security(proxy_object, securities):
 def process_transport(proxy_object, transports):
     if not proxy_object:
         return None
+    if proxy_object.get("transport") != {}:
+        return proxy_object
     params = proxy_object.get("params", {})
     transport_raw = params.get("type", "").strip().lower()
     if not transport_raw or transport_raw not in transports:

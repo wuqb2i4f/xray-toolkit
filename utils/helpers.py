@@ -122,10 +122,12 @@ def extract_params(params, field_values):
         raw_value = params.get(field_key)
         if raw_value is None:
             default = field_value.get("default")
+            required = field_value.get("required", True)
             if default is not None:
                 result[field_key] = default
-            else:
+            elif required:
                 return None
+            continue
         else:
             processors_list = field_value.get("processors", [])
             for rule in processors_list:
