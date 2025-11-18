@@ -11,8 +11,14 @@ def to_hysteria2(uri):
 
 def decode_b64_simple(b64_part):
     b64_padded = b64_part + "=" * ((4 - len(b64_part) % 4) % 4)
-    decoded = base64.b64decode(b64_padded).decode("utf-8").rstrip("\0")
-    return decoded
+    data = base64.b64decode(b64_padded)
+    for encoding in ("utf-16le", "utf-16be", "utf-8", "latin1"):
+        try:
+            text = data.decode(encoding)
+            return text.rstrip("\x00")
+        except UnicodeDecodeError:
+            continue
+    raise ValueError(f"Could not decode base64 payload. Raw bytes: {data.hex()}")
 
 
 def decode_url_encode(misc_string):
