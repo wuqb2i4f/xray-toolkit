@@ -135,3 +135,28 @@ def extract_params(params, field_values):
                     raw_value = processors_map[rule](raw_value)
             result[field_key] = raw_value
     return result
+
+
+def extract_and_normalize_params_vmess(obj_data):
+    excluded_keys = {"add", "port", "id", "ps", "v", "aid", "skip-cert-verify"}
+    params = {}
+    for key, value in obj_data.items():
+        if key not in excluded_keys and value is not None and str(value) != "":
+            if key == "path" and isinstance(value, str) and not value.startswith("/"):
+                value = "/" + value
+            if key == "scy":
+                new_key = "encryption"
+            elif key == "tls":
+                new_key = "security"
+            elif key == "type":
+                new_key = "headerType"
+            elif key == "net":
+                new_key = "type"
+            else:
+                new_key = key
+            if new_key == "type" and value == "---":
+                continue
+            if new_key == "security" and isinstance(value, bool):
+                continue
+            params[new_key] = value
+    return params

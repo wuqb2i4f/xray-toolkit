@@ -3,7 +3,13 @@ import re
 import hashlib
 from config.config import PROXIES, URIS_RAW_PATH, URIS_TRANSFORM_PATH
 from utils.processors import processors_map
-from utils.helpers import read_raw_file, write_json_file, parse_params, extract_params
+from utils.helpers import (
+    read_raw_file,
+    write_json_file,
+    parse_params,
+    extract_params,
+    extract_and_normalize_params_vmess,
+)
 
 
 def transform_uris():
@@ -154,70 +160,43 @@ def parse_vmess_uri(uri, protocol_values):
 
 
 def parse_vmess_b64_format(uri, protocol_values):
-    # """Parse VMess base64 JSON format."""
-    # # Extract base64 part and remarks
-    # pattern = r"vmess://([^#]+)$"
-    # match = re.match(pattern, uri)
-    # if not match:
-    #     return None
-
-    # b64_part = match.group(1)
-
-    # # Decode base64 to JSON string
-    # json_str = processors_map["decode_b64_simple"](b64_part)
-    # if not json_str:
-    #     return None
-
-    # # Parse JSON
-    # try:
-    #     obj_data = json.loads(json_str)
-    # except json.JSONDecodeError:
-    #     return None
-
-    # # Extract core fields
-    # address = obj_data.get("add", "")
-    # port_obj = obj_data.get("port")
-    # id = obj_data.get("id", "")
-    # remarks = obj_data.get("ps", "")
-
-    # if not address or port_obj is None or not id:
-    #     return None
-
-    # # Parse port
-    # try:
-    #     port = int(port_obj)
-    # except ValueError:
-    #     return None
-
-    # # Process ID to UUID
-    # uuid = processors_map["id_to_uuid"](id)
-
-    # # Extract all other fields into 'keys' (excluding address/add, port, id, ps/remarks)
-    # excluded_keys = {"add", "port", "id", "ps", "v", "aid"}
-    # keys = {}
-    # for key, value in obj_data.items():
-    #     if key not in excluded_keys and value is not None and str(value) != "":
-    #         keys[key] = value
-
-    # # Build object
-    # obj = {
-    #     "address": address,
-    #     "port": port,
-    #     "id": uuid,
-    #     "keys": keys,
-    #     "remarks": remarks,
-    # }
-
-    # # Compute and add config_hash
-    # config_hash = compute_hash(obj)
-    # obj["config_hash"] = config_hash
-
-    # # Validate
-    # if not validate_object(obj, fields_config):
-    #     return None
-
-    # return obj
-    return None
+    pattern = r"vmess://([^#]+)$"
+    match = re.match(pattern, uri)
+    if not match:
+        return None
+    b64_part_raw = match.group(1)
+    b64_part_decode = processors_map["decode_b64_simple"](b64_part_raw)
+    if not b64_part_decode:
+        return None
+    try:
+        obj_data = json.loads(b64_part_decode)
+    except json.JSONDecodeError:
+        return None
+    address_raw = obj_data.get("add", "")
+    port_raw = obj_data.get("port")
+    id_raw = obj_data.get("id", "")
+    if not address_raw or port_raw is None or not id_raw:
+        return None
+    address = processors_map["to_lower"](address_raw)
+    port = processors_map["to_int"](port_raw)
+    uuid = processors_map["id_to_uuid"](id_raw)
+    params = extract_and_normalize_params_vmess(obj_data)
+    params_protocol = extract_params(params, protocol_values)
+    protocol_dict = {
+        "type": "vmess",
+        "address": address,
+        "port": port,
+        "id": uuid,
+    }
+    if params_protocol is not None:
+        protocol_dict.update(params_protocol)
+    obj = {
+        "protocol": protocol_dict,
+        "security": {},
+        "transport": {},
+        "params": params,
+    }
+    return obj
 
 
 def parse_vmess_uri_format(uri, protocol_values):
