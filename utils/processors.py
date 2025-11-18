@@ -1,5 +1,6 @@
 import base64
 import uuid
+import re
 from urllib.parse import unquote
 from utils.validators import validators_map
 
@@ -10,15 +11,19 @@ def to_hysteria2(uri):
 
 
 def decode_b64_simple(b64_part):
-    b64_padded = b64_part + "=" * ((4 - len(b64_part) % 4) % 4)
-    data = base64.b64decode(b64_padded)
-    for encoding in ("utf-16le", "utf-16be", "utf-8", "latin1"):
-        try:
-            text = data.decode(encoding)
-            return text.rstrip("\x00")
-        except UnicodeDecodeError:
-            continue
-    raise ValueError(f"Could not decode base64 payload. Raw bytes: {data.hex()}")
+    if not b64_part:
+        return None
+    valid_b64 = re.sub(r"[^A-Za-z0-9+/=_\-]", "", b64_part)
+    if not valid_b64:
+        return None
+    valid_b64 = valid_b64.replace("-", "+").replace("_", "/")
+    padded = valid_b64 + "=" * ((4 - len(valid_b64) % 4) % 4)
+    try:
+        data = base64.b64decode(padded)
+        decoded = data.decode("utf-8").rstrip("\0")
+        return decoded
+    except Exception:
+        return None
 
 
 def decode_url_encode(misc_string):
