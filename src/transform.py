@@ -8,7 +8,7 @@ from utils.helpers import (
     write_json_file,
     parse_params,
     extract_params,
-    extract_and_normalize_params_vmess,
+    extract_params_vmess,
 )
 
 
@@ -180,7 +180,7 @@ def parse_vmess_b64_format(uri, protocol_values):
     address = processors_map["to_lower"](address_raw)
     port = processors_map["to_int"](port_raw)
     uuid = processors_map["id_to_uuid"](id_raw)
-    params = extract_and_normalize_params_vmess(obj_data)
+    params = extract_params_vmess(obj_data)
     params_protocol = extract_params(params, protocol_values)
     protocol_dict = {
         "type": "vmess",
@@ -272,7 +272,7 @@ def process_security(proxy_object, securities):
     if proxy_object.get("security") != {}:
         return proxy_object
     params = proxy_object.get("params", {})
-    security_raw = params.get("security", "").strip().lower()
+    security_raw = str(params.get("security", "")).strip().lower()
     if not security_raw or security_raw not in securities:
         security_type = "none"
     else:
@@ -294,7 +294,7 @@ def process_transport(proxy_object, transports):
     if proxy_object.get("transport") != {}:
         return proxy_object
     params = proxy_object.get("params", {})
-    transport_raw = params.get("type", "").strip().lower()
+    transport_raw = str(params.get("type", "")).strip().lower()
     if not transport_raw or transport_raw not in transports:
         transport_type = "raw"
     else:
@@ -305,6 +305,26 @@ def process_transport(proxy_object, transports):
     if tarnsport_params is None:
         return None
     transport_obj = {**transport_obj, **tarnsport_params}
+    if transport_type == "raw":
+        host_condition = (
+            "host" in transport_obj and str(transport_obj["host"]).strip() != ""
+        )
+        path_condition = (
+            "path" in transport_obj
+            and isinstance(transport_obj["path"], list)
+            and len(transport_obj["path"]) > 0
+            and not transport_obj["path"][0] == "/"
+        )
+        if host_condition or path_condition:
+            transport_obj["headerType"] = "http"
+    if "path" in transport_obj:
+        transport_obj["path"] = processors_map["path_start_with_slash"](
+            transport_obj["path"]
+        )
+    if transport_type == "raw" and transport_obj.get("headerType", "") != "http":
+        transport_obj["headerType"] = "none"
+        transport_obj.pop("path", None)
+        transport_obj.pop("host", None)
     proxy_object["transport"] = transport_obj
     return proxy_object
 

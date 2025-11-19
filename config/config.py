@@ -210,7 +210,6 @@ PROXIES = {
                 "type": "string",
                 "default": "/",
                 "source": "params",
-                "validators": ["path"],
             },
         },
         "httpupgrade": {
@@ -226,7 +225,6 @@ PROXIES = {
                 "type": "string",
                 "default": "/",
                 "source": "params",
-                "validators": ["path"],
             },
         },
         "xhttp": {
@@ -242,7 +240,6 @@ PROXIES = {
                 "type": "string",
                 "default": "/",
                 "source": "params",
-                "validators": ["path"],
             },
             "mode": {
                 "required": True,
@@ -296,34 +293,10 @@ PROXIES = {
             },
             "path": {
                 "required": False,
-                "type": "string",
-                "default": "/",
-                "source": "params",
-                "validators": ["path"],
-            },
-        },
-        "tcp": {
-            "headerType": {
-                "required": False,
-                "type": "string",
-                "default": "none",
-                "source": "params",
-                "processors": ["to_lower"],
-                "allowed": {"none", "http"},
-            },
-            "host": {
-                "required": False,
                 "type": "list",
+                "default": ["/"],
                 "source": "params",
-                "processors": ["to_lower", "split_comma_to_list"],
-                "validators": ["domain"],
-            },
-            "path": {
-                "required": False,
-                "type": "string",
-                "default": "/",
-                "source": "params",
-                "validators": ["path"],
+                "processors": ["split_comma_to_list"],
             },
         },
     },

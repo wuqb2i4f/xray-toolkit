@@ -82,6 +82,22 @@ def split_comma_to_list(s):
     return []
 
 
+def path_start_with_slash(value):
+    if isinstance(value, str):
+        if not value.startswith("/"):
+            return "/" + value
+        return value
+    elif isinstance(value, list):
+        normalized = []
+        for p in value:
+            if isinstance(p, str) and not p.startswith("/"):
+                normalized.append("/" + p)
+            else:
+                normalized.append(p)
+        return normalized
+    return value
+
+
 processors_map = {
     "to_hysteria2": to_hysteria2,
     "decode_b64_simple": decode_b64_simple,
@@ -92,4 +108,5 @@ processors_map = {
     "to_int": to_int,
     "split_method_password": split_method_password,
     "split_comma_to_list": split_comma_to_list,
+    "path_start_with_slash": path_start_with_slash,
 }
