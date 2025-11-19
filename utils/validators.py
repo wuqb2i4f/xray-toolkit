@@ -21,6 +21,14 @@ def validate_domain(addr):
     )
 
 
+def validate_host(host):
+    return any(
+        re.match(r"^[a-z0-9]([a-z0-9\-]{0,61}[a-z0-9])?$", label) and len(label) <= 63
+        for label in str(host).split(".")
+        if label and not label.isdigit() and "--" not in label
+    )
+
+
 def validate_port(value: int) -> bool:
     return isinstance(value, int) and 1 <= value <= 65535
 
@@ -39,4 +47,5 @@ validators_map = {
     "domain": validate_domain,
     "port": validate_port,
     "uuid": validate_uuid,
+    "host": validate_host,
 }

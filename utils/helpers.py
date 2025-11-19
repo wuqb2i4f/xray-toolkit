@@ -117,24 +117,31 @@ def extract_params(params, field_values):
         if not isinstance(field_value, dict):
             continue
         source = field_value.get("source")
+        default = field_value.get("default")
+        required = field_value.get("required", True)
+        processors_list = field_value.get("processors", [])
+        validators = field_value.get("validators", [])
         if source != "params":
             continue
         raw_value = params.get(field_key)
         if raw_value is None:
-            default = field_value.get("default")
-            required = field_value.get("required", True)
             if default is not None:
                 result[field_key] = default
             elif required:
                 return None
             continue
         else:
-            processors_list = field_value.get("processors", [])
             for rule in processors_list:
                 if rule in processors_map:
                     raw_value = processors_map[rule](raw_value)
+            for validator_name in validators:
+                validator_func = validators_map.get(validator_name)
+                if validator_func:
+                    if not validator_func(raw_value):
+                        return None
             result[field_key] = raw_value
-    return result
+    result = {k: v for k, v in result.items() if v != ""}
+    return result if result else None
 
 
 def extract_params_vmess(obj_data):

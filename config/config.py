@@ -174,7 +174,7 @@ PROXIES = {
                 "type": "string",
                 "source": "params",
                 "processors": ["to_lower"],
-                "validators": ["domain"],
+                "validators": ["host"],
             },
             "pinSHA256": {
                 "required": False,
@@ -206,7 +206,7 @@ PROXIES = {
                 "type": "string",
                 "source": "params",
                 "processors": ["to_lower"],
-                "validators": ["domain"],
+                "validators": ["host"],
             },
             "path": {
                 "required": True,
@@ -221,7 +221,7 @@ PROXIES = {
                 "type": "string",
                 "source": "params",
                 "processors": ["to_lower"],
-                "validators": ["domain"],
+                "validators": ["host"],
             },
             "path": {
                 "required": True,
@@ -236,7 +236,7 @@ PROXIES = {
                 "type": "string",
                 "source": "params",
                 "processors": ["to_lower"],
-                "validators": ["domain"],
+                "validators": ["host"],
             },
             "path": {
                 "required": True,
@@ -292,7 +292,6 @@ PROXIES = {
                 "type": "list",
                 "source": "params",
                 "processors": ["to_lower", "split_comma_to_list"],
-                "validators": ["domain"],
             },
             "path": {
                 "required": False,
@@ -310,7 +309,7 @@ PROXIES = {
                 "type": "string",
                 "source": "params",
                 "processors": ["to_lower"],
-                "validators": ["domain"],
+                "validators": ["host"],
             },
             "fp": {
                 "required": False,
@@ -345,7 +344,7 @@ PROXIES = {
                 "type": "string",
                 "source": "params",
                 "processors": ["to_lower"],
-                "validators": ["domain"],
+                "validators": ["host"],
             },
             "fp": {
                 "required": False,
