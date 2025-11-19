@@ -21,6 +21,10 @@ def validate_domain(addr):
     )
 
 
+def validate_port(value: int) -> bool:
+    return isinstance(value, int) and 1 <= value <= 65535
+
+
 def validate_uuid(val):
     try:
         uuid.UUID(str(val))
@@ -29,16 +33,10 @@ def validate_uuid(val):
         return False
 
 
-def validate_path(path):
-    if not path.startswith("/"):
-        return False
-    return bool(re.match(r"^/[^ ]*$", path))
-
-
 validators_map = {
     "ipv4": validate_ipv4,
     "ipv6": validate_ipv6,
     "domain": validate_domain,
+    "port": validate_port,
     "uuid": validate_uuid,
-    "path": validate_path,
 }

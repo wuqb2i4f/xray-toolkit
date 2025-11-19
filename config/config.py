@@ -36,17 +36,17 @@ PROXIES = {
             "address": {
                 "required": True,
                 "type": "string",
+                "processors": ["to_lower"],
                 "validators": ["ipv4", "ipv6", "domain"],
             },
             "port": {
                 "required": True,
                 "type": "int",
-                "range": [1, 65535],
+                "validators": ["port"],
             },
             "id": {
                 "required": True,
                 "type": "string",
-                "validators": ["uuid"],
             },
             "encryption": {
                 "required": False,
@@ -68,12 +68,13 @@ PROXIES = {
             "address": {
                 "required": True,
                 "type": "string",
+                "processors": ["to_lower"],
                 "validators": ["ipv4", "ipv6", "domain"],
             },
             "port": {
                 "required": True,
                 "type": "int",
-                "range": [1, 65535],
+                "validators": ["port"],
             },
             "password": {
                 "required": True,
@@ -84,12 +85,13 @@ PROXIES = {
             "address": {
                 "required": True,
                 "type": "string",
+                "processors": ["to_lower"],
                 "validators": ["ipv4", "ipv6", "domain"],
             },
             "port": {
                 "required": True,
                 "type": "int",
-                "range": [1, 65535],
+                "validators": ["port"],
             },
             "method": {
                 "required": True,
@@ -117,17 +119,17 @@ PROXIES = {
             "address": {
                 "required": True,
                 "type": "string",
+                "processors": ["to_lower"],
                 "validators": ["ipv4", "ipv6", "domain"],
             },
             "port": {
                 "required": True,
                 "type": "int",
-                "range": [1, 65535],
+                "validators": ["port"],
             },
             "id": {
                 "required": True,
                 "type": "string",
-                "validators": ["uuid"],
             },
             "encryption": {
                 "required": False,
@@ -148,12 +150,13 @@ PROXIES = {
             "address": {
                 "required": True,
                 "type": "string",
+                "processors": ["to_lower"],
                 "validators": ["ipv4", "ipv6", "domain"],
             },
             "port": {
                 "required": True,
                 "type": "int",
-                "range": [1, 65535],
+                "validators": ["port"],
             },
             "password": {
                 "required": True,

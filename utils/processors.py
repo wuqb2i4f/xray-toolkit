@@ -59,8 +59,15 @@ def id_to_uuid(id_str):
     return id_str
 
 
-def to_lower(s):
-    return s.lower() if s else ""
+def to_lower(s) -> str:
+    if s is None:
+        return None
+    if isinstance(s, str):
+        return s.lower()
+    try:
+        return str(s).lower()
+    except Exception:
+        return str(s)
 
 
 def to_int(s):
