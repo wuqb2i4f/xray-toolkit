@@ -1,1 +1,0 @@
-# No external dependencies required yet - using stdlib only

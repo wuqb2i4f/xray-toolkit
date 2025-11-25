@@ -1,36 +1,36 @@
 import json
 import re
 import hashlib
-from config.config import PROXIES, URIS_RAW_PATH, URIS_TRANSFORM_PATH
-from utils.processors import processors_map
-from utils.helpers import (
-    read_raw_file,
-    write_json_file,
-    parse_params,
-    extract_params,
-    extract_params_vmess,
-)
 
 
-def transform_uris():
-    uris = read_raw_file(URIS_RAW_PATH)
+def transform_uris(configs_map, processors_map, helpers_map):
+    uris_raw_path = configs_map["URIS_RAW_PATH"]
+    uris_transform_path = configs_map["URIS_TRANSFORM_PATH"]
+    protocols_object = configs_map["PROXIES"]["PROTOCOLS"]
+    securities_object = configs_map["PROXIES"]["SECURITIES"]
+    transports_object = configs_map["PROXIES"]["TRANSPORTS"]
+    uris = helpers_map["read_raw_file"](uris_raw_path)
     processed_objects = []
     hashes = set()
     for uri in uris:
         if "://" not in uri:
             continue
         protocol_key = uri.split("://")[0]
-        if protocol_key not in PROXIES["PROTOCOLS"]:
+        if protocol_key not in protocols_object:
             print(f"Unknown protocol '{protocol_key}' for URI: {uri} - skipping.")
             continue
-        protocol_values = PROXIES["PROTOCOLS"][protocol_key]
-        proxy_object = process_protocol(uri, protocol_key, protocol_values)
-        proxy_object = process_security(proxy_object, PROXIES["SECURITIES"])
-        proxy_object = process_transport(proxy_object, PROXIES["TRANSPORTS"])
+        protocol_values = protocols_object[protocol_key]
+        proxy_object = process_protocol(
+            uri, protocol_key, protocol_values, processors_map, helpers_map
+        )
+        proxy_object = process_security(proxy_object, securities_object, helpers_map)
+        proxy_object = process_transport(
+            proxy_object, transports_object, processors_map, helpers_map
+        )
         if proxy_object:
             if "params" in proxy_object:
                 del proxy_object["params"]
-            hash = compute_hash(proxy_object)
+            hash = compute_hash(proxy_object, processors_map)
             proxy_object["hash"] = hash
             if proxy_object["hash"] not in hashes:
                 hashes.add(proxy_object["hash"])
@@ -38,19 +38,19 @@ def transform_uris():
     print(
         f"Processed {len(processed_objects)} unique URIs from {len(uris)} raw (deduplicated {len(uris) - len(processed_objects)} duplicates)."
     )
-    write_json_file(processed_objects, URIS_TRANSFORM_PATH)
+    helpers_map["write_json_file"](processed_objects, uris_transform_path)
     return None
 
 
-def process_protocol(uri, protocol_key, protocol_values):
+def process_protocol(uri, protocol_key, protocol_values, processors_map, helpers_map):
     parser = parsers_map.get(protocol_key)
     if parser:
-        return parser(uri, protocol_values)
+        return parser(uri, protocol_values, processors_map, helpers_map)
     else:
         return None
 
 
-def parse_vless_uri(uri, protocol_values):
+def parse_vless_uri(uri, protocol_values, processors_map, helpers_map):
     pattern = r"vless://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
     match = re.match(pattern, uri)
     if not match:
@@ -59,11 +59,11 @@ def parse_vless_uri(uri, protocol_values):
     address_raw = match.group(2)
     port_raw = match.group(3)
     query_raw = match.group(4)
-    params = parse_params(query_raw)
+    params = helpers_map["parse_params"](query_raw)
     address = processors_map["to_lower"](address_raw)
     port = processors_map["to_int"](port_raw)
     uuid = processors_map["id_to_uuid"](id_raw)
-    params_protocol = extract_params(params, protocol_values)
+    params_protocol = helpers_map["extract_params"](params, protocol_values)
     protocol_dict = {
         "type": "vless",
         "address": address,
@@ -81,7 +81,7 @@ def parse_vless_uri(uri, protocol_values):
     return obj
 
 
-def parse_trojan_uri(uri, protocol_values):
+def parse_trojan_uri(uri, protocol_values, processors_map, helpers_map):
     pattern = r"trojan://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
     match = re.match(pattern, uri)
     if not match:
@@ -90,10 +90,10 @@ def parse_trojan_uri(uri, protocol_values):
     address_raw = match.group(2)
     port_raw = match.group(3)
     query_raw = match.group(4) or ""
-    params = parse_params(query_raw)
+    params = helpers_map["parse_params"](query_raw)
     address = processors_map["to_lower"](address_raw)
     port = processors_map["to_int"](port_raw)
-    params_protocol = extract_params(params, protocol_values)
+    params_protocol = helpers_map["extract_params"](params, protocol_values)
     protocol_dict = {
         "type": "trojan",
         "address": address,
@@ -111,7 +111,7 @@ def parse_trojan_uri(uri, protocol_values):
     return obj
 
 
-def parse_ss_uri(uri, protocol_values):
+def parse_ss_uri(uri, protocol_values, processors_map, helpers_map):
     pattern = r"ss://([A-Za-z0-9+/=]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
     match = re.match(pattern, uri)
     if not match:
@@ -120,7 +120,7 @@ def parse_ss_uri(uri, protocol_values):
     address_raw = match.group(2)
     port_raw = match.group(3)
     query_raw = match.group(4) or ""
-    params = parse_params(query_raw)
+    params = helpers_map["parse_params"](query_raw)
     address = processors_map["to_lower"](address_raw)
     port = processors_map["to_int"](port_raw)
     b64_part_decode = processors_map["decode_b64_simple"](b64_part_raw)
@@ -130,7 +130,7 @@ def parse_ss_uri(uri, protocol_values):
         method, password = b64_part_decode.split(":", 1)
     except ValueError:
         return None
-    params_protocol = extract_params(params, protocol_values)
+    params_protocol = helpers_map["extract_params"](params, protocol_values)
     protocol_dict = {
         "type": "ss",
         "address": address,
@@ -149,17 +149,17 @@ def parse_ss_uri(uri, protocol_values):
     return obj
 
 
-def parse_vmess_uri(uri, protocol_values):
+def parse_vmess_uri(uri, protocol_values, processors_map, helpers_map):
     pattern_b64 = r"vmess://([^#]+)$"
     if re.match(pattern_b64, uri):
-        return parse_vmess_b64_format(uri, protocol_values)
+        return parse_vmess_b64_format(uri, protocol_values, processors_map, helpers_map)
     pattern_uri = r"vmess://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
     if re.match(pattern_uri, uri):
-        return parse_vmess_uri_format(uri, protocol_values)
+        return parse_vmess_uri_format(uri, protocol_values, processors_map, helpers_map)
     return None
 
 
-def parse_vmess_b64_format(uri, protocol_values):
+def parse_vmess_b64_format(uri, protocol_values, processors_map, helpers_map):
     pattern = r"vmess://([^#]+)$"
     match = re.match(pattern, uri)
     if not match:
@@ -180,8 +180,8 @@ def parse_vmess_b64_format(uri, protocol_values):
     address = processors_map["to_lower"](address_raw)
     port = processors_map["to_int"](port_raw)
     uuid = processors_map["id_to_uuid"](id_raw)
-    params = extract_params_vmess(obj_data)
-    params_protocol = extract_params(params, protocol_values)
+    params = helpers_map["extract_params_vmess"](obj_data)
+    params_protocol = helpers_map["extract_params"](params, protocol_values)
     protocol_dict = {
         "type": "vmess",
         "address": address,
@@ -199,7 +199,7 @@ def parse_vmess_b64_format(uri, protocol_values):
     return obj
 
 
-def parse_vmess_uri_format(uri, protocol_values):
+def parse_vmess_uri_format(uri, protocol_values, processors_map, helpers_map):
     pattern = r"vmess://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
     match = re.match(pattern, uri)
     if not match:
@@ -208,11 +208,11 @@ def parse_vmess_uri_format(uri, protocol_values):
     address_raw = match.group(2)
     port_raw = match.group(3)
     query_raw = match.group(4) or ""
-    params = parse_params(query_raw)
+    params = helpers_map["parse_params"](query_raw)
     address = processors_map["to_lower"](address_raw)
     port = processors_map["to_int"](port_raw)
     uuid = processors_map["id_to_uuid"](id_raw)
-    params_protocol = extract_params(params, protocol_values)
+    params_protocol = helpers_map["extract_params"](params, protocol_values)
     protocol_dict = {
         "type": "vmess",
         "address": address,
@@ -230,7 +230,7 @@ def parse_vmess_uri_format(uri, protocol_values):
     return obj
 
 
-def parse_hysteria2_uri(uri, protocol_values):
+def parse_hysteria2_uri(uri, protocol_values, processors_map, helpers_map):
     pattern = r"hysteria2://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
     match = re.match(pattern, uri)
     if not match:
@@ -239,10 +239,10 @@ def parse_hysteria2_uri(uri, protocol_values):
     address_raw = match.group(2)
     port_raw = match.group(3)
     query_raw = match.group(4) or ""
-    params = parse_params(query_raw)
+    params = helpers_map["parse_params"](query_raw)
     address = processors_map["to_lower"](address_raw)
     port = processors_map["to_int"](port_raw)
-    params_protocol = extract_params(params, protocol_values)
+    params_protocol = helpers_map["extract_params"](params, protocol_values)
     protocol_dict = {
         "type": "hysteria2",
         "address": address,
@@ -258,7 +258,7 @@ def parse_hysteria2_uri(uri, protocol_values):
     return obj
 
 
-def compute_hash(obj):
+def compute_hash(obj, processors_map):
     hash_input = {k: v for k, v in obj.items()}
     hash_input = processors_map["case_insensitive_hash"](hash_input)
     hash_string = json.dumps(hash_input, sort_keys=True, default=str)
@@ -266,7 +266,7 @@ def compute_hash(obj):
     return hash_obj.hexdigest()
 
 
-def process_security(proxy_object, securities):
+def process_security(proxy_object, securities, helpers_map):
     if not proxy_object:
         return None
     if proxy_object.get("security") != {}:
@@ -280,7 +280,7 @@ def process_security(proxy_object, securities):
     security_obj = {"type": security_type}
     if security_type != "none":
         security_values = securities[security_type]
-        security_params = extract_params(params, security_values)
+        security_params = helpers_map["extract_params"](params, security_values)
         if security_params is None:
             return None
         security_obj = {**security_obj, **security_params}
@@ -288,7 +288,7 @@ def process_security(proxy_object, securities):
     return proxy_object
 
 
-def process_transport(proxy_object, transports):
+def process_transport(proxy_object, transports, processors_map, helpers_map):
     if not proxy_object:
         return None
     if proxy_object.get("transport") != {}:
@@ -301,7 +301,7 @@ def process_transport(proxy_object, transports):
         transport_type = transport_raw
     transport_obj = {"type": transport_type}
     transport_values = transports[transport_type]
-    tarnsport_params = extract_params(params, transport_values)
+    tarnsport_params = helpers_map["extract_params"](params, transport_values)
     if tarnsport_params is None:
         return None
     transport_obj = {**transport_obj, **tarnsport_params}
@@ -336,8 +336,3 @@ parsers_map = {
     "vmess": parse_vmess_uri,
     "hysteria2": parse_hysteria2_uri,
 }
-
-
-# For testing
-if __name__ == "__main__":
-    transform_uris()

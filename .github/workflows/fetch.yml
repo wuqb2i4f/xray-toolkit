@@ -1,0 +1,43 @@
+name: Fetch Content Hourly
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  fetch-content:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+
+      - name: Run fetch script
+        run: python3 -m src.main fetch
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'wuqb2i4f'
+          git config --global user.email 'wuqb2i4f@duck.com'
+          if ! git diff --quiet; then
+              git add .
+              git commit -m "Updated"
+              git fetch --all
+              git reset --hard HEAD
+              git merge @{u}
+              git push -f origin main
+          else
+              echo "No changes detected"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
