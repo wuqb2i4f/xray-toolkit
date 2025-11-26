@@ -4,7 +4,7 @@ import urllib.error
 import urllib.request
 
 
-def fetch_content_to_file(configs_map, processors_map):
+def fetch_uris(configs_map, processors_map):
     links = configs_map["LINKS"]
     protocols_object = configs_map["PROXIES"]["PROTOCOLS"]
     uris_raw_path = configs_map["URIS_RAW_PATH"]

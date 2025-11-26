@@ -3,7 +3,7 @@ import os
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from fetch import fetch_content_to_file
+from fetch import fetch_uris
 from transform import transform_uris
 from utils.config import configs_map
 from utils.processors import processors_map
@@ -17,7 +17,7 @@ def main():
     command = sys.argv[1].lower()
     match command:
         case "fetch":
-            fetch_content_to_file(configs_map, processors_map)
+            fetch_uris(configs_map, processors_map)
         case "transform":
             transform_uris(configs_map, processors_map, helpers_map)
         case _:
