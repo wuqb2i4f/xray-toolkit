@@ -9,13 +9,12 @@ def fetch_uris(configs_map, processors_map, database_map):
     links = configs_map["LINKS"]
     protocols_object = configs_map["PROXIES"]["PROTOCOLS"]
     db_path = configs_map["DB_PATH"]
-    table_uris_raw = configs_map["TABLE_SCHEMAS"]["uris_raw"]
-    table_uris_rejected = configs_map["TABLE_SCHEMAS"]["uris_rejected"]
-    database_map["ensure_table"](db_path, "uris_raw", table_uris_raw)
-    database_map["ensure_table"](db_path, "uris_rejected", table_uris_rejected)
-    rejected_dict = {}
+    schemas = configs_map["TABLE_SCHEMAS"]
+    database_map["ensure_table"](db_path, "uris_raw", schemas["uris_raw"])
+    database_map["ensure_table"](db_path, "uris_rejected", schemas["uris_rejected"])
     total_processed = 0
     all_uris = set()
+    rejected_lines = set()
     for url in links:
         try:
             content = fetch_url_content(url)
@@ -24,8 +23,7 @@ def fetch_uris(configs_map, processors_map, database_map):
             )
             for uris in protocol_uris_temp.values():
                 all_uris.update(uris)
-            if rejected_temp:
-                rejected_dict[url] = (rejected_temp, "invalid_or_unknown_protocol")
+            rejected_lines.update(rejected_temp)
             total_processed += sum(
                 1 for line in content.strip().split("\n") if line.strip()
             )
@@ -33,9 +31,7 @@ def fetch_uris(configs_map, processors_map, database_map):
             print(f"Error fetching {url}: {e}")
             continue
     added_valid = save_uris_to_db(all_uris, db_path, database_map, processors_map)
-    added_rejected = save_rejected_to_db(
-        rejected_dict, db_path, database_map, processors_map
-    )
+    added_rejected = save_rejected_to_db(rejected_lines, db_path, database_map)
     total_valid = database_map["count_records"](db_path, "uris_raw")
     total_rejected = database_map["count_records"](db_path, "uris_rejected")
     print(f"Fetch complete → {added_valid} new valid, {added_rejected} rejected")
@@ -121,22 +117,16 @@ def save_uris_to_db(uris_set, db_path, database_map, processors_map):
             pass
 
 
-def save_rejected_to_db(rejected_dict, db_path, database_map, processors_map):
-    if not rejected_dict:
+def save_rejected_to_db(rejected_lines_set, db_path, database_map):
+    if not rejected_lines_set:
         return 0
-    records = []
-    for source_url, (lines_set, _) in rejected_dict.items():
-        for line in lines_set:
-            records.append({"line": line.strip(), "source_url": source_url})
-    if records:
-        with database_map["get_db_connection"](db_path) as conn:
-            cur = conn.cursor()
-            cur.executemany(
-                """
-                INSERT INTO uris_rejected (line, source_url)
-                VALUES (?, ?)
-                """,
-                [(r["line"], r["source_url"]) for r in records],
-            )
-            conn.commit()
+    records = [(line.strip(),) for line in rejected_lines_set if line.strip()]
+    if not records:
+        return 0
+    with database_map["get_db_connection"](db_path) as conn:
+        conn.executemany(
+            "INSERT OR IGNORE INTO uris_rejected (line) VALUES (?)",
+            records,
+        )
+        conn.commit()
     return len(records)

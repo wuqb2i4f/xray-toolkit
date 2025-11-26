@@ -389,8 +389,7 @@ TABLE_SCHEMAS = {
     },
     "uris_rejected": {
         "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
-        "line": "TEXT NOT NULL",
-        "source_url": "TEXT",
+        "line": "TEXT NOT NULL UNIQUE",
         "created_at": "DATETIME DEFAULT CURRENT_TIMESTAMP",
     },
 }
