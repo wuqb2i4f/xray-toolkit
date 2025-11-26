@@ -379,6 +379,22 @@ PROXIES = {
     },
 }
 
+TABLE_SCHEMAS = {
+    "uris_raw": {
+        "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+        "uri": "TEXT NOT NULL UNIQUE",
+        "hash": "TEXT",
+        "created_at": "DATETIME DEFAULT CURRENT_TIMESTAMP",
+        "updated_at": "DATETIME DEFAULT CURRENT_TIMESTAMP",
+    },
+    "uris_rejected": {
+        "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+        "line": "TEXT NOT NULL",
+        "source_url": "TEXT",
+        "created_at": "DATETIME DEFAULT CURRENT_TIMESTAMP",
+    },
+}
+
 configs_map = {
     "LINKS": LINKS,
     "DB_PATH": DB_PATH,
@@ -386,4 +402,5 @@ configs_map = {
     "URIS_RAW_REJECTED_PATH": URIS_RAW_REJECTED_PATH,
     "URIS_TRANSFORM_PATH": URIS_TRANSFORM_PATH,
     "PROXIES": PROXIES,
+    "TABLE_SCHEMAS": TABLE_SCHEMAS,
 }

@@ -1,15 +1,19 @@
 import base64
 import os
+import tempfile
 import urllib.error
 import urllib.request
 
 
-def fetch_uris(configs_map, processors_map):
+def fetch_uris(configs_map, processors_map, database_map):
     links = configs_map["LINKS"]
     protocols_object = configs_map["PROXIES"]["PROTOCOLS"]
-    uris_raw_path = configs_map["URIS_RAW_PATH"]
-    uris_raw_rejected_path = configs_map["URIS_RAW_REJECTED_PATH"]
-    rejected_lines = set()
+    db_path = configs_map["DB_PATH"]
+    table_uris_raw = configs_map["TABLE_SCHEMAS"]["uris_raw"]
+    table_uris_rejected = configs_map["TABLE_SCHEMAS"]["uris_rejected"]
+    database_map["ensure_table"](db_path, "uris_raw", table_uris_raw)
+    database_map["ensure_table"](db_path, "uris_rejected", table_uris_rejected)
+    rejected_dict = {}
     total_processed = 0
     all_uris = set()
     for url in links:
@@ -20,16 +24,22 @@ def fetch_uris(configs_map, processors_map):
             )
             for uris in protocol_uris_temp.values():
                 all_uris.update(uris)
-            rejected_lines.update(rejected_temp)
+            if rejected_temp:
+                rejected_dict[url] = (rejected_temp, "invalid_or_unknown_protocol")
             total_processed += sum(
                 1 for line in content.strip().split("\n") if line.strip()
             )
-        except (urllib.error.URLError, ValueError) as e:
+        except Exception as e:
             print(f"Error fetching {url}: {e}")
             continue
-    write_rejected_file(rejected_lines, uris_raw_rejected_path)
-    write_uris_file(all_uris, uris_raw_path, processors_map)
-    print(f"Processed {total_processed} lines from {len(links)} URLs.")
+    added_valid = save_uris_to_db(all_uris, db_path, database_map, processors_map)
+    added_rejected = save_rejected_to_db(
+        rejected_dict, db_path, database_map, processors_map
+    )
+    total_valid = database_map["count_records"](db_path, "uris_raw")
+    total_rejected = database_map["count_records"](db_path, "uris_rejected")
+    print(f"Fetch complete → {added_valid} new valid, {added_rejected} rejected")
+    print(f"Total in DB → valid: {total_valid}, rejected: {total_rejected}")
     return None
 
 
@@ -91,32 +101,42 @@ def read_existing_lines(file_path):
     return existing_lines
 
 
-def write_uris_file(new_uris, uris_raw_path, processors_map):
-    if new_uris:
-        os.makedirs(os.path.dirname(uris_raw_path), exist_ok=True)
-        existing_uris = read_existing_lines(uris_raw_path)
-        decoded_new_uris = {
-            processors_map["decode_url_encode"](uri) for uri in new_uris
-        }
-        all_uris = existing_uris.union(decoded_new_uris)
-        with open(uris_raw_path, "w", encoding="utf-8") as f:
-            for uri in sorted(all_uris):
-                f.write(uri + "\n")
-        added_count = len(new_uris) - len(new_uris.intersection(existing_uris))
-        print(
-            f"Appended {added_count} new unique URIs (total: {len(all_uris)}) to {uris_raw_path}."
+def save_uris_to_db(uris_set, db_path, database_map, processors_map):
+    if not uris_set:
+        return 0
+    with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", delete=False) as f:
+        for uri in sorted(uris_set):
+            decoded = processors_map["decode_url_encode"](uri)
+            f.write(decoded + "\n")
+        temp_path = f.name
+    try:
+        added = database_map["bulk_import_from_file"](
+            db_path=db_path, file_path=temp_path, table_name="uris_raw"
         )
+        return added
+    finally:
+        try:
+            os.unlink(temp_path)
+        except OSError:
+            pass
 
 
-def write_rejected_file(new_rejected_lines, uris_raw_rejected_path):
-    existing_rejected = read_existing_lines(uris_raw_rejected_path)
-    all_rejected = existing_rejected.union(new_rejected_lines)
-    with open(uris_raw_rejected_path, "w", encoding="utf-8") as f:
-        for line in sorted(all_rejected):
-            f.write(line + "\n")
-    added_count = len(new_rejected_lines) - len(
-        new_rejected_lines.intersection(existing_rejected)
-    )
-    print(
-        f"Appended {added_count} new unique rejected lines (total: {len(all_rejected)}) to {uris_raw_rejected_path}."
-    )
+def save_rejected_to_db(rejected_dict, db_path, database_map, processors_map):
+    if not rejected_dict:
+        return 0
+    records = []
+    for source_url, (lines_set, _) in rejected_dict.items():
+        for line in lines_set:
+            records.append({"line": line.strip(), "source_url": source_url})
+    if records:
+        with database_map["get_db_connection"](db_path) as conn:
+            cur = conn.cursor()
+            cur.executemany(
+                """
+                INSERT INTO uris_rejected (line, source_url)
+                VALUES (?, ?)
+                """,
+                [(r["line"], r["source_url"]) for r in records],
+            )
+            conn.commit()
+    return len(records)

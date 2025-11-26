@@ -8,6 +8,7 @@ from transform import transform_uris
 from utils.config import configs_map
 from utils.processors import processors_map
 from utils.helpers import helpers_map
+from utils.database import database_map
 
 
 def main():
@@ -17,7 +18,7 @@ def main():
     command = sys.argv[1].lower()
     match command:
         case "fetch":
-            fetch_uris(configs_map, processors_map)
+            fetch_uris(configs_map, processors_map, database_map)
         case "transform":
             transform_uris(configs_map, processors_map, helpers_map)
         case _:
