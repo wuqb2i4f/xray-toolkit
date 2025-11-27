@@ -107,7 +107,12 @@ def save_uris_to_db(uris_set, db_path, database_map, processors_map):
         temp_path = f.name
     try:
         records = uri_generator(temp_path)
-        added = database_map["bulk_insert_from_iterable"](db_path, "uris_raw", records)
+        added = database_map["bulk_upsert"](
+            db_path=db_path,
+            table_name="uris_raw",
+            records=records,
+            key_columns="uri",
+        )
         return added
     finally:
         try:

@@ -52,20 +52,21 @@ def transform_uris(configs_map, processors_map, helpers_map, database_map):
             uri_to_processed[uri] = 1
     helpers_map["write_json_file"](processed_objects, uris_transform_path)
     if uri_to_processed:
-        database_map["bulk_update_multi_columns"](
+        database_map["bulk_upsert"](
             db_path=db_path,
             table_name="uris_raw",
-            updates={uri: {"processed": 1} for uri in uri_to_processed.keys()},
-            key_column="uri",
-            extra_sets={"updated_at": "CURRENT_TIMESTAMP"},
+            records=[{"uri": uri, "processed": 1} for uri in uri_to_processed.keys()],
+            key_columns="uri",
         )
     if uri_to_hash:
-        database_map["bulk_update_multi_columns"](
+        database_map["bulk_upsert"](
             db_path=db_path,
             table_name="uris_raw",
-            updates={uri: {"hash": h} for uri, h in uri_to_hash.items()},
-            key_column="uri",
-            extra_sets={"updated_at": "CURRENT_TIMESTAMP"},
+            records=[
+                {"uri": uri, "processed": 1, "hash": h}
+                for uri, h in uri_to_hash.items()
+            ],
+            key_columns="uri",
         )
     print(f"   → {len(processed_objects)} unique configs saved to JSON")
     print(f"   → {len(uri_to_processed)} URIs marked as processed")
