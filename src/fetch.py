@@ -106,9 +106,8 @@ def save_uris_to_db(uris_set, db_path, database_map, processors_map):
             f.write(decoded + "\n")
         temp_path = f.name
     try:
-        added = database_map["bulk_import_from_file"](
-            db_path=db_path, file_path=temp_path, table_name="uris_raw"
-        )
+        records = uri_generator(temp_path)
+        added = database_map["bulk_insert_from_iterable"](db_path, "uris_raw", records)
         return added
     finally:
         try:
@@ -130,3 +129,11 @@ def save_rejected_to_db(rejected_lines_set, db_path, database_map):
         )
         conn.commit()
     return len(records)
+
+
+def uri_generator(file_path):
+    with open(file_path, encoding="utf-8") as f:
+        for line in f:
+            uri = line.strip()
+            if uri:
+                yield {"uri": uri}

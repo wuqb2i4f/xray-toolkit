@@ -21,8 +21,6 @@ LINKS = [
 ]
 
 DB_PATH = "data/database.db"
-URIS_RAW_PATH = "output/uris_raw.txt"
-URIS_RAW_REJECTED_PATH = "output/uris_raw_rejected.txt"
 URIS_TRANSFORM_PATH = "output/uris_transform.json"
 
 PROXIES = {
@@ -384,21 +382,31 @@ TABLE_SCHEMAS = {
         "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
         "uri": "TEXT NOT NULL UNIQUE",
         "hash": "TEXT",
+        "processed": "INTEGER DEFAULT 0",
         "created_at": "DATETIME DEFAULT CURRENT_TIMESTAMP",
         "updated_at": "DATETIME DEFAULT CURRENT_TIMESTAMP",
     },
     "uris_rejected": {
         "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
         "line": "TEXT NOT NULL UNIQUE",
+        "processed": "INTEGER DEFAULT 0",
         "created_at": "DATETIME DEFAULT CURRENT_TIMESTAMP",
+        "updated_at": "DATETIME DEFAULT CURRENT_TIMESTAMP",
+    },
+    "uris_transformed": {
+        "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+        "hash": "TEXT NOT NULL UNIQUE",
+        "remarks": "TEXT NOT NULL",
+        "protocol": "TEXT NOT NULL",
+        "proxy_object": "TEXT NOT NULL",
+        "created_at": "DATETIME DEFAULT CURRENT_TIMESTAMP",
+        "updated_at": "DATETIME DEFAULT CURRENT_TIMESTAMP",
     },
 }
 
 configs_map = {
     "LINKS": LINKS,
     "DB_PATH": DB_PATH,
-    "URIS_RAW_PATH": URIS_RAW_PATH,
-    "URIS_RAW_REJECTED_PATH": URIS_RAW_REJECTED_PATH,
     "URIS_TRANSFORM_PATH": URIS_TRANSFORM_PATH,
     "PROXIES": PROXIES,
     "TABLE_SCHEMAS": TABLE_SCHEMAS,

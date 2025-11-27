@@ -20,7 +20,7 @@ def main():
         case "fetch":
             fetch_uris(configs_map, processors_map, database_map)
         case "transform":
-            transform_uris(configs_map, processors_map, helpers_map)
+            transform_uris(configs_map, processors_map, helpers_map, database_map)
         case _:
             sys.exit(1)
 

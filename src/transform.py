@@ -3,43 +3,74 @@ import re
 import hashlib
 
 
-def transform_uris(configs_map, processors_map, helpers_map):
-    uris_raw_path = configs_map["URIS_RAW_PATH"]
+def transform_uris(configs_map, processors_map, helpers_map, database_map):
+    db_path = configs_map["DB_PATH"]
     uris_transform_path = configs_map["URIS_TRANSFORM_PATH"]
     protocols_object = configs_map["PROXIES"]["PROTOCOLS"]
     securities_object = configs_map["PROXIES"]["SECURITIES"]
     transports_object = configs_map["PROXIES"]["TRANSPORTS"]
-    uris = helpers_map["read_raw_file"](uris_raw_path)
+    raw_records = database_map["select_all"](
+        db_path, "uris_raw", where_clause="processed = 0", params=()
+    )
+    uris = [row["uri"] for row in raw_records]
+    print(f"Loaded {len(uris)} unprocessed URIs from database.")
     processed_objects = []
-    hashes = set()
+    seen_hashes = set()
+    uri_to_hash = {}
+    uri_to_processed = {}
     for uri in uris:
         if "://" not in uri:
+            uri_to_processed[uri] = 1
             continue
         protocol_key = uri.split("://")[0]
         if protocol_key not in protocols_object:
-            print(f"Unknown protocol '{protocol_key}' for URI: {uri} - skipping.")
+            uri_to_processed[uri] = 1
             continue
-        protocol_values = protocols_object[protocol_key]
         proxy_object = process_protocol(
-            uri, protocol_key, protocol_values, processors_map, helpers_map
+            uri,
+            protocol_key,
+            protocols_object[protocol_key],
+            processors_map,
+            helpers_map,
         )
         proxy_object = process_security(proxy_object, securities_object, helpers_map)
         proxy_object = process_transport(
             proxy_object, transports_object, processors_map, helpers_map
         )
-        if proxy_object:
-            if "params" in proxy_object:
-                del proxy_object["params"]
-            hash = compute_hash(proxy_object, processors_map)
-            proxy_object["hash"] = hash
-            if proxy_object["hash"] not in hashes:
-                hashes.add(proxy_object["hash"])
-                processed_objects.append(proxy_object)
-    print(
-        f"Processed {len(processed_objects)} unique URIs from {len(uris)} raw (deduplicated {len(uris) - len(processed_objects)} duplicates)."
-    )
+        if not proxy_object:
+            uri_to_processed[uri] = 1
+            continue
+        proxy_object.pop("params", None)
+        hash_val = compute_hash(proxy_object, processors_map)
+        proxy_object["hash"] = hash_val
+        uri_to_processed[uri] = 1
+        if hash_val not in seen_hashes:
+            seen_hashes.add(hash_val)
+            processed_objects.append(proxy_object)
+            uri_to_hash[uri] = hash_val
+        else:
+            uri_to_processed[uri] = 1
     helpers_map["write_json_file"](processed_objects, uris_transform_path)
-    return None
+    if uri_to_processed:
+        database_map["bulk_update_multi_columns"](
+            db_path=db_path,
+            table_name="uris_raw",
+            updates={uri: {"processed": 1} for uri in uri_to_processed.keys()},
+            key_column="uri",
+            extra_sets={"updated_at": "CURRENT_TIMESTAMP"},
+        )
+    if uri_to_hash:
+        database_map["bulk_update_multi_columns"](
+            db_path=db_path,
+            table_name="uris_raw",
+            updates={uri: {"hash": h} for uri, h in uri_to_hash.items()},
+            key_column="uri",
+            extra_sets={"updated_at": "CURRENT_TIMESTAMP"},
+        )
+    print(f"   → {len(processed_objects)} unique configs saved to JSON")
+    print(f"   → {len(uri_to_processed)} URIs marked as processed")
+    print(f"   → {len(uri_to_hash)} URIs got a unique hash")
+    print(f"   → {len(uris) - len(uri_to_processed)} failed/skipped")
 
 
 def process_protocol(uri, protocol_key, protocol_values, processors_map, helpers_map):

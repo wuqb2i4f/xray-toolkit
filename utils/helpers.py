@@ -5,11 +5,6 @@ from utils.validators import validators_map
 from utils.processors import processors_map
 
 
-def read_raw_file(file_path):
-    with open(file_path, "r", encoding="utf-8") as f:
-        return [line.strip() for line in f if line.strip()]
-
-
 def write_json_file(objects, file_path):
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(objects, f, indent=2, ensure_ascii=False)
@@ -97,7 +92,6 @@ def extract_params_vmess(obj_data):
 
 
 helpers_map = {
-    "read_raw_file": read_raw_file,
     "write_json_file": write_json_file,
     "parse_params": parse_params,
     "extract_params": extract_params,
