@@ -3,14 +3,12 @@ import re
 import hashlib
 
 
-def transform_uris(configs_map, processors_map, helpers_map, database_map):
-    db_path = configs_map["DB_PATH"]
-    uris_transform_path = configs_map["URIS_TRANSFORM_PATH"]
-    protocols_object = configs_map["PROXIES"]["PROTOCOLS"]
-    securities_object = configs_map["PROXIES"]["SECURITIES"]
-    transports_object = configs_map["PROXIES"]["TRANSPORTS"]
-    raw_records = database_map["select_all"](
-        db_path, "uris_raw", where_clause="processed = 0", params=()
+def transform_uris(ctx):
+    uris_transform_path = ctx.configs_map["URIS_TRANSFORM_PATH"]
+    protocols_object = ctx.configs_map["PROXIES"]["PROTOCOLS"]
+    db_path = ctx.configs_map["DB_PATH"]
+    raw_records = ctx.database_map["select_all"](
+        db_path=db_path, table_name="uris_raw", where_clause="processed = 0", params=()
     )
     uris = [row["uri"] for row in raw_records]
     print(f"Loaded {len(uris)} unprocessed URIs from database.")
@@ -30,18 +28,15 @@ def transform_uris(configs_map, processors_map, helpers_map, database_map):
             uri,
             protocol_key,
             protocols_object[protocol_key],
-            processors_map,
-            helpers_map,
+            ctx,
         )
-        proxy_object = process_security(proxy_object, securities_object, helpers_map)
-        proxy_object = process_transport(
-            proxy_object, transports_object, processors_map, helpers_map
-        )
+        proxy_object = process_security(proxy_object, ctx)
+        proxy_object = process_transport(proxy_object, ctx)
         if not proxy_object:
             uri_to_processed[uri] = 1
             continue
         proxy_object.pop("params", None)
-        hash_val = compute_hash(proxy_object, processors_map)
+        hash_val = compute_hash(proxy_object, ctx)
         proxy_object["hash"] = hash_val
         uri_to_processed[uri] = 1
         if hash_val not in seen_hashes:
@@ -50,16 +45,16 @@ def transform_uris(configs_map, processors_map, helpers_map, database_map):
             uri_to_hash[uri] = hash_val
         else:
             uri_to_processed[uri] = 1
-    helpers_map["write_json_file"](processed_objects, uris_transform_path)
+    ctx.processors_map["write_json_file"](processed_objects, uris_transform_path)
     if uri_to_processed:
-        database_map["bulk_upsert"](
+        ctx.database_map["bulk_upsert"](
             db_path=db_path,
             table_name="uris_raw",
             records=[{"uri": uri, "processed": 1} for uri in uri_to_processed.keys()],
             key_columns="uri",
         )
     if uri_to_hash:
-        database_map["bulk_upsert"](
+        ctx.database_map["bulk_upsert"](
             db_path=db_path,
             table_name="uris_raw",
             records=[
@@ -74,15 +69,15 @@ def transform_uris(configs_map, processors_map, helpers_map, database_map):
     print(f"   → {len(uris) - len(uri_to_processed)} failed/skipped")
 
 
-def process_protocol(uri, protocol_key, protocol_values, processors_map, helpers_map):
+def process_protocol(uri, protocol_key, protocol_values, ctx):
     parser = parsers_map.get(protocol_key)
     if parser:
-        return parser(uri, protocol_values, processors_map, helpers_map)
+        return parser(uri, protocol_values, ctx)
     else:
         return None
 
 
-def parse_vless_uri(uri, protocol_values, processors_map, helpers_map):
+def parse_vless_uri(uri, protocol_values, ctx):
     pattern = r"vless://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
     match = re.match(pattern, uri)
     if not match:
@@ -91,11 +86,11 @@ def parse_vless_uri(uri, protocol_values, processors_map, helpers_map):
     address_raw = match.group(2)
     port_raw = match.group(3)
     query_raw = match.group(4)
-    params = helpers_map["parse_params"](query_raw)
-    address = processors_map["to_lower"](address_raw)
-    port = processors_map["to_int"](port_raw)
-    uuid = processors_map["id_to_uuid"](id_raw)
-    params_protocol = helpers_map["extract_params"](params, protocol_values)
+    params = ctx.processors_map["parse_params"](query_raw)
+    address = ctx.processors_map["to_lower"](address_raw)
+    port = ctx.processors_map["to_int"](port_raw)
+    uuid = ctx.processors_map["id_to_uuid"](id_raw)
+    params_protocol = ctx.processors_map["extract_params"](params, protocol_values)
     protocol_dict = {
         "type": "vless",
         "address": address,
@@ -113,7 +108,7 @@ def parse_vless_uri(uri, protocol_values, processors_map, helpers_map):
     return obj
 
 
-def parse_trojan_uri(uri, protocol_values, processors_map, helpers_map):
+def parse_trojan_uri(uri, protocol_values, ctx):
     pattern = r"trojan://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
     match = re.match(pattern, uri)
     if not match:
@@ -122,10 +117,10 @@ def parse_trojan_uri(uri, protocol_values, processors_map, helpers_map):
     address_raw = match.group(2)
     port_raw = match.group(3)
     query_raw = match.group(4) or ""
-    params = helpers_map["parse_params"](query_raw)
-    address = processors_map["to_lower"](address_raw)
-    port = processors_map["to_int"](port_raw)
-    params_protocol = helpers_map["extract_params"](params, protocol_values)
+    params = ctx.processors_map["parse_params"](query_raw)
+    address = ctx.processors_map["to_lower"](address_raw)
+    port = ctx.processors_map["to_int"](port_raw)
+    params_protocol = ctx.processors_map["extract_params"](params, protocol_values)
     protocol_dict = {
         "type": "trojan",
         "address": address,
@@ -143,7 +138,7 @@ def parse_trojan_uri(uri, protocol_values, processors_map, helpers_map):
     return obj
 
 
-def parse_ss_uri(uri, protocol_values, processors_map, helpers_map):
+def parse_ss_uri(uri, protocol_values, ctx):
     pattern = r"ss://([A-Za-z0-9+/=]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
     match = re.match(pattern, uri)
     if not match:
@@ -152,17 +147,17 @@ def parse_ss_uri(uri, protocol_values, processors_map, helpers_map):
     address_raw = match.group(2)
     port_raw = match.group(3)
     query_raw = match.group(4) or ""
-    params = helpers_map["parse_params"](query_raw)
-    address = processors_map["to_lower"](address_raw)
-    port = processors_map["to_int"](port_raw)
-    b64_part_decode = processors_map["decode_b64_simple"](b64_part_raw)
+    params = ctx.processors_map["parse_params"](query_raw)
+    address = ctx.processors_map["to_lower"](address_raw)
+    port = ctx.processors_map["to_int"](port_raw)
+    b64_part_decode = ctx.processors_map["decode_b64_simple"](b64_part_raw)
     if not b64_part_decode:
         return None
     try:
         method, password = b64_part_decode.split(":", 1)
     except ValueError:
         return None
-    params_protocol = helpers_map["extract_params"](params, protocol_values)
+    params_protocol = ctx.processors_map["extract_params"](params, protocol_values)
     protocol_dict = {
         "type": "ss",
         "address": address,
@@ -181,23 +176,23 @@ def parse_ss_uri(uri, protocol_values, processors_map, helpers_map):
     return obj
 
 
-def parse_vmess_uri(uri, protocol_values, processors_map, helpers_map):
+def parse_vmess_uri(uri, protocol_values, ctx):
     pattern_b64 = r"vmess://([^#]+)$"
     if re.match(pattern_b64, uri):
-        return parse_vmess_b64_format(uri, protocol_values, processors_map, helpers_map)
+        return parse_vmess_b64_format(uri, protocol_values, ctx)
     pattern_uri = r"vmess://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
     if re.match(pattern_uri, uri):
-        return parse_vmess_uri_format(uri, protocol_values, processors_map, helpers_map)
+        return parse_vmess_uri_format(uri, protocol_values, ctx)
     return None
 
 
-def parse_vmess_b64_format(uri, protocol_values, processors_map, helpers_map):
+def parse_vmess_b64_format(uri, protocol_values, ctx):
     pattern = r"vmess://([^#]+)$"
     match = re.match(pattern, uri)
     if not match:
         return None
     b64_part_raw = match.group(1)
-    b64_part_decode = processors_map["decode_b64_simple"](b64_part_raw)
+    b64_part_decode = ctx.processors_map["decode_b64_simple"](b64_part_raw)
     if not b64_part_decode:
         return None
     try:
@@ -209,11 +204,11 @@ def parse_vmess_b64_format(uri, protocol_values, processors_map, helpers_map):
     id_raw = obj_data.get("id", "")
     if not address_raw or port_raw is None or not id_raw:
         return None
-    address = processors_map["to_lower"](address_raw)
-    port = processors_map["to_int"](port_raw)
-    uuid = processors_map["id_to_uuid"](id_raw)
-    params = helpers_map["extract_params_vmess"](obj_data)
-    params_protocol = helpers_map["extract_params"](params, protocol_values)
+    address = ctx.processors_map["to_lower"](address_raw)
+    port = ctx.processors_map["to_int"](port_raw)
+    uuid = ctx.processors_map["id_to_uuid"](id_raw)
+    params = ctx.processors_map["extract_params_vmess"](obj_data)
+    params_protocol = ctx.processors_map["extract_params"](params, protocol_values)
     protocol_dict = {
         "type": "vmess",
         "address": address,
@@ -231,7 +226,7 @@ def parse_vmess_b64_format(uri, protocol_values, processors_map, helpers_map):
     return obj
 
 
-def parse_vmess_uri_format(uri, protocol_values, processors_map, helpers_map):
+def parse_vmess_uri_format(uri, protocol_values, ctx):
     pattern = r"vmess://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
     match = re.match(pattern, uri)
     if not match:
@@ -240,11 +235,11 @@ def parse_vmess_uri_format(uri, protocol_values, processors_map, helpers_map):
     address_raw = match.group(2)
     port_raw = match.group(3)
     query_raw = match.group(4) or ""
-    params = helpers_map["parse_params"](query_raw)
-    address = processors_map["to_lower"](address_raw)
-    port = processors_map["to_int"](port_raw)
-    uuid = processors_map["id_to_uuid"](id_raw)
-    params_protocol = helpers_map["extract_params"](params, protocol_values)
+    params = ctx.processors_map["parse_params"](query_raw)
+    address = ctx.processors_map["to_lower"](address_raw)
+    port = ctx.processors_map["to_int"](port_raw)
+    uuid = ctx.processors_map["id_to_uuid"](id_raw)
+    params_protocol = ctx.processors_map["extract_params"](params, protocol_values)
     protocol_dict = {
         "type": "vmess",
         "address": address,
@@ -262,7 +257,7 @@ def parse_vmess_uri_format(uri, protocol_values, processors_map, helpers_map):
     return obj
 
 
-def parse_hysteria2_uri(uri, protocol_values, processors_map, helpers_map):
+def parse_hysteria2_uri(uri, protocol_values, ctx):
     pattern = r"hysteria2://([^@]+)@([^:]+):(\d+)(?:\?([^#]*))?(?:#(.*))?$"
     match = re.match(pattern, uri)
     if not match:
@@ -271,10 +266,10 @@ def parse_hysteria2_uri(uri, protocol_values, processors_map, helpers_map):
     address_raw = match.group(2)
     port_raw = match.group(3)
     query_raw = match.group(4) or ""
-    params = helpers_map["parse_params"](query_raw)
-    address = processors_map["to_lower"](address_raw)
-    port = processors_map["to_int"](port_raw)
-    params_protocol = helpers_map["extract_params"](params, protocol_values)
+    params = ctx.processors_map["parse_params"](query_raw)
+    address = ctx.processors_map["to_lower"](address_raw)
+    port = ctx.processors_map["to_int"](port_raw)
+    params_protocol = ctx.processors_map["extract_params"](params, protocol_values)
     protocol_dict = {
         "type": "hysteria2",
         "address": address,
@@ -290,29 +285,30 @@ def parse_hysteria2_uri(uri, protocol_values, processors_map, helpers_map):
     return obj
 
 
-def compute_hash(obj, processors_map):
+def compute_hash(obj, ctx):
     hash_input = {k: v for k, v in obj.items()}
-    hash_input = processors_map["case_insensitive_hash"](hash_input)
+    hash_input = ctx.processors_map["case_insensitive_hash"](hash_input)
     hash_string = json.dumps(hash_input, sort_keys=True, default=str)
     hash_obj = hashlib.sha256(hash_string.encode("utf-8"))
     return hash_obj.hexdigest()
 
 
-def process_security(proxy_object, securities, helpers_map):
+def process_security(proxy_object, ctx):
+    securities_object = ctx.configs_map["PROXIES"]["SECURITIES"]
     if not proxy_object:
         return None
     if proxy_object.get("security") != {}:
         return proxy_object
     params = proxy_object.get("params", {})
     security_raw = str(params.get("security", "")).strip().lower()
-    if not security_raw or security_raw not in securities:
+    if not security_raw or security_raw not in securities_object:
         security_type = "none"
     else:
         security_type = security_raw
     security_obj = {"type": security_type}
     if security_type != "none":
-        security_values = securities[security_type]
-        security_params = helpers_map["extract_params"](params, security_values)
+        security_values = securities_object[security_type]
+        security_params = ctx.processors_map["extract_params"](params, security_values)
         if security_params is None:
             return None
         security_obj = {**security_obj, **security_params}
@@ -320,20 +316,21 @@ def process_security(proxy_object, securities, helpers_map):
     return proxy_object
 
 
-def process_transport(proxy_object, transports, processors_map, helpers_map):
+def process_transport(proxy_object, ctx):
+    transports_object = ctx.configs_map["PROXIES"]["TRANSPORTS"]
     if not proxy_object:
         return None
     if proxy_object.get("transport") != {}:
         return proxy_object
     params = proxy_object.get("params", {})
     transport_raw = str(params.get("type", "")).strip().lower()
-    if not transport_raw or transport_raw not in transports:
+    if not transport_raw or transport_raw not in transports_object:
         transport_type = "raw"
     else:
         transport_type = transport_raw
     transport_obj = {"type": transport_type}
-    transport_values = transports[transport_type]
-    tarnsport_params = helpers_map["extract_params"](params, transport_values)
+    transport_values = transports_object[transport_type]
+    tarnsport_params = ctx.processors_map["extract_params"](params, transport_values)
     if tarnsport_params is None:
         return None
     transport_obj = {**transport_obj, **tarnsport_params}
@@ -350,7 +347,7 @@ def process_transport(proxy_object, transports, processors_map, helpers_map):
         if host_condition or path_condition:
             transport_obj["headerType"] = "http"
     if "path" in transport_obj:
-        transport_obj["path"] = processors_map["path_start_with_slash"](
+        transport_obj["path"] = ctx.processors_map["path_start_with_slash"](
             transport_obj["path"]
         )
     if transport_type == "raw" and transport_obj.get("headerType", "") != "http":

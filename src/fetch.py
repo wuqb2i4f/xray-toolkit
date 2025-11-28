@@ -5,22 +5,15 @@ import urllib.error
 import urllib.request
 
 
-def fetch_uris(configs_map, processors_map, database_map):
-    links = configs_map["LINKS"]
-    protocols_object = configs_map["PROXIES"]["PROTOCOLS"]
-    db_path = configs_map["DB_PATH"]
-    schemas = configs_map["TABLE_SCHEMAS"]
-    database_map["ensure_table"](db_path, "uris_raw", schemas["uris_raw"])
-    database_map["ensure_table"](db_path, "uris_rejected", schemas["uris_rejected"])
+def fetch_uris(ctx):
+    links = ctx.configs_map["LINKS"]
     total_processed = 0
     all_uris = set()
     rejected_lines = set()
     for url in links:
         try:
             content = fetch_url_content(url)
-            protocol_uris_temp, rejected_temp = parse_content_to_uris(
-                content, protocols_object, processors_map
-            )
+            protocol_uris_temp, rejected_temp = parse_content_to_uris(content, ctx)
             for uris in protocol_uris_temp.values():
                 all_uris.update(uris)
             rejected_lines.update(rejected_temp)
@@ -30,10 +23,22 @@ def fetch_uris(configs_map, processors_map, database_map):
         except Exception as e:
             print(f"Error fetching {url}: {e}")
             continue
-    added_valid = save_uris_to_db(all_uris, db_path, database_map, processors_map)
-    added_rejected = save_rejected_to_db(rejected_lines, db_path, database_map)
-    total_valid = database_map["count_records"](db_path, "uris_raw")
-    total_rejected = database_map["count_records"](db_path, "uris_rejected")
+    db_path = ctx.configs_map["DB_PATH"]
+    schemas = ctx.configs_map["TABLE_SCHEMAS"]
+    ctx.database_map["ensure_table"](
+        db_path=db_path, table_name="uris_raw", columns=schemas["uris_raw"]
+    )
+    ctx.database_map["ensure_table"](
+        db_path=db_path, table_name="uris_rejected", columns=schemas["uris_rejected"]
+    )
+    added_valid = save_uris_to_db(all_uris, db_path, ctx)
+    added_rejected = save_rejected_to_db(rejected_lines, db_path, ctx)
+    total_valid = ctx.database_map["count_records"](
+        db_path=db_path, table_name="uris_raw"
+    )
+    total_rejected = ctx.database_map["count_records"](
+        db_path=db_path, table_name="uris_rejected"
+    )
     print(f"Fetch complete → {added_valid} new valid, {added_rejected} rejected")
     print(f"Total in DB → valid: {total_valid}, rejected: {total_rejected}")
     return None
@@ -49,65 +54,43 @@ def fetch_url_content(url):
         return raw_content
 
 
-def parse_content_to_uris(content, protocols_object, processors_map):
-    full_prefixes = [p + "://" for p in protocols_object.keys()]
-    protocol_uris_temp = {proto: set() for proto in protocols_object.keys()}
-    rejected_temp = set()
-    lines = content.strip().split("\n")
-    for line in lines:
-        stripped_line = line.strip()
-        if not stripped_line:
+def parse_content_to_uris(content, ctx):
+    protocols_object = ctx.configs_map["PROXIES"]["PROTOCOLS"]
+    valid_uris = {proto: set() for proto in protocols_object}
+    rejected = set()
+    for line in content.splitlines():
+        line = line.strip()
+        if not line:
             continue
-        if stripped_line.startswith(tuple(full_prefixes)):
-            for prefix in full_prefixes:
-                if stripped_line.startswith(prefix):
-                    base_proto = prefix.rstrip("://")
-                    proto_config = protocols_object.get(base_proto, {})
-                    if "uri" in proto_config and "processors" in proto_config["uri"]:
-                        processors_list = proto_config["uri"]["processors"]
-                        normalized_uri = stripped_line
-                        for norm_rule in processors_list:
-                            if norm_rule in processors_map:
-                                normalized_uri = processors_map[norm_rule](
-                                    normalized_uri
-                                )
-                            else:
-                                print(
-                                    f"Unknown processor rule '{norm_rule}' - skipping for URI: {normalized_uri}"
-                                )
-                        output_proto = base_proto
-                    else:
-                        normalized_uri, output_proto = (stripped_line, base_proto)
-                    if output_proto in protocol_uris_temp:
-                        protocol_uris_temp[output_proto].add(normalized_uri)
-                    break
+        for proto in protocols_object:
+            prefix = f"{proto}://"
+            if not line.startswith(prefix):
+                continue
+            rules = protocols_object[proto].get("uri", {}).get("processors", [])
+            normalized = line
+            for rule in rules:
+                if rule not in ctx.processors_map:
+                    print(f"Unknown processor rule '{rule}' - skipping for URI: {line}")
+                    continue
+                normalized = ctx.processors_map[rule](normalized)
+            valid_uris[proto].add(normalized)
+            break
         else:
-            rejected_temp.add(stripped_line)
-    return protocol_uris_temp, rejected_temp
+            rejected.add(line)
+    return valid_uris, rejected
 
 
-def read_existing_lines(file_path):
-    existing_lines = set()
-    if os.path.exists(file_path):
-        with open(file_path, "r", encoding="utf-8") as f:
-            for line in f:
-                stripped = line.strip()
-                if stripped:
-                    existing_lines.add(stripped)
-    return existing_lines
-
-
-def save_uris_to_db(uris_set, db_path, database_map, processors_map):
+def save_uris_to_db(uris_set, db_path, ctx):
     if not uris_set:
         return 0
     with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", delete=False) as f:
         for uri in sorted(uris_set):
-            decoded = processors_map["decode_url_encode"](uri)
+            decoded = ctx.processors_map["decode_url_encode"](uri)
             f.write(decoded + "\n")
         temp_path = f.name
     try:
-        records = uri_generator(temp_path)
-        added = database_map["bulk_upsert"](
+        records = ctx.processors_map["uri_generator"](temp_path)
+        added = ctx.database_map["bulk_upsert"](
             db_path=db_path,
             table_name="uris_raw",
             records=records,
@@ -121,24 +104,16 @@ def save_uris_to_db(uris_set, db_path, database_map, processors_map):
             pass
 
 
-def save_rejected_to_db(rejected_lines_set, db_path, database_map):
+def save_rejected_to_db(rejected_lines_set, db_path, ctx):
     if not rejected_lines_set:
         return 0
     records = [(line.strip(),) for line in rejected_lines_set if line.strip()]
     if not records:
         return 0
-    with database_map["get_db_connection"](db_path) as conn:
+    with ctx.database_map["get_db_connection"](db_path) as conn:
         conn.executemany(
             "INSERT OR IGNORE INTO uris_rejected (line) VALUES (?)",
             records,
         )
         conn.commit()
     return len(records)
-
-
-def uri_generator(file_path):
-    with open(file_path, encoding="utf-8") as f:
-        for line in f:
-            uri = line.strip()
-            if uri:
-                yield {"uri": uri}
