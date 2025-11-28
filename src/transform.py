@@ -329,6 +329,7 @@ def process_security(proxy_object, ctx):
             return None
         security_obj = {**security_obj, **security_params}
     proxy_object["security"] = security_obj
+    proxy_object["remarks"] += f"-{security_type[:2]}"
     return proxy_object
 
 
@@ -371,6 +372,7 @@ def process_transport(proxy_object, ctx):
         transport_obj.pop("path", None)
         transport_obj.pop("host", None)
     proxy_object["transport"] = transport_obj
+    proxy_object["remarks"] += f"-{transport_type[:2]}"
     return proxy_object
 
 
