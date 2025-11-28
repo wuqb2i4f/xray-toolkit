@@ -99,11 +99,13 @@ def parse_vless_uri(uri, protocol_values, ctx):
     }
     if params_protocol is not None:
         protocol_dict.update(params_protocol)
+    remarks = protocol_dict["type"][:2]
     obj = {
         "protocol": protocol_dict,
         "security": {},
         "transport": {},
         "params": params,
+        "remarks": remarks,
     }
     return obj
 
@@ -129,11 +131,13 @@ def parse_trojan_uri(uri, protocol_values, ctx):
     }
     if params_protocol is not None:
         protocol_dict.update(params_protocol)
+    remarks = protocol_dict["type"][:2]
     obj = {
         "protocol": protocol_dict,
         "security": {},
         "transport": {},
         "params": params,
+        "remarks": remarks,
     }
     return obj
 
@@ -167,11 +171,13 @@ def parse_ss_uri(uri, protocol_values, ctx):
     }
     if params_protocol is not None:
         protocol_dict.update(params_protocol)
+    remarks = protocol_dict["type"][:2]
     obj = {
         "protocol": protocol_dict,
         "security": {},
         "transport": {},
         "params": params,
+        "remarks": remarks,
     }
     return obj
 
@@ -217,11 +223,13 @@ def parse_vmess_b64_format(uri, protocol_values, ctx):
     }
     if params_protocol is not None:
         protocol_dict.update(params_protocol)
+    remarks = protocol_dict["type"][:2]
     obj = {
         "protocol": protocol_dict,
         "security": {},
         "transport": {},
         "params": params,
+        "remarks": remarks,
     }
     return obj
 
@@ -248,11 +256,13 @@ def parse_vmess_uri_format(uri, protocol_values, ctx):
     }
     if params_protocol is not None:
         protocol_dict.update(params_protocol)
+    remarks = protocol_dict["type"][:2]
     obj = {
         "protocol": protocol_dict,
         "security": {},
         "transport": {},
         "params": params,
+        "remarks": remarks,
     }
     return obj
 
@@ -278,9 +288,15 @@ def parse_hysteria2_uri(uri, protocol_values, ctx):
     }
     if params_protocol is not None:
         protocol_dict.update(params_protocol)
+    remarks = (
+        protocol_dict["type"][:2]
+        + ("-tl" if "sni" in protocol_dict else "-no")
+        + ("-ud" if "obfs" in protocol_dict else "-qu")
+    )
     obj = {
         "protocol": protocol_dict,
         "params": params,
+        "remarks": remarks,
     }
     return obj
 
