@@ -77,10 +77,24 @@ def bulk_upsert(db_path, table_name, records, key_columns, batch_size=10_000):
     return upserted
 
 
+def optimize_database(db_path):
+    conn = sqlite3.connect(db_path)
+    conn.execute("PRAGMA journal_mode = DELETE")
+    conn.execute("PRAGMA page_size = 4096")
+    conn.execute("PRAGMA synchronous = NORMAL")
+    conn.execute("PRAGMA cache_size = -64000")
+    conn.execute("PRAGMA temp_store = MEMORY")
+    conn.execute("PRAGMA mmap_size = 268435456")
+    conn.execute("PRAGMA optimize")
+    conn.execute("VACUUM")
+    conn.close()
+
+
 database_map = {
     "get_db_connection": get_db_connection,
     "ensure_table": ensure_table,
     "count_records": count_records,
     "select_all": select_all,
     "bulk_upsert": bulk_upsert,
+    "optimize_database": optimize_database,
 }
